@@ -1,0 +1,35 @@
+.card {
+    position: relative;
+    width: 225px;
+    height: 225px;
+    transition: 0.2s all;
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.24),
+            0px 9px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    &:hover .card__heart {
+        transition: 0.2s all;
+        opacity: 1;
+        display: block;
+    }
+
+    &__heart {
+        display: none;
+        width: 40px;
+        height: 35px;
+        opacity: 0;
+        transition: 0.2s all;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        cursor: pointer;
+    }
+}

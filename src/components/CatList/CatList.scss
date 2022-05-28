@@ -1,0 +1,7 @@
+.cat__wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 225px);
+    grid-auto-rows: 225px;
+    gap: 50px;
+    justify-content: center;
+}
