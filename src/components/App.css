@@ -64,12 +64,14 @@ nav > ul {
   transform: scale(1.04);
 }
 
-.favorite-button {
+button.favorite-button {
   position: absolute;
   right: 19px;
   bottom: 24px;
   width: 40px;
   height: 36px;
+  background-color: transparent;
+  border: none;
   background-size: cover;
   background-repeat:   no-repeat;
   background-position: center center;
@@ -81,6 +83,10 @@ nav > ul {
 
 .non-favorite {
   background-image: url('../images/favorite-border.svg');
+}
+
+.non-favorite:hover {
+  background-image: url('../images/favorite.svg');
 }
 
 .uploading-cats-label {
