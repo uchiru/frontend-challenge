@@ -1,0 +1,89 @@
+header {
+  background-color: #2196F3;
+}
+
+body, nav > ul, p {
+  margin: 0;
+  padding: 0;
+}
+
+main, nav {
+  margin: 0 auto;
+  max-width: 1316px;
+  width: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+nav > ul {
+  display: flex;
+  list-style: none;
+}
+
+.navigation-item {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  padding: 23px;
+}
+
+.navigation-item:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #1E88E5;
+}
+
+.shadow {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cats, .liked-cats {
+  display: grid;
+  grid-template: repeat(3, 225px) / repeat(5, 225px);
+  margin: 48px auto;
+  gap: 48px;
+}
+
+.cat {
+  position: relative;
+
+  transition: all .2s ease-in-out;
+}
+
+.cat img {
+  width: 225px;
+  height: 225px;
+}
+
+.cat:hover {
+  cursor: pointer;
+  transform: scale(1.04);
+}
+
+.favorite-button {
+  position: absolute;
+  right: 19px;
+  bottom: 24px;
+  width: 40px;
+  height: 36px;
+  background-size: cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+}
+
+.is-favorite {
+  background-image: url('../images/favorite.svg');
+}
+
+.non-favorite {
+  background-image: url('../images/favorite-border.svg');
+}
+
+.uploading-cats-label {
+  display: none;
+  text-align: center;
+}
