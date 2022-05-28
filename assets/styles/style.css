@@ -52,9 +52,38 @@ nav li a:hover {
 }
 
 .cat {
+  position: relative;
+
+  transition: all .2s ease-in-out;
+}
+
+.cat img {
   width: 225px;
   height: 225px;
-  background-color: #ccc;
+}
+
+.cat:hover {
+  cursor: pointer;
+  transform: scale(1.04);
+}
+
+.favorite-button {
+  position: absolute;
+  right: 19px;
+  bottom: 24px;
+  width: 40px;
+  height: 36px;
+  background-size: cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+}
+
+.is-favorite {
+  background-image: url('../img/favorite.svg');
+}
+
+.non-favorite {
+  background-image: url('../img/favorite-border.svg');
 }
 
 .uploading-cats-label {

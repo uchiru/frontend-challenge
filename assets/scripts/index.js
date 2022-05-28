@@ -4,6 +4,20 @@ const createFavoriteButton = () => {
   const favoriteButtonElement = document.createElement('div');
   favoriteButtonElement.classList.add('favorite-button');
   favoriteButtonElement.classList.add('non-favorite');
+
+  const toggleState = () => {
+    if (favoriteButtonElement.classList.contains('non-favorite')) {
+      favoriteButtonElement.classList.remove('non-favorite');
+      favoriteButtonElement.classList.add('is-favorite');
+    }
+    else if (favoriteButtonElement.classList.contains('is-favorite')) {
+      favoriteButtonElement.classList.remove('is-favorite');
+      favoriteButtonElement.classList.add('non-favorite');
+    }
+  }
+
+  favoriteButtonElement.addEventListener('click', toggleState);
+
   return favoriteButtonElement;
 }
 
