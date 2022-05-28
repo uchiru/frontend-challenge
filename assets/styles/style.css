@@ -24,33 +24,27 @@ nav > ul {
   list-style: none;
 }
 
-nav > ul > li {
+nav ul li {
+}
+
+nav li a {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
   padding: 23px;
 }
 
-nav > ul > li:hover {
-  background-color: #1E88E5;
+nav li a:hover {
   cursor: pointer;
-}
-
-nav > ul > li:hover a {
   color: #ffffff;
-}
-
-nav > ul > li > a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-nav > ul > li > a:visited {
-  text-decoration: none;
+  background-color: #1E88E5;
 }
 
 .shadow {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.cats {
+.cats, .liked-cats {
   display: grid;
   grid-template: repeat(3, 225px) / repeat(5, 225px);
   margin: 48px auto;
