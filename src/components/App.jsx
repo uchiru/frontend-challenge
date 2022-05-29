@@ -14,24 +14,19 @@ import './App.css';
 
 function App() {
   const [cats, setCats] = useState([
-    { id: 1, url: 'https://cdn2.thecatapi.com/images/wIFSp4brt.jpg' },
-    { id: 2, url: 'https://cdn2.thecatapi.com/images/2hk.jpg' },
-    { id: 3, url: 'https://cdn2.thecatapi.com/images/bhm.jpg' },
-    { id: 4, url: 'https://cdn2.thecatapi.com/images/t8oArUO-L.jpg' },
+    { id: 1, url: 'https://cdn2.thecatapi.com/images/wIFSp4brt.jpg', isFavorite: false },
+    { id: 2, url: 'https://cdn2.thecatapi.com/images/2hk.jpg', isFavorite: false },
+    { id: 3, url: 'https://cdn2.thecatapi.com/images/bhm.jpg', isFavorite: false },
+    { id: 4, url: 'https://cdn2.thecatapi.com/images/t8oArUO-L.jpg', isFavorite: false },
   ]);
 
-  const [favoriteCats, setFavoriteCats] = useState([]);
+  const toggleFavorites = (id) => {
+    const cat = cats.find((cat) => cat.id === id);
 
-  const addToFavorites = (id, url) => {
-    if (favoriteCats.find((cat) => cat.id === id)) {
-      return;
+    if (cat) {
+      cat.isFavorite = !cat.isFavorite;
+      setCats([...cats.slice(0, cat.id - 1), cat, ...cats.slice(cat.id)])
     }
-
-    setFavoriteCats([...favoriteCats, { id, url }]);
-  };
-
-  const removeFromFavorites = (id) => {
-    setFavoriteCats(favoriteCats.filter((cat) => cat.id !== id));
   };
 
   return (
@@ -42,8 +37,7 @@ function App() {
           element={
             <Home
               cats={cats}
-              addToFavorites={addToFavorites}
-              removeFromFavorites={removeFromFavorites}
+              toggleFavorites={toggleFavorites}
             />
           }
         />
@@ -51,9 +45,8 @@ function App() {
           path="/favorite"
           element={
             <FavoriteCats
-              cats={favoriteCats}
-              addToFavorites={addToFavorites}
-              removeFromFavorites={removeFromFavorites}
+              cats={cats.filter((cat) => cat.isFavorite)}
+              toggleFavorites={toggleFavorites}
             />
           }
         />

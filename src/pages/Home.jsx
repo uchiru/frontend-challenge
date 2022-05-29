@@ -2,15 +2,11 @@ import React from 'react';
 import Header from '../components/Header';
 import CatsList from '../components/CatsList';
 
-function Home({ cats, addToFavorites, removeFromFavorites }) {
+function Home({ cats, toggleFavorites }) {
   return (
     <div>
       <Header/>
-      <CatsList
-        cats={cats}
-        addToFavorites={addToFavorites}
-        removeFromFavorites={removeFromFavorites}
-      />
+      <CatsList cats={cats} toggleFavorites={toggleFavorites}/>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Cat from './Cat';
 
-function CatsList({ cats, addToFavorites, removeFromFavorites }) {
+function CatsList({ cats, toggleFavorites }) {
 
   const generateCats = () => {
     return cats.map((cat) => {
@@ -10,8 +10,8 @@ function CatsList({ cats, addToFavorites, removeFromFavorites }) {
           key={cat.id}
           id={cat.id}
           url={cat.url}
-          addToFavorites={addToFavorites}
-          removeFromFavorites={removeFromFavorites}
+          isFavorite={cat.isFavorite}
+          toggleFavorites={toggleFavorites}
         />
       )
     })
