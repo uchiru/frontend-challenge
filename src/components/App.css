@@ -50,13 +50,12 @@ nav > ul {
 
 .cat {
   position: relative;
-
   transition: all .2s ease-in-out;
 }
 
 .cat img {
-  width: 225px;
-  height: 225px;
+  width: 100%;
+  height: 100%;
 }
 
 .cat:hover {
@@ -96,4 +95,50 @@ button.favorite-button:hover {
 .uploading-cats-label {
   display: none;
   text-align: center;
+}
+
+@media (max-width:480px) {
+  .cats, .liked-cats {
+    margin: 0;
+    gap: 2px;
+    display: grid;
+    grid-template: repeat(8, 1fr) / repeat(2, 1fr);
+  }
+
+  .cat:hover {
+    cursor: pointer;
+    transform: none;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 640px) {
+  .cats, .liked-cats {
+    margin: 0;
+    gap: 2px;
+    display: grid;
+    grid-template: repeat(8, 1fr) / repeat(2, 1fr);
+  }
+
+  .cat:hover {
+    cursor: pointer;
+    transform: none;
+  }
+}
+
+@media only screen and (min-width: 640px) and (max-width: 1024px) {
+  .cats, .liked-cats {
+    margin: 0;
+    gap: 8px;
+    display: grid;
+    grid-template: repeat(5, 1fr) / repeat(3, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1316px) {
+  .cats, .liked-cats {
+    margin: 0;
+    gap: 8px;
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  }
 }
