@@ -1,8 +1,17 @@
-import './App.css'
+import React from "react";
 
-function App() {
+interface  appProps {
+  children: React.ReactElement | null;
+}
 
-  return <div/>
+function App({children}: appProps) {
+
+  return (
+      <>
+        <header>blyaaa</header>
+        <div>{children}</div>
+      </>
+  )
 }
 
 export default App
