@@ -77,6 +77,10 @@ button.favorite-button {
   background-position: center center;
 }
 
+button.favorite-button:hover {
+  cursor: pointer;
+}
+
 .is-favorite {
   background-image: url('../images/favorite.svg');
 }
