@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding-top: 200px;
+}
+
+.wrapper img {
+  width: 100px;
+  height: 100px;
+}
