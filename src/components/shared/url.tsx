@@ -1,0 +1,1 @@
+export const getCatsUrl = "https://api.thecatapi.com/v1/images/search?order=asc&size=full&limit=24&page=0";
