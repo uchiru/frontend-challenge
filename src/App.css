@@ -40,12 +40,11 @@ Line-height: 128%;
 img{
   width: 225px;
   height: 225px;
-  background-size: cover;
+  
 } 
 .AllCats-container{
   display: flex;
-   justify-content: center;
-   
+  justify-content: center;
   flex-wrap: wrap;
   
 }
@@ -55,14 +54,15 @@ img{
   width: 225px;
   height: 225px;
 }
-  
  
 .catItem:hover  {
   transform: scale(1.1);
   box-shadow: 0px 5px 6px 2px rgba(0, 0, 0, 0.34);
      
 }
-
+.catPhoto{
+  object-fit:cover;
+} 
 .heart{
   position: absolute;
   top: 70%;
