@@ -36,11 +36,10 @@ function App() {
           obj.isLiked = false;
           return obj;
         });
-        setData([...data, ...newData]);
+        setData(prev => [...prev, ...newData]);
         setPaginationOptions(prev => ({ ...prev, page: prev.page + 1 }));
       } catch (error) {
         console.log(error);
-        setFetching(false);
       } finally {
         setFetching(false);
       }

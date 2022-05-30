@@ -12,7 +12,7 @@ interface AllCatsProps {
 }
 
 const AllCats: FC<AllCatsProps> = ({ data, handleLikeCat, fetching }) => {
-  if (data !== null) {
+  if (data.length !== 0) {
     return (
       <>
         <CardList data={data} handleLikeCat={handleLikeCat} />
