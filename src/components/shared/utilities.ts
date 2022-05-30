@@ -1,0 +1,1 @@
+export const getStorage = (): string[] | null => JSON.parse(localStorage.getItem('favorite'));
