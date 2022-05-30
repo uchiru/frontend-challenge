@@ -1,0 +1,202 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+%padding-sides-max {
+    padding-left: 62px;
+    padding-right: 62px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    box-sizing: border-box;
+    font-family: "Roboto";
+}
+
+.container {
+    margin: 0 auto;
+    min-width: 375px;
+}
+
+header {
+    background-color: #2196F3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24)
+}
+
+.menu {
+    @extend %padding-sides-max;
+    display: flex;
+    list-style: none;
+    &__text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: 0.25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 23px;
+        padding-bottom: 23px;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        &:hover {
+            color: #FFFFFF;
+        }
+        &-active {
+            color: #FFFFFF;
+            background-color: #1E88E5; 
+        }
+    }
+}
+
+main {
+    @extend %padding-sides-max;
+    margin-top: 52px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-row-gap: 48px;
+    grid-column-gap: 10px;
+}
+
+.image-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 256px;
+    height: 256px;
+    text-align: end;
+    position: relative;
+    &:hover {
+        box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.24), 0px 9px 18px rgba(0, 0, 0, 0.18)
+    }
+    &__img {
+        max-width: 225px;
+        max-height: 225px;
+    }
+    &__menu {
+        display: block;
+        width: 256px;
+        height: 94px;
+        position: absolute;
+        left:50%;
+        top: 82%;
+        transform:translate(-50%,-50%);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 58.85%);
+    }
+    &__btn {
+        border: unset;
+        background-color: unset;
+        cursor: pointer;
+        padding-right: 24px;
+        padding-top: 23px;
+        fill: #F24E1E;
+        &:hover {
+            // fill: #F24E1E;
+        }
+    }
+}
+
+@media (max-width: 1382px) {
+    main {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 1116px) {
+    main {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 868px) {
+    %padding-sides-min {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .menu {
+        @extend %padding-sides-min;
+    }
+    main {
+        @extend %padding-sides-min;
+        margin-top: 20px;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-row-gap: 15px;
+        grid-column-gap: unset;
+    }
+    .image-block {
+        width: 225px;
+        height: 225px;
+        &__img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+        &__menu {
+            width: 225px;
+            top: 79%;
+        }
+        &__btn {
+            padding-right: 20px;
+            padding-top: 20px;
+        }
+    }
+}
+
+@media (max-width: 702px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 494px) {
+    %padding-sides {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .menu {
+        @extend %padding-sides;
+    }
+    main {
+        grid-template-columns: 1fr 1fr;
+        @extend %padding-sides;
+    }
+
+    .image-block {
+        width: 200px;
+        height: 200px;
+        &__img {
+            max-width: 180px;
+            max-height: 180px;
+        }
+        &__menu {
+            width: 200px;
+            top: 77%;
+        }
+        &__btn {
+            padding-right: 18px;
+            padding-top: 30px;
+        }
+    }
+}
+
+@media (max-width: 411px) {
+    .image-block {
+        width: 180px;
+        height: 180px;
+        &__img {
+            max-width: 160px;
+            max-height: 160px;
+        }
+        &__menu {
+            width: 180px;
+            height: 70px;
+            top: 81%;
+        }
+        &__btn {
+            padding-right: 16px;
+            padding-top: 16px;
+        }
+    }
+}

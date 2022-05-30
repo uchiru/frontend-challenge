@@ -1,0 +1,219 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+.menu, main {
+  padding-left: 62px;
+  padding-right: 62px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Roboto";
+}
+
+.container {
+  margin: 0 auto;
+  min-width: 375px;
+}
+
+header {
+  background-color: #2196F3;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+}
+
+.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+.menu__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.menu__text:hover {
+  color: #FFFFFF;
+}
+
+.menu__text-active {
+  color: #FFFFFF;
+  background-color: #1E88E5;
+}
+
+main {
+  margin-top: 52px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-row-gap: 48px;
+  grid-column-gap: 10px;
+}
+
+.image-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 256px;
+  height: 256px;
+  text-align: end;
+  position: relative;
+}
+
+.image-block:hover {
+  -webkit-box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.24), 0px 9px 18px rgba(0, 0, 0, 0.18);
+          box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.24), 0px 9px 18px rgba(0, 0, 0, 0.18);
+}
+
+.image-block__img {
+  max-width: 225px;
+  max-height: 225px;
+}
+
+.image-block__menu {
+  display: block;
+  width: 256px;
+  height: 94px;
+  position: absolute;
+  left: 50%;
+  top: 82%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(58.85%, #ffffff));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 58.85%);
+}
+
+.image-block__btn {
+  border: unset;
+  background-color: unset;
+  cursor: pointer;
+  padding-right: 24px;
+  padding-top: 23px;
+  fill: #F24E1E;
+}
+
+@media (max-width: 1382px) {
+  main {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 1116px) {
+  main {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 868px) {
+  .menu, main {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  main {
+    margin-top: 20px;
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 15px;
+    grid-column-gap: unset;
+  }
+  .image-block {
+    width: 225px;
+    height: 225px;
+  }
+  .image-block__img {
+    max-width: 200px;
+    max-height: 200px;
+  }
+  .image-block__menu {
+    width: 225px;
+    top: 79%;
+  }
+  .image-block__btn {
+    padding-right: 20px;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 702px) {
+  main {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 494px) {
+  .menu, main {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  main {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+  .image-block {
+    width: 200px;
+    height: 200px;
+  }
+  .image-block__img {
+    max-width: 180px;
+    max-height: 180px;
+  }
+  .image-block__menu {
+    width: 200px;
+    top: 77%;
+  }
+  .image-block__btn {
+    padding-right: 18px;
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 411px) {
+  .image-block {
+    width: 180px;
+    height: 180px;
+  }
+  .image-block__img {
+    max-width: 160px;
+    max-height: 160px;
+  }
+  .image-block__menu {
+    width: 180px;
+    height: 70px;
+    top: 81%;
+  }
+  .image-block__btn {
+    padding-right: 16px;
+    padding-top: 16px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
