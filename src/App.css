@@ -1,0 +1,74 @@
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.App{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 62px;
+ width: 100vw;
+ height: 68px;
+ background-color: #2196F3;
+ margin-bottom: 25px;
+}
+.header-item{
+  display: inline-block;
+   
+  font-family: Roboto;
+Font-style: Regular;
+Font-size: 14px;
+Line-height: 21px;
+Line-height: 128%;
+ 
+ padding: 23px;
+ color: rgba(240, 248, 255, 0.7);
+}
+ .header-item_active{
+  background-color: #1E88E5;
+  color: rgba(240, 248, 255,1);
+  max-height: 68px;
+}
+img{
+  width: 225px;
+  height: 225px;
+  
+} 
+.AllCats-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+}
+.catItem{
+  margin: 24px;
+  position: relative;
+  width: 225px;
+  height: 225px;
+}
+ 
+.catItem:hover  {
+  transform: scale(1.1);
+  box-shadow: 0px 5px 6px 2px rgba(0, 0, 0, 0.34);
+     
+}
+.catPhoto{
+  object-fit:cover;
+} 
+.heart{
+  position: absolute;
+  top: 70%;
+  left:70%;
+  width: 48px;
+  height: 36.7px;
+   
+}
+
