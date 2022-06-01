@@ -1,0 +1,53 @@
+.header__panel{
+    width: 100%;
+    background-color: #2196F3;
+    font-family: 'Roboto', sans-serif;
+}
+
+.center{
+    width: 1370px;
+    margin: 0 auto;
+}
+.header__link{
+    position: relative;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    color: #fff;
+}
+.header__list{
+    display: flex;
+    list-style: none;
+    margin-bottom: 0px;
+}
+.header__item{
+   
+    width: 120px;
+    padding-top: 23px;
+    padding-bottom: 23px;
+    
+}
+
+.header__countLike{
+    position: absolute;
+    right: -24px;
+    top: -9px;
+}
+.header__item:hover{
+    background-color: #1E88E5;
+}
+main {
+    flex: 1 0 auto;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    padding-left: 62px;
+    padding-right: 62px;
+}
+.footer {
+    margin-top: auto;
+    text-align: center;
+    flex: 0 0 auto;
+}

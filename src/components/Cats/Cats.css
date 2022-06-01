@@ -1,0 +1,34 @@
+.cats__list{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.cats__item{
+    position: relative;
+    margin-right: 48px;
+    width: 225px;
+    margin-bottom: 48px;
+}
+.cats__item:last-child{
+    margin-bottom: 48px;
+    margin-right: 48px;
+}
+.cats__item--img{
+    width: 100%;
+}
+.cats__btnLike{
+    border: none;
+    background: none;
+}
+.cats__likeIcon{
+    fill: none;
+    
+    width: 40px;
+    height: 36px;
+}
+.cats__btnLike{
+    position: absolute;
+    right: 19px;
+    bottom: 24px;
+    display:block ;
+}
