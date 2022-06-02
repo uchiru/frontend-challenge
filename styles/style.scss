@@ -29,7 +29,6 @@ header {
 .menu {
     @extend %padding-sides-max;
     display: flex;
-    list-style: none;
     &__text {
         font-weight: 400;
         font-size: 14px;
@@ -41,6 +40,7 @@ header {
         padding-bottom: 23px;
         color: rgba(255, 255, 255, 0.7);
         cursor: pointer;
+        text-decoration: none;
         &:hover {
             color: #FFFFFF;
         }
@@ -51,13 +51,23 @@ header {
     }
 }
 
-main {
+.cats {
     @extend %padding-sides-max;
     margin-top: 52px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-row-gap: 48px;
     grid-column-gap: 10px;
+    &__loading {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        letter-spacing: 0.25px;
+        color: #000000;
+        padding-bottom: 31px;
+        padding-top: 31px;
+    }
 }
 
 .image-block {
@@ -100,13 +110,13 @@ main {
 }
 
 @media (max-width: 1382px) {
-    main {
+    .cats {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
 @media (max-width: 1116px) {
-    main {
+    .cats {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
@@ -119,7 +129,7 @@ main {
     .menu {
         @extend %padding-sides-min;
     }
-    main {
+    .cats {
         @extend %padding-sides-min;
         margin-top: 20px;
         grid-template-columns: 1fr 1fr 1fr;
@@ -145,7 +155,7 @@ main {
 }
 
 @media (max-width: 702px) {
-    main {
+    .cats {
         grid-template-columns: 1fr 1fr;
     }
 }
@@ -158,7 +168,7 @@ main {
     .menu {
         @extend %padding-sides;
     }
-    main {
+    .cats {
         grid-template-columns: 1fr 1fr;
         @extend %padding-sides;
     }

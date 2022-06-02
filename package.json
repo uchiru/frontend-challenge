@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "dependencies": {
+    "vue": "^2.6.14",
+    "vue-infinite-loading": "^2.4.5",
+    "vue-router": "^3.5.4"
+  },
+  "name": "frontend-challenge",
+  "description": "Привет! Если ты хочешь стать частью команды Учи.ру в рамках стажёрской программы, \r то тебе необходимо выполнить небольшое тестовое задание. Это нужно, что бы твои \r потенциальные наставники смогли оценить твои навыки и сравнив их с остальными\r кандидатами выбрать лучших из лучших.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aleksa-esme/frontend-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aleksa-esme/frontend-challenge/issues"
+  },
+  "homepage": "https://github.com/Aleksa-esme/frontend-challenge#readme"
+}
