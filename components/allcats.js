@@ -12,7 +12,7 @@ const cat = Vue.component('cat', {
             <figure>
                 <img class="image-block__img" :src="cat.url" alt="cat">
                 <div class="image-block__menu">
-                    <button class="image-block__btn" @click="$parent.like(cat)">
+                    <button class="image-block__btn" @click="$parent.addCat(cat)">
                         <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                             <path :d="likeNotActive" />
                         </svg>    
@@ -39,10 +39,11 @@ const allcats =  Vue.component('allcats', {
     },
     components: { cat },
     methods: {
-        like(cat) {
+        addCat(cat) {
             let find = this.$root.liked.find(el => el.id === cat.id);
             if (!find) {
                 this.$root.liked.push(cat);
+                this.$parent.saveCats();
             } else {
                 console.log('Этот кот уже в любимчиках');
             }

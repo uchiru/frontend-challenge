@@ -31,6 +31,16 @@ const app = new Vue({
             } catch (error) {
                 console.log(error);
             }
+        },
+        
+        removeCat(cat) {
+            this.liked.splice(cat, 1);
+            this.saveCats();
+        },
+        
+        saveCats() {
+            const parsed = JSON.stringify(this.liked);
+            localStorage.setItem('liked', parsed);
         }
     }
 }).$mount('#app')
