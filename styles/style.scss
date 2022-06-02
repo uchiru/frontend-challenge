@@ -26,7 +26,7 @@ header {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24)
 }
 
-.menu {
+.router-link {
     @extend %padding-sides-max;
     display: flex;
     &__text {
@@ -44,12 +44,13 @@ header {
         &:hover {
             color: #FFFFFF;
         }
-        &-active {
-            color: #FFFFFF;
-            background-color: #1E88E5; 
-        }
+    }
+    &-active {
+        color: #FFFFFF;
+        background-color: #1E88E5; 
     }
 }
+
 
 .cats {
     @extend %padding-sides-max;
@@ -102,9 +103,16 @@ header {
         cursor: pointer;
         padding-right: 24px;
         padding-top: 23px;
-        fill: #F24E1E;
-        &:hover {
-            // fill: #F24E1E;
+        & svg {
+            stroke: #F24E1E;
+            stroke-width: 4px;
+            fill: transparent;
+        }
+        & svg:hover {
+            fill: #F24E1E;
+        }
+        &-filled svg {
+            fill: #F24E1E;
         }
     }
 }
@@ -126,7 +134,7 @@ header {
         padding-left: 20px;
         padding-right: 20px;
     }
-    .menu {
+    .router-link {
         @extend %padding-sides-min;
     }
     .cats {
@@ -165,7 +173,7 @@ header {
         padding-left: 10px;
         padding-right: 10px;
     }
-    .menu {
+    .router-link {
         @extend %padding-sides;
     }
     .cats {

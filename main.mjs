@@ -21,7 +21,7 @@ const app = new Vue({
             liked: []
         }
     },
-    components: { allcats, liked },
+    components: { allcats, liked, navigation },
     router: vue_router,
     methods: {
         async getJson(url) {
@@ -33,15 +33,18 @@ const app = new Vue({
             }
         },
         
-        removeCat(cat) {
-            this.liked.splice(cat, 1);
-            this.saveCats();
-        },
-        
         saveCats() {
             const parsed = JSON.stringify(this.liked);
             localStorage.setItem('liked', parsed);
-        }
+        },
+        
+        removeCat(cat) {
+            cat.like = false;
+            this.liked = this.liked.filter(el => {
+                return el !== cat;
+            })
+            this.saveCats();
+        },
     }
 }).$mount('#app')
 

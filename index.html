@@ -11,20 +11,17 @@
     <div id="app">
         <div class="container">
             <header>
-                <nav class="menu">
-                    <router-link class="menu__text menu__text-active" to="/all">Все котики</router-link>
-                    <router-link class="menu__text" to="/liked">Любимые котики</router-link>
-                </nav>
+                <navigation></navigation>
             </header>
             <main>
                 <router-view></router-view>
-                
             </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router@3.5.4/dist/vue-router.js"></script>
     <script src="https://unpkg.com/vue-infinite-loading@^2/dist/vue-infinite-loading.js"></script>
+    <script type="text/javascript" src="components/navigation.js"></script>
     <script type="text/javascript" src="components/allcats.js"></script>
     <script type="text/javascript" src="components/liked.js"></script>
     <script type="text/javascript" src="main.mjs"></script>
