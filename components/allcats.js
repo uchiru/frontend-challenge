@@ -55,7 +55,7 @@ const allcats =  Vue.component('allcats', {
         }
     },
     mounted () {
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 45; i++) {
             window.onload = this.showCats(1);
         };
         window.addEventListener('scroll', this.checkPosition);
