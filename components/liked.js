@@ -4,7 +4,7 @@ const liked = {
             try {
               this.$parent.liked = JSON.parse(localStorage.getItem('liked'));
             } catch(e) {
-              localStorage.$parent.removeItem('liked');
+              console.log(e);
             }
         }
     },

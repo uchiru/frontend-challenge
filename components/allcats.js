@@ -2,13 +2,13 @@ const cat = Vue.component('cat', {
     data() {
         return {
             src: "https://dummyimage.com/225/E5E5E5/E5E5E5.jpg&text=+",
-            isVisible:false
+            isVisibleMenu:false
         }
     },
     props: ['cat'],
     methods: {
         showMenu() {
-            this.isVisible = !this.isVisible;
+            this.isVisibleMenu = !this.isVisibleMenu;
         }
     },
     template: `
@@ -20,7 +20,7 @@ const cat = Vue.component('cat', {
             <figure>
                 <img class="image-block__img" :src="cat.url" alt="cat">
                 <div
-                    v-show="isVisible" 
+                    v-show="isVisibleMenu" 
                     class="image-block__menu"
                 >
                     <button 
@@ -56,17 +56,31 @@ const allcats =  Vue.component('allcats', {
     },
     mounted () {
         for (let i = 0; i < 15; i++) {
-            this.$parent.getJson(`https://api.thecatapi.com/v1/images/search`)
-                .then(cat => {
-                    if (!this.$root.liked.find(el => el.id === cat.id)) {
-                        Vue.set(cat[0], 'like', false);
-                    }
-                    this.$data.cats.push(cat[0]);
-                });
-        }
+            window.onload = this.showCats(1);
+        };
+        window.addEventListener('scroll', this.checkPosition);
+        window.addEventListener('resize', this.checkPosition);
+    },
+    destroyed () {
+        window.removeEventListener('scroll', this.checkPosition);
+        window.removeEventListener('resize', this.checkPosition);
     },
     components: { cat },
     methods: {
+        showCats (max) {
+            for (let i = 0; i < max; i++) {
+                this.$parent.getJson(`https://api.thecatapi.com/v1/images/search`)
+                    .then(cat => {
+                        if (!this.$root.liked.find(el => el.id === cat.id)) {
+                            Vue.set(cat[0], 'like', false);
+                            if (!this.cats.find(el => el.id === cat.id)) {
+                                this.$data.cats.push(cat[0]);
+                            };
+                        };
+                    });
+                break;
+            };
+        },
         addCat(cat) {
             let find = this.$root.liked.find(el => el.id === cat.id);
             if (!find) {
@@ -74,7 +88,18 @@ const allcats =  Vue.component('allcats', {
                 this.$root.liked.push(cat);
                 this.$parent.saveCats();
             }
-        }
+        },
+        checkPosition () {
+            const height = document.body.offsetHeight;
+            const screenHeight = window.innerHeight;
+            const scrolled = window.scrollY;
+            const threshold = height - screenHeight / 4;
+            const position = scrolled + screenHeight;
+            
+            if (position >= threshold) {
+                this.showCats(1);
+            }
+        },
     },
     template: `
             <div>
