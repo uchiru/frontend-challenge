@@ -1,0 +1,43 @@
+.content{
+    display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+.image{
+    width: 250px;
+  height: 250px;
+}
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+.imagePlaceholder {
+    background-color: #ffc859;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* overflow: hidden; */
+    background-color: white;
+  }
+  .card{
+    height: 100%;
+  }
+  .action{
+    position: absolute;
+  }
+  /* .favorite{
+    position: absolute;
+    cursor: pointer;
+    font-size: xx-large;
+    color: red;
+    } */
+  /* .icon{
+    font-size: absolute-size;
+  } */
