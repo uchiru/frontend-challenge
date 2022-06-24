@@ -7,6 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+console.log('js is ok')
 root.render(
   <React.StrictMode>
     <CookiesProvider>
