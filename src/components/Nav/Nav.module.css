@@ -1,0 +1,31 @@
+.navBlock {
+    background-color: #2196F3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+}
+
+.wrapper {
+ display: flex;
+    justify-content: space-between;
+}
+
+.wrapper button {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    padding: 0 22px;
+}
+
+.wrapper button:hover {
+    background-color: #1E88E5;
+}
+
+.linkBlock {
+    display: flex;
+}
+
+.linkBlock a {
+    color: #ffffff;
+    display: inline-block;
+    padding: 22px 23px;
+
+}
