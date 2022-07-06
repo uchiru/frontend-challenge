@@ -1,12 +1,16 @@
-const webpack = require('webpack')
+const path = require('path');
 const miniCss = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { Template } = require('webpack');
 
 module.exports = {
+    context: path.resolve(__dirname, 'src'),
     mode: 'development',
-    entry: './src/index.js',
+    entry: './index.js',
     output: {
-        path: __dirname + '/dist',
-        filename: 'bandle.js',
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js',
 
     },
     devServer: {
@@ -16,7 +20,7 @@ module.exports = {
     },
     module: {
         rules: [
-          
+
             { test: /\.(s*)css$/, use: [
               miniCss.loader,
 
@@ -25,6 +29,13 @@ module.exports = {
          ]
       },
       plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+          template: 'index.html',
+          inject: 'body',
+          scriptLoading: 'blocking',
+          
+      }),
         new miniCss({
            filename: 'styles.css',
         }),
