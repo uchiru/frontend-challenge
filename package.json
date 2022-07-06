@@ -1,0 +1,34 @@
+{
+  "name": "frontend-challenge",
+  "version": "1.0.0",
+  "description": "Привет! Если ты хочешь стать частью команды Учи.ру в рамках стажёрской программы, \r то тебе необходимо выполнить небольшое тестовое задание. Это нужно, что бы твои \r потенциальные наставники смогли оценить твои навыки и сравнив их с остальными\r кандидатами выбрать лучших из лучших.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve --hot --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sealione1311/frontend-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sealione1311/frontend-challenge/issues"
+  },
+  "homepage": "https://github.com/sealione1311/frontend-challenge#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "mini-css-extract-plugin": "^2.6.1",
+    "node-sass": "^7.0.1",
+    "sass": "^1.53.0",
+    "sass-loader": "^12.6.0",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
