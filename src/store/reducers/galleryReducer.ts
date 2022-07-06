@@ -23,8 +23,6 @@ export const isLikeAC = (id: string, isLike: boolean) => {
 }
 
 
-
-
 const initialState: Array<ImgAppType> = []
 
 

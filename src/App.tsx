@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Gallery} from './components/Gallery/Gallery';
 import {Nav} from './components/Nav/Nav';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
@@ -18,9 +18,14 @@ export const App = () => {
     const filteredItems = items.filter(item => item.isLike)
 
     useEffect(() => {
+        // @ts-ignore
+        dispatch(GetItemsTC())
+    }, [])
+
+    useEffect(() => {
         fetching &&
-            // @ts-ignore
-            dispatch(GetItemsTC())
+        // @ts-ignore
+        dispatch(GetItemsTC())
     }, [fetching])
 
 

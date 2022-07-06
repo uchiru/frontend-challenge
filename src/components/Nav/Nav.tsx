@@ -4,7 +4,7 @@ import s from './Nav.module.css';
 import containerStyle from '../common/styles/container.module.css';
 
 
-export const Nav:FC = React.memo(() => {
+export const Nav: FC = React.memo(() => {
 
     const onClearHandler = () => {
         localStorage.clear()
