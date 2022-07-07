@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Gallery} from './components/Gallery/Gallery';
 import {Nav} from './components/Nav/Nav';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, HashRouter, Route, Routes} from 'react-router-dom';
 import s from './components/Gallery/Gallery.module.css';
 import containerStyle from './components/common/styles/container.module.css';
 import {useDispatch, useSelector} from 'react-redux';
@@ -17,15 +17,12 @@ export const App = () => {
     const fetching = useSelector<AppStateType, boolean>(store => store.fetch.isFetching)
     const filteredItems = items.filter(item => item.isLike)
 
-    useEffect(() => {
-        // @ts-ignore
-        dispatch(GetItemsTC())
-    }, [])
 
     useEffect(() => {
-        fetching &&
-        // @ts-ignore
-        dispatch(GetItemsTC())
+
+        if (fetching) { // @ts-ignore
+            dispatch(GetItemsTC())
+        }
     }, [fetching])
 
 
@@ -43,7 +40,7 @@ export const App = () => {
     }
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Nav/>
             <div className={s.gallery}>
                 <div className={containerStyle.container}>
@@ -56,7 +53,7 @@ export const App = () => {
                     </div>
                 </div>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 
