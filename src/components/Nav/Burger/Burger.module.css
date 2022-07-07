@@ -1,0 +1,87 @@
+.navIcon {
+    display: none;
+    width: 40px;
+    height: 30px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    margin-top: 19px;
+}
+
+.navIcon span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 50%;
+    background: #fff;
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.navIcon span:nth-child(even) {
+    left: 50%;
+    border-radius: 0 9px 9px 0;
+}
+
+.navIcon span:nth-child(odd) {
+    left: 0px;
+    border-radius: 9px 0 0 9px;
+}
+
+.navIcon span:nth-child(1), .navIcon span:nth-child(2) {
+    top: 0px;
+}
+
+.navIcon span:nth-child(3), .navIcon span:nth-child(4) {
+    top: 12px;
+}
+
+.navIcon span:nth-child(5), .navIcon span:nth-child(6) {
+    top: 24px;
+}
+
+.navIcon.open span:nth-child(1), .navIcon.open span:nth-child(6) {
+    transform: rotate(45deg);
+}
+
+.navIcon.open span:nth-child(2), .navIcon.open span:nth-child(5) {
+    transform: rotate(-45deg);
+}
+
+.navIcon.open span:nth-child(1) {
+    left: 5px;
+    top: 3px;
+}
+
+.navIcon.open span:nth-child(2) {
+    left: calc(50% - 5px);
+    top: 3px;
+}
+
+.navIcon.open span:nth-child(3) {
+    left: -50%;
+    opacity: 0;
+}
+
+.navIcon.open span:nth-child(4) {
+    left: 100%;
+    opacity: 0;
+}
+
+.navIcon.open span:nth-child(5) {
+    left: 5px;
+    top: 13px;
+}
+
+.navIcon.open span:nth-child(6) {
+    left: calc(50% - 5px);
+    top: 13px;
+}
+
+@media screen and (max-width: 700px) {
+    .navIcon {
+        display: block;
+    }
+}
