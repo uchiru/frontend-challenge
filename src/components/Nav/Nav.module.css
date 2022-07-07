@@ -1,6 +1,10 @@
 .navBlock {
+    position: fixed;
+    width: 100%;
     background-color: #2196F3;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+    min-height: 65px;
+    z-index: 1;
 }
 
 .wrapper {
@@ -27,5 +31,46 @@
     color: #ffffff;
     display: inline-block;
     padding: 22px 23px;
+}
 
+@media screen and (max-width: 700px) {
+    .mobileBurgerWrapper {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+    }
+
+    .wrapper {
+        position: absolute;
+        top: 65px;
+        left: 0;
+        z-index: 2;
+
+        width: 100%;
+        padding: 50px 15px 50px;
+
+        flex-direction: column;
+        justify-content: center;
+
+        background-color: #2196f3;
+    }
+
+    .wrapper button {
+        padding: 10px 22px;
+    }
+
+    .linkBlock {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .linkBlock li {
+        margin-bottom: 20px;
+    }
+
+    .hidden {
+        display: none;
+    }
 }
