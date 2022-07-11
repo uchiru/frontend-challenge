@@ -2,12 +2,13 @@
   display: grid;
   grid-template-columns: minmax(auto, 60px) minmax(320px, 1320px) minmax(auto, 60px);
   grid-template-rows: 64px 1fr auto;
-  min-height: 100vh;
+  min-height: 110vh;
   grid-template-areas:
    "header header header"
    ". main ."
    "footer footer footer"
 }
+
 .header {
   grid-area: header;
 }

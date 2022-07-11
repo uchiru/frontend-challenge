@@ -1,5 +1,6 @@
 .header {
-  
+  padding-left: 62px;
+  padding-right: 62px;
   background-color: #2196F3;
   display: flex;
   align-items: center;
@@ -8,8 +9,13 @@
     padding-right: 0px;
   }
 }
+
 .header__nav a {
   display: inline-block;
-  padding: 20px;
+  padding: 24px;
 
+
+}
+.header-item--active {
+  background-color: #1e88e5;
 }

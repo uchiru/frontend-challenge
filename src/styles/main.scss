@@ -4,6 +4,10 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 48px;
+  @media (max-width: $large) {
+    gap: 40px;
+
+  }
 }
 
 .main__button {
@@ -57,4 +61,8 @@
 
 .main__image img {
   object-fit: cover;
+}
+
+.favorite {
+  background-image: url('../img/full-heart.png');
 }
