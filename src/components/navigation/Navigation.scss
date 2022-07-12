@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 62px;
+  overflow: hidden;
+}
+
+.header {
+  height: 64px;
+  background-color: #2196F3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.239);
+}
+
+.nav {
+  display: flex;
+  &-btn {
+    background-color: transparent;
+    border: none;
+    height: 64px;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+  }
+  &-btn:first-child {
+    width: 120px;
+  }
+  &-btn:last-child {
+    width: 173px;
+  }
+  &-btn__active {
+    background-color: #1E88E5;
+    color: #fff;
+  }
+}

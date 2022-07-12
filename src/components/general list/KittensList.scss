@@ -1,0 +1,7 @@
+.kittens-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 220px));
+  grid-gap: 48px;
+  justify-content: center;
+  margin: 53px 0;
+}
