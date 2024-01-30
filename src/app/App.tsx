@@ -1,4 +1,5 @@
 import AppRouter from "@/routes/AppRouter";
+import "./global.scss";
 import { AppProvider } from "./AppProvider";
 
 function App() {
