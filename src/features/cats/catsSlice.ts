@@ -1,18 +1,11 @@
+import { Cat } from "@/app/types";
 import { createSlice } from "@reduxjs/toolkit";
-import {} from "@thatapicompany/thecatapi";
 
-type Data = {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
+export type CatState = {
+  data: Cat[];
 };
 
-export type Cat = {
-  data: Data[];
-};
-
-const initialState: Cat = {
+const initialState: CatState = {
   data: [],
 };
 

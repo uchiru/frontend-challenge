@@ -1,17 +1,36 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { CatSlice } from "@/features/cats/catsSlice";
+import catsReducer from "@/features/cats/catsSlice";
+import { catApi } from "@/features/cats/catsAPI";
 
 const persistConfig = {
   key: "root",
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, CatSlice);
+const persistedReducer = persistReducer(persistConfig, catsReducer);
 
 export const store = configureStore({
-  reducer: persistReducer,
+  reducer: {
+    persistedReducer,
+    [catApi.reducerPath]: catApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat([catApi.middleware]),
   devTools: process.env.NODE_ENV !== "production",
 });
 
