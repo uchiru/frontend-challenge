@@ -22,7 +22,7 @@ const persistedReducer = persistReducer(persistConfig, catsReducer);
 
 export const store = configureStore({
   reducer: {
-    persistedReducer,
+    catsReducer: persistedReducer,
     [catApi.reducerPath]: catApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
