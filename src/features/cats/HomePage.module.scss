@@ -1,5 +1,12 @@
 @import "@/app/variables.scss";
 
+.Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .Footer {
   display: flex;
   flex: 1;
