@@ -1,0 +1,73 @@
+/*!********************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/styles/index.scss ***!
+  \********************************************************************************************************************************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/*!***************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/components/NavBar/NavBar.module.scss ***!
+  \***************************************************************************************************************************************************************/
+.Y1R9w07h {
+  background-color: #2196F3;
+  width: 100vw;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sFFxvpqm {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 64px 0 64px;
+}
+/*!*******************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/components/CardList/CardList.module.scss ***!
+  \*******************************************************************************************************************************************************************/
+.T6w8f5Bm {
+  display: grid;
+  gap: 50px 30px;
+  grid-template-columns: repeat(auto-fill, minmax(min(225px, 100%), 1fr));
+}
+/*!***********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/components/Card/Card.module.scss ***!
+  \***********************************************************************************************************************************************************/
+._Rt9kt4j {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  height: 225px;
+}
+
+.AbBCB4gH {
+  width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.pUcptLwq {
+  background-image: url(../e7c4350fe85d1aedb46a.png);
+}
+
+.mU8uTI8X {
+  background-image: url(../db75b1387e20bb15ab9c.png);
+}
+
+.Nih_OgsF {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background-size: cover;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  bottom: 5%;
+  right: 5%;
+}
+
+.Nih_OgsF:hover {
+  background-image: url(../e7c4350fe85d1aedb46a.png);
+}
