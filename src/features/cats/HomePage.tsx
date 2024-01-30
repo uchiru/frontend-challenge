@@ -8,7 +8,11 @@ import { Spinner } from "@/components/UI/Spinner";
 
 export const HomePage = () => {
   const [page, setPage] = useState(0);
-  const { data, isLoading, isFetching } = useGetCatsQuery({ limit: 20, page });
+  const { data, isLoading, isFetching } = useGetCatsQuery({
+    limit: 20,
+    page,
+    order: "ASC",
+  });
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,21 +33,19 @@ export const HomePage = () => {
   if (isLoading) return <PageSpinner />;
 
   return (
-    <>
+    <div className={styles.Wrapper}>
       {data ? (
         <>
           <CatsList data={data} />
-          <div className={styles.Footer}>
-            {isFetching ? (
+          {isFetching ? (
+            <div className={styles.Footer}>
               <Spinner />
-            ) : (
-              <button className={styles.Button}>Загрузить еще</button>
-            )}
-          </div>
+            </div>
+          ) : null}
         </>
       ) : (
         <div>Ничего не найдено</div>
       )}
-    </>
+    </div>
   );
 };
