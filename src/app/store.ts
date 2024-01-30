@@ -10,8 +10,8 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import catsReducer from "@/features/cats/catsSlice";
-import { catApi } from "@/features/cats/catsAPI";
+import { catsReducer } from "@/features/cats/slices/catsSlice";
+import { catApi } from "@/features/cats/API/catsAPI";
 
 const persistConfig = {
   key: "root",

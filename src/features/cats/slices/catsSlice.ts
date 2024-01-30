@@ -15,4 +15,4 @@ export const CatSlice = createSlice({
   reducers: {},
 });
 
-export default CatSlice.reducer;
+export const catsReducer = CatSlice.reducer;

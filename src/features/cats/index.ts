@@ -1,1 +1,3 @@
-export { catApi, useGetCatsQuery } from "./catsAPI";
+export { catApi, useGetCatsQuery } from "./API/catsAPI";
+export { HomePage } from "./HomePage";
+export { FavoritePage } from "./FavoritePage";

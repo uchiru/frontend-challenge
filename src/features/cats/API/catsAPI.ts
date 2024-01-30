@@ -1,4 +1,4 @@
-import { privateConfig } from "@/config";
+import { privateConfig } from "@/config/config";
 import { Cat, QueryParams } from "@/app/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -21,7 +21,7 @@ const generateQueryStr = (baseString: string, query: QueryParams): string => {
 };
 
 export const catApi = createApi({
-  reducerPath: "carApi",
+  reducerPath: "catApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api.thecatapi.com/v1/",
     prepareHeaders: (headers) => {
