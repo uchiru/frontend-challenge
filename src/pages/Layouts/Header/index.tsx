@@ -23,5 +23,4 @@ export const Header = () => {
       </nav>
     </header>
   );
->>>>>>> Stashed changes
 };
