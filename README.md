@@ -1,32 +1,30 @@
-# Задание для Front-end стажёра
+# React + TypeScript + Vite
 
-Привет! Если ты хочешь стать частью команды Учи.ру в рамках стажёрской программы, 
-то тебе необходимо выполнить небольшое тестовое задание. Это нужно, что бы твои 
-потенциальные наставники смогли оценить твои навыки и сравнив их с остальными
-кандидатами выбрать лучших из лучших. 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Помни, что работающий продукт важнее количества технологий и красивого кода. 
+Currently, two official plugins are available:
 
-Удачи!
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Что нужно сделать ?
+## Expanding the ESLint configuration
 
-- форкнуть этот репозитарий в свой github аккаунт
-- реализовать проект по описанию ниже
-- опубликовать его на github pages
-- прислать нам свой гитхаб аккаунт и ссылку на опубликованный сайт
-- ждать обратной связи :)
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-## Проект "Кошачий пинтерест"
+- Configure the top-level `parserOptions` property like this:
 
-Необходимо реализовать интерфейс для просмотра котиков используя API https://thecatapi.com
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
 
-Дизайн лежит тут - https://bit.ly/3utxaL2
-
-- по умолчанию должна открываться вкладка "все котики"
-- у котика должна быть возможность добавить в "любимые" и убрать из "любимых"
-- данные о "любимых" котиках должны хранится на клиенте
-- на вкладке "любимые котики" должны отображаться добавленные в "любимые" котики
-- реализация адаптивности будет плюсом, но не обязательна
-- бесконечная прокрутка будет плюсом, но не обязательна
-- можно использовать любой фреймворк включая vanilla.js
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
