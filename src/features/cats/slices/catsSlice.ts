@@ -1,18 +1,23 @@
 import { Cat } from "@/app/types";
 import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 export type CatState = {
-  data: Cat[];
+  favorites: Cat[];
 };
 
 const initialState: CatState = {
-  data: [],
+  favorites: [],
 };
 
-export const CatSlice = createSlice({
-  name: "cat_slice",
+export const FavoriteCatsSlice = createSlice({
+  name: "favorite_cats_slice",
   initialState,
-  reducers: {},
+  reducers: {
+    addToFavorite(state, action: PayloadAction<Cat>) {
+      state.favorites.push(action.payload);
+    },
+  },
 });
 
-export const catsReducer = CatSlice.reducer;
+export const catsReducer = FavoriteCatsSlice.reducer;

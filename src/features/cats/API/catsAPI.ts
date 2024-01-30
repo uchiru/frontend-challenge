@@ -38,6 +38,15 @@ export const catApi = createApi({
 
         return { url: queryStr };
       },
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      merge: (currentCache, newItems) => {
+        currentCache.push(...newItems);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
     }),
   }),
 });
