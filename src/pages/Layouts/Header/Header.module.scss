@@ -1,0 +1,54 @@
+@import "@/app/variables.scss";
+
+.Header {
+  display: flex;
+
+  align-items: center;
+  background-color: $primary;
+  width: 100%;
+  height: 65px;
+
+  padding: 0px 50px;
+
+  @media (max-width: ($tablet + px)) {
+    padding: 0px 20px;
+  }
+}
+
+.Nav {
+  height: 100%;
+}
+
+.List {
+  display: flex;
+  height: 100%;
+}
+
+.ListElement {
+  height: 100%;
+
+  transition: 0.2s;
+}
+
+.Link {
+  display: block;
+  height: 100%;
+  padding: 23px;
+
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+
+  transition: 0.2s;
+
+  &.Active {
+    background-color: $primary-hover;
+    color: white;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: $primary-hover;
+      color: white;
+    }
+  }
+}
