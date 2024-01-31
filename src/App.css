@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +39,98 @@
 
 .read-the-docs {
   color: #888;
+}
+
+
+.header {
+  background-color: 2196F3;
+} */
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background-color: #2196f3;
+  height: 64px;
+  box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.nav {
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  padding-left: 62px;
+  height: 100%;
+  min-height: 64px;
+}
+
+.nav-item {
+  padding: 20px;
+  background-color: #1e88e5;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  opacity: 0.3;
+}
+
+.gallery {
+  /* background-color: grey; */
+  padding: 40px;
+}
+
+.gallery-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 48px;
+  /* grid-template-rows: 1fr 1fr; */
+}
+
+.gallery-item {
+  position: relative;
+  cursor: pointer;
+  width: 255px;
+  height: 255px;
+}
+
+.gallery-item:hover > button .gallery-heart {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-button {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  bottom: 23px;
+  right: 24px;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.gallery-heart {
+}
+
+.gallery-heart {
+  fill: #f24e1e;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
