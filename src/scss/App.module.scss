@@ -1,0 +1,49 @@
+.App {
+  .Header {
+    display: flex;
+    height: 64px;
+    width: 100vw;
+    background-color: #2196f3;
+
+    .HeaderButton {
+      cursor: pointer;
+      height: 100%;
+      text-align: center;
+      span {
+        margin: 23px 0;
+        color: #fff;
+        display: inline-block;
+
+        font-family: Roboto;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.25px;
+      }
+    }
+    .HeaderButton:nth-child(1) {
+      margin-left: 62px;
+      width: 120px;
+      @media (max-width: 610px) {
+        margin-left: 20px;
+      }
+      @media (max-width: 320px) {
+        margin-left: 0;
+      }
+    }
+    .HeaderButton:nth-child(2) {
+      width: 173px;
+    }
+
+    .HeaderButtonSelected {
+      @extend .HeaderButton;
+      background-color: #1e88e5;
+    }
+
+    .HeaderButtonNoSelected {
+      @extend .HeaderButton;
+      span {
+        color: #ffffffb2;
+      }
+    }
+  }
+}

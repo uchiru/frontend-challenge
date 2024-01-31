@@ -1,0 +1,64 @@
+.Wrapper {
+  display: flex;
+  justify-content: center;
+
+  .Shadow {
+    margin-bottom: -15px;
+    width: 256px;
+    height: 292px;
+    @media (max-width: 610px) {
+      width: 292px;
+    }
+    position: relative;
+    .SvgShadow {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.15s linear;
+      position: absolute;
+      top: 3px;
+      left: 0;
+      width: 292px;
+      height: 292px;
+    }
+    .Card {
+      width: 292px;
+      height: 283px;
+      position: absolute;
+
+      .Img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 225px;
+        height: 225px;
+        object-fit: cover;
+
+        .SvgLove {
+          position: absolute;
+          bottom: 3px;
+          right: 0;
+          opacity: 0;
+          transition: visibility 0s;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .Shadow:hover {
+    .SvgShadow {
+      visibility: visible;
+      opacity: 1;
+    }
+    .Card {
+      .Img {
+        top: 51%;
+        .SvgLove {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

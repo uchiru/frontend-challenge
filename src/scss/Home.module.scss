@@ -1,0 +1,28 @@
+.Home {
+  padding: 19px 28.5px 0;
+  @media (max-width: 355px) {
+    padding: 12px 0 0;
+  }
+  .Content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 16px;
+
+    @media (max-width: 1439px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (max-width: 1170px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 610px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
