@@ -33,8 +33,8 @@ export const CatsPage = () => {
   if (catsData) return (
     <main>
       Котики
-      {/* <div className={classes.wrapper}> */}
-      <div>
+      <div className={classes.wrapper}>
+        {/* <div> */}
         {/* <ul className={classes.list}> */}
         <ul>
           {Object.values(catsData).map((cat, index) => (
