@@ -103,7 +103,7 @@ div {
 }
 
 .heart {
-  background: url(../img/favorite.svg) no-repeat;
+  /* background: url(../img/favorite.svg) no-repeat; */
   padding: 0;
   margin: 0;
   position: absolute;
@@ -118,12 +118,13 @@ div {
   background: url(../img/favorite_fill.svg) no-repeat;
   opacity: 1;
 }
-
-.like-yes{
-  background: url(../img/favorite_fill.svg) no-repeat;
+.heart.like-yes, .col-lg:hover .heart.like-yes{
+  background:url(../img/favorite_fill.svg) no-repeat;
+  opacity: 1;
 }
-.col-lg .like-no{
-  background: url(../img/favorite.svg) no-repeat;
+.col-lg:hover .heart.like-no{
+  background:url(../img/favorite.svg) no-repeat;
+  /* opacity: 1; */
 }
 
 .col-lg:hover {

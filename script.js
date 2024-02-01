@@ -23,12 +23,14 @@ const CatsList = async () => {
     heart.src = src_heart;
     image.classList.add("image");
     heart.classList.add("heart");
+    heart.classList.add("like-no");
 
     let gridCell = document.createElement("div");
     gridCell.classList.add("col");
     gridCell.classList.add("col-lg");
     gridCell.appendChild(image);
     gridCell.appendChild(heart);
+    
 
     document.getElementById("grid").appendChild(gridCell);
   });
@@ -49,8 +51,12 @@ const ListenForLikes = () => {
       event.target.classList.toggle('like-yes');
       if (event.target.classList.contains('like-yes')) {
         console.log(' сохранено');
+        // var like = document.querySelector('.heart');
+        // like.id = 'like-yes';
         getFaveData(event.target);
       } else {
+        // var like = document.querySelector('.heart');
+        // like.id = 'like-no';
         console.log('removing')
         getFaveData(event.target);
       }
