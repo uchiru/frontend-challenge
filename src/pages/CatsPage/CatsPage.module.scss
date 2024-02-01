@@ -4,19 +4,16 @@
   padding: 30px 15px;
 
   @media (min-width: $breakpoint_md) {
-    max-width: $max_width_md;
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 30px 40px;
   }
 
   @media (min-width: $breakpoint_lg) {
-    max-width: $max_width_lg;
-    padding: 40px 0;
+    padding: 40px 50px;
   }
 
   @media (min-width: $breakpoint_xl) {
-    max-width: $max_width_xl;
-    padding: 50px 0;
+    padding: 50px 60px;
     gap: 110px;
   }
 }
@@ -36,6 +33,7 @@
 
   @media (min-width: $breakpoint_xl) {
     gap: 50px;
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
