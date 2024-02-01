@@ -1,0 +1,142 @@
+img.heart {
+  shape-rendering: crispEdges;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* ------------НАВГАЦИЯ---------------- */
+.navbar {
+  display: flex;
+  background-color: #2196f3;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24);
+  padding-left: 4.6%;
+  height: 64px;
+}
+
+.nav-list {
+  display: flex;
+  height: 64px;
+}
+
+.nav-list a {
+  display: block;
+  padding: 1em;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  font: sans-serif;
+}
+
+.nav-list a:hover {
+  background-color: #1e88e5;
+  color: #fff;
+}
+
+.nav-btn {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .nav-btn {
+    font-size: 2em;
+    padding-inline: 10px;
+    padding-bottom: 3px;
+    border: none;
+    background-color: #2196f3;
+    color: #fff;
+    display: block;
+    cursor: pointer;
+  }
+
+  .nav-list {
+    display: none;
+  }
+
+  .drop:hover .nav-list {
+    display: block;
+    position: absolute;
+    background-color: #2196f3;
+  }
+
+  .navbar {
+    justify-content: space-between;
+  }
+}
+
+/* ------------------ГЛАВНЫЙ КОНТЕНТ-------------------- */
+.maincontent {
+  padding-top: 0%;
+  padding-left: 4.6%;
+}
+
+.col {
+  padding: 1%;
+}
+
+.col-lg {
+  height: 200px;
+  overflow: hidden;
+  margin: 10px 0;
+  position: relative;
+  flex-basis: 15%;
+}
+
+/* Images crop and center to col-lg box up to 1000% centering (if 100% if it's 3x the size it doesn't fully center)Idk man why? projectors and stuff? */
+.image {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  margin: auto;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+div {
+  border: 2px black;
+}
+
+.imgrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.heart {
+  background: url(img/favorite_fill.svg) no-repeat;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 80%;
+  z-index: 2;
+  height: 20%;
+  width: 20%;
+  opacity: 0;
+}
+.col-lg:hover .heart:hover{
+  background: url(img/favorite_fill.svg) no-repeat;
+  opacity: 1;
+}
+
+/* .like-yes{
+  background: url(img/favorite_fill.svg) no-repeat;
+}
+.like-no{
+  background: url(img/favorite.svg) no-repeat;
+} */
+
+.col-lg:hover {
+  transform: scale(1.1);
+  transition: 1s;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24);
+}
+
+.col-lg:hover .heart {
+  background: url(img/favorite.svg) no-repeat;
+  opacity: 1;
+}
