@@ -20,7 +20,7 @@ const CatsList = async () => {
     let heart = document.createElement("div");
     //use the url from the image object
     image.src = `${imageList.url}`;
-    //heart.src = src_heart;
+    heart.src = src_heart;
     image.classList.add("image");
     heart.classList.add("heart");
 
@@ -48,7 +48,7 @@ const ListenForLikes = () => {
       event.target.classList.toggle('like-no');
       event.target.classList.toggle('like-yes');
       if (event.target.classList.contains('like-yes')) {
-        console.log(' saving favourite!!!!!!!!!!!!!!');
+        console.log(' сохранено');
         getFaveData(event.target);
       } else {
         console.log('removing')
