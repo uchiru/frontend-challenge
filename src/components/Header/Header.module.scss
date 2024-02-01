@@ -1,17 +1,46 @@
 @import '../../scss/settings/vars';
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  padding: 0 60px;
+  // background: var(--bg-color);
+  // background: rgb(33, 150, 243);
+  // background: rgb(30, 136, 229); // для ховера
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  // padding-left: 60px;
+  // padding-right: 60px;
+  color: #fff;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    // max-width: var(--container-max-width);
+    margin: 0 auto;
+
+  }
+}
+
 .button {
-  margin-left: 20px;
+  // margin-left: 20px;
+
+  padding-left: 0;
   width: 30px;
   height: 30px;
   color: currentColor;
   z-index: 1;
 
   @media (min-width: $breakpoint_md) {
-    margin-left: 30px;
+    // margin-left: 30px;
   }
 
   @media (min-width: $breakpoint_lg) {
-    height: 40px; //!!
+    width: 120px;
+    height: 65px;
   }
 }
