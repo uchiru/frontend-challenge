@@ -1,8 +1,23 @@
-function NavItem({ item }: { item: string }) {
+import { Link } from "react-router-dom";
+
+type itemProps = {
+  title: number;
+  name: string;
+};
+
+function NavItem({ item }) {
   return (
     <>
       <li className="nav-item">
-        <a className="nav-link">{item}</a>
+        {item.title === 1 ? (
+          <Link to={"/"} className="nav-link">
+            {item.name}
+          </Link>
+        ) : (
+          <Link to={"/favorite"} className="nav-link">
+            {item.name}
+          </Link>
+        )}
       </li>
     </>
   );

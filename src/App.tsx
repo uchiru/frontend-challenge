@@ -1,18 +1,17 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import Header from "./components/Header";
 import Gallery from "./components/Gallery";
+import { Route, Routes } from "react-router";
+import { Favorite } from "./components/Favorite";
+import { MainLayout } from "./components/MainLayout";
 
 function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <Gallery />
-      </main>
-    </>
+    <Routes>
+      <Route path="" element={<MainLayout />}>
+        <Route path="/" element={<Gallery />} />
+        <Route path="/favorite" element={<Favorite />} />
+      </Route>
+    </Routes>
   );
 }
 
