@@ -1,3 +1,6 @@
+/* .image-wrapper{
+  background-color: aqua;
+} */
 * {
   padding: 0;
   margin: 0;
@@ -66,6 +69,7 @@
 .maincontent {
   padding-top: 0%;
   padding-left: 4.6%;
+  padding-right: 4.6%;
 }
 
 .col {

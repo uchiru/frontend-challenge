@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+    <title>Cat Pinterest</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="drop">
+            <button class="nav-btn">&#9776;</button>
+            <div class="nav-list">
+                <a class="nav-link" aria-current="page" href="./index.html">Все котики</a>
+                <a class="nav-link active" aria-current="page" href="./favourites.html">Любимые котики</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="image-wrapper">
+
+        <!-- Cat item  -->
+
+        <!-- // Cat item  -->
+
+    </div>
+
+    <script src="../script.js"></script>
+    <script src="../favourite.js"></script>
+    <script language="javascript">
+        let FavouritesAdding = async () => {
+            const LikedImgSrc = await JSON.parse(localStorage.getItem('test'))
+            LikedImgSrc.forEach(el => {
+            console.log(localStorage)
+            let image = document.createElement("img");
+            console.log(LikedImgSrc);
+            image.src = `${el}`;
+            image.classList.add("img");
+            console.log(image.src)
+            document.getElementById("image-wrapper").appendChild(image);
+            })
+            // localStorage.clear();
+        }
+        FavouritesAdding();
+    </script>
+</body>
+
+</html>
