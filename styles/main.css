@@ -22,8 +22,8 @@
   padding: 1em;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.7);
-  font-size: 18px;
-  font: sans-serif;
+  font-size: 21px;
+  font: sans;
 }
 
 .nav-list a:hover {
@@ -114,7 +114,7 @@ div {
   width: 20%;
   opacity: 0;
 }
-.col-lg:hover .heart:hover{
+.imgrid .col-lg:hover .heart:hover.like-no{
   background: url(../img/favorite_fill.svg) no-repeat;
   opacity: 1;
 }
@@ -124,7 +124,7 @@ div {
 }
 .col-lg:hover .heart.like-no{
   background:url(../img/favorite.svg) no-repeat;
-  /* opacity: 1; */
+  opacity: 1;
 }
 
 .col-lg:hover {
