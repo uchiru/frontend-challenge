@@ -1,16 +1,18 @@
 import classes from './Cat.module.scss';
 import { useState, useRef } from 'react';
+import { useEffect } from 'react';
 import { ReactComponent as IconLike } from './assets/favorite_border.svg'
+import { useFavoriteCats } from '../../../../hooks/useFavoriteCats';
+import {useDispatch} from 'react-redux';
 
-export const Cat = ({ cat, addToFavorites }) => {
-  console.log(cat);
-
+export const Cat = ({ cat }) => {
   const [isHover, setIsHover] = useState(false);
+  const dispatch = useDispatch();
   const likeButtonRef = useRef(null);
   const catRef = useRef(null);
+  const { favoriteCats, setFavoriteCats } = useFavoriteCats();
 
-
-  const handleMouseEnter = () => {
+  const handleCatMouseEnter = () => {
     setIsHover(true);
     // catRef.current.style.transform = 'scale(1.2)';
     catRef.current.style.scale = '1.2';
@@ -18,27 +20,38 @@ export const Cat = ({ cat, addToFavorites }) => {
     catRef.current.style.transitionDuration = '1s';
   };
 
-  const handleMouseLeave = () => {
+  const handleCatMouseLeave = () => {
     setIsHover(false);
     catRef.current.style.scale = '1';
     catRef.current.style.transitionProperty = 'all';
   };
 
-  const addToFavorites = (cat) => {
-    setFavoriteCats(prevFavoriteCats => [...prevFavoriteCats, cat]);
+  const handleLikeMouseEnter = () => {
+    console.log(likeButtonRef.current.style)
+  };
+  const handleLikeMouseLeave = () => {};
+
+  const addToFavoriteCats = (cat) => {
+    const newFavoriteCats = [...favoriteCats, cat];
+    dispatch(setFavoriteCats(newFavoriteCats));
+  };
+
+  const removeFromFavoriteCats = (catToRemove) => {
+    const updatedFavoriteCats = favoriteCats.filter(cat => cat !== catToRemove);
+    dispatch(setFavoriteCats(updatedFavoriteCats));
   };
 
   const handleCatClick = () => {
-    addToFavorites(cat);
+    if (favoriteCats.includes(cat)) removeFromFavoriteCats(cat);
+    else addToFavoriteCats(cat);   
   };
 
   return (
     <div
       ref={catRef}
       className={classes.cat}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onCatClick={handleCatClick}
+      onMouseEnter={handleCatMouseEnter}
+      onMouseLeave={handleCatMouseLeave}      
     >
       <div className={classes.image}>
         <img
@@ -51,6 +64,9 @@ export const Cat = ({ cat, addToFavorites }) => {
         <IconLike
           className={classes.like}
           ref={likeButtonRef}
+          onClick={handleCatClick}
+          onMouseEnter={handleLikeMouseEnter}
+          onMouseLeave={handleLikeMouseLeave}  
         />
       )}
     </div>
