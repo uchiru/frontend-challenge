@@ -1,0 +1,38 @@
+//! Light
+$bg-primary: #fff !default;
+$bg-secondary: #333 !default;
+
+$color-primary: #313131 !default;
+$color-secondary: #eaeff8 !default;
+
+$text-primary: #141414 !default;
+$text-secondary: #141414cc !default;
+
+$border-primary: #878787 !default;
+$border-secondary: #eaeff8 !default;
+
+//~ Dark
+$bg-primary-dark: #010409 !default;
+$bg-secondary-dark: #0d1117 !default;
+
+$color-primary-dark: #010409 !default;
+$color-secondary-dark: #0d1117 !default;
+
+$text-primary-dark: #f0f6fc !default;
+$text-secondary-dark: #e1e4e7 !default;
+
+$border-primary-dark: #625e7e !default;
+$border-secondary-dark: #373648 !default;
+
+//& Commmon colors
+$color-white: #fff;
+$color-black: #000;
+$color-shadow: rgba(0, 0, 0, 0.1);
+$color-success: #5d9b4d;
+$color-success-200: #3d6e30;
+$color-error: #ff5c5c;
+$color-error-200: #a73939;
+$color-inactive: #9fa6b4;
+$color-blue: #0047ab;
+$color-lightblue: #2196f3;
+$color-lightblue-active: #1e88e5;

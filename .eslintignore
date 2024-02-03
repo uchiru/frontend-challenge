@@ -1,0 +1,8 @@
+node_modules
+pnpm-lock.yaml
+tsconfig.json
+.husky
+.github
+dist
+public
+.eslintrc.cjs
