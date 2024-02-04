@@ -1,19 +1,26 @@
 import classes from './Cat.module.scss';
 import { useState, useRef } from 'react';
 import { useEffect } from 'react';
-import { ReactComponent as IconLike } from './assets/favorite_border.svg'
+import { ReactComponent as IconEmptyLike } from './assets/favorite_border.svg'
+import { ReactComponent as IconClickedLike } from './assets/favorite.svg'
 import { useFavoriteCats } from '../../../../hooks/useFavoriteCats';
 import {useDispatch} from 'react-redux';
 
 export const Cat = ({ cat }) => {
   const [isHover, setIsHover] = useState(false);
+  const [isLikeVisible, setIsLikeVisible] = useState(false);
+  const [isLikeClicked, setIsLikeClicked] = useState(false);
+  const [isHeartHovered, setIsHeartHovered] = useState(false);
+  
   const dispatch = useDispatch();
   const likeButtonRef = useRef(null);
   const catRef = useRef(null);
   const { favoriteCats, setFavoriteCats } = useFavoriteCats();
+  
 
   const handleCatMouseEnter = () => {
     setIsHover(true);
+    setIsLikeVisible(true);
     // catRef.current.style.transform = 'scale(1.2)';
     catRef.current.style.scale = '1.2';
     catRef.current.style.transitionProperty = 'all';
@@ -22,15 +29,18 @@ export const Cat = ({ cat }) => {
 
   const handleCatMouseLeave = () => {
     setIsHover(false);
+    setIsLikeVisible(false);
     catRef.current.style.scale = '1';
     catRef.current.style.transitionProperty = 'all';
   };
 
-  const handleLikeMouseEnter = () => {
-    console.log(likeButtonRef.current.style)
+  const handleLikeMouseEnter = () => {        
+    setIsHeartHovered(true);
   };
-  const handleLikeMouseLeave = () => {};
-
+  const handleLikeMouseLeave = () => {    
+    setIsHeartHovered(false);
+  };
+  
   const addToFavoriteCats = (cat) => {
     const newFavoriteCats = [...favoriteCats, cat];
     dispatch(setFavoriteCats(newFavoriteCats));
@@ -41,10 +51,20 @@ export const Cat = ({ cat }) => {
     dispatch(setFavoriteCats(updatedFavoriteCats));
   };
 
-  const handleCatClick = () => {
-    if (favoriteCats.includes(cat)) removeFromFavoriteCats(cat);
-    else addToFavoriteCats(cat);   
+  const handleLikeClick = () => {
+    if (favoriteCats.includes(cat)) {
+      setIsLikeClicked(false);    
+      removeFromFavoriteCats(cat);
+      console.log('удаляем из любимых');    
+    }
+    else {
+      addToFavoriteCats(cat); 
+      setIsLikeClicked(true);     
+      console.log('добавляем в любимые');      
+    }  
   };
+
+  console.log(favoriteCats);
 
   return (
     <div
@@ -60,11 +80,20 @@ export const Cat = ({ cat }) => {
           alt={'здесь был кот'}
         />
       </div>
-      {isHover && (
-        <IconLike
+      {isHover && isLikeVisible && !isLikeClicked && (
+        <IconEmptyLike
           className={classes.like}
           ref={likeButtonRef}
-          onClick={handleCatClick}
+          onClick={handleLikeClick}
+          onMouseEnter={handleLikeMouseEnter}
+          onMouseLeave={handleLikeMouseLeave}  
+        />
+      )}
+      {isLikeVisible && (isLikeClicked || isHeartHovered) && (
+        <IconClickedLike
+          className={classes.like}
+          // ref={likeButtonRef}
+          onClick={handleLikeClick}
           onMouseEnter={handleLikeMouseEnter}
           onMouseLeave={handleLikeMouseLeave}  
         />
