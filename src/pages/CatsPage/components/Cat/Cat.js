@@ -64,8 +64,6 @@ export const Cat = ({ cat }) => {
     }
   };
 
-  console.log(favoriteCats);
-
   return (
     <div
       ref={catRef}
