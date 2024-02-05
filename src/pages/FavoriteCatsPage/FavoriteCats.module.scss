@@ -1,0 +1,43 @@
+@import '../../scss/settings/vars';
+
+.wrapper {
+  padding: 30px 15px;
+
+  @media (min-width: $breakpoint_md) {
+    margin: 0 auto;
+    padding: 30px 40px;
+  }
+
+  @media (min-width: $breakpoint_lg) {
+    padding: 40px 50px;
+  }
+
+  @media (min-width: $breakpoint_xl) {
+    padding: 50px 60px;
+    gap: 110px;
+  }
+}
+
+.list {
+  display: grid;
+  gap: 20px;
+  padding-left: 0;
+
+  @media (min-width: $breakpoint_md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: $breakpoint_lg) {
+    grid-template-columns: repeat(4, 1fr)
+  }
+
+  @media (min-width: $breakpoint_xl) {
+    gap: 50px;
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.listItem {
+  display: block;
+  min-height: 5vw;
+}
