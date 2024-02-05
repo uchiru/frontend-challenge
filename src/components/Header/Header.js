@@ -1,4 +1,5 @@
 import classes from './Header.module.scss';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
   const handleAllCatsClick = () => { };
@@ -9,18 +10,20 @@ export const Header = () => {
     // <header id={data.name} className={classNameHeader}>
     <header className={classes.header}>
       <div className={classes.wrapper}>
-        <button
+        <NavLink
           className={classes.button}
           onClick={handleAllCatsClick}
+          to={`/`}
         >
           все котики
-        </button>
-        <button
+        </NavLink>
+        <NavLink
           className={classes.button}
           onClick={handleFavoriteCatsClick}
+          to={`/favoriteCats`}
         >
           любимые котики
-        </button>
+        </NavLink>
       </div>
     </header>
   );
