@@ -63,9 +63,7 @@ export const Cat = ({ cat }) => {
       console.log('добавляем в любимые');
     }
   };
-
-  console.log(favoriteCats);
-
+  
   return (
     <div
       ref={catRef}
