@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 export const Cat = ({ cat }) => {
   const [isHover, setIsHover] = useState(false);
   const [isLikeVisible, setIsLikeVisible] = useState(false);
-  const [isLikeClicked, setIsLikeClicked] = useState(false);
+  const [isLikeClicked, setIsLikeClicked] = useState(true);
   const [isHeartHovered, setIsHeartHovered] = useState(false);
 
   const dispatch = useDispatch();
