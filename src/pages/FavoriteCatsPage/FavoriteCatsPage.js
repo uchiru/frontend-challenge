@@ -1,6 +1,7 @@
 import classes from './FavoriteCats.module.scss';
 import { useFavoriteCats } from '../../hooks';
-import { Cat } from './components';
+// import { Cat } from './components';
+import { Cat } from '../../components';
 
 export const FavoriteCatsPage = () => {
   const { favoriteCats, setFavoriteCats } = useFavoriteCats();

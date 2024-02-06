@@ -1,1 +1,0 @@
-export { Cat } from './Cat';

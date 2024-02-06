@@ -2,7 +2,7 @@ import classes from './CatsPage.module.scss';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useCatsPage } from '../../hooks';
-import { Cat } from './components';
+import { Cat } from '../../components/Cat';
 
 export const CatsPage = () => {
   const dispatch = useDispatch();
