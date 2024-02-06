@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { useEffect } from 'react';
 import { ReactComponent as IconEmptyLike } from './assets/favorite_border.svg'
 import { ReactComponent as IconClickedLike } from './assets/favorite.svg'
-import { useFavoriteCats } from '../../../../hooks/useFavoriteCats';
+import { useFavoriteCats } from '../../hooks';
 import { useDispatch } from 'react-redux';
 
 export const Cat = ({ cat }) => {
