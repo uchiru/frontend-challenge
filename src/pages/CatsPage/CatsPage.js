@@ -1,16 +1,23 @@
 import classes from './CatsPage.module.scss';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useCatsPage } from '../../hooks';
+import { useCatsPage, useCurrentPage } from '../../hooks';
 import { Cat } from '../../components/Cat';
 
 export const CatsPage = () => {
   const dispatch = useDispatch();
-  const { catsPage, getCatsPage } = useCatsPage(); 
+  const { catsPage, getCatsPage } = useCatsPage();
+  const { currentPage, setCurrentPage } = useCurrentPage();
 
-  useEffect(() => {   
-    dispatch(getCatsPage());
+  useEffect(() => {
+    if (currentPage !== 'favoriteCatsPage') {
+      dispatch(getCatsPage());
+      console.log(currentPage);
+    }
+    dispatch(setCurrentPage('/'));
   }, [getCatsPage]);
+
+
 
   if (catsPage) return (
     <main>

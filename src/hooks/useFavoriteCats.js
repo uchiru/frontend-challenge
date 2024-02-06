@@ -7,7 +7,6 @@ const getState = (store) => store.favoriteCatsReducer;
 
 export const useFavoriteCats = () => {
   const { favoriteCats } = useSelector(getState);
-
   // Если любимые должны сохраняться после обновления страницы
   useEffect(() => {
     // console.log(favoriteCats)
