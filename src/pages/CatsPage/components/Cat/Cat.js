@@ -54,17 +54,13 @@ export const Cat = ({ cat }) => {
   const handleLikeClick = () => {
     if (favoriteCats.includes(cat)) {
       setIsLikeClicked(false);
-      removeFromFavoriteCats(cat);
-      console.log('удаляем из любимых');
+      removeFromFavoriteCats(cat);     
     }
     else {
       addToFavoriteCats(cat);
-      setIsLikeClicked(true);
-      console.log('добавляем в любимые');
+      setIsLikeClicked(true);     
     }
   };
-
-  console.log(favoriteCats);
 
   return (
     <div

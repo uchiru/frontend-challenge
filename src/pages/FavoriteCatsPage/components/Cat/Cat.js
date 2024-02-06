@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 export const Cat = ({ cat }) => {
   const [isHover, setIsHover] = useState(false);
   const [isLikeVisible, setIsLikeVisible] = useState(false);
-  const [isLikeClicked, setIsLikeClicked] = useState(false);
+  const [isLikeClicked, setIsLikeClicked] = useState(true);
   const [isHeartHovered, setIsHeartHovered] = useState(false);
 
   const dispatch = useDispatch();
@@ -63,9 +63,7 @@ export const Cat = ({ cat }) => {
       console.log('добавляем в любимые');
     }
   };
-
-  console.log(favoriteCats);
-
+  
   return (
     <div
       ref={catRef}
