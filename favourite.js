@@ -10,7 +10,7 @@ let FavouritesAdding = async () => {
       gridCell.classList.add("col");
       gridCell.classList.add("col-lg");
       gridCell.appendChild(image);
-    //   //gridCell.appendChild(heart);
+      //gridCell.appendChild(heart);
     document.getElementById("image-wrapper").appendChild(gridCell);
     // console.log(LikedImgSrc);
   });

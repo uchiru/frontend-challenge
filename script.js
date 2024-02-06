@@ -1,14 +1,15 @@
+
 const url = `https://api.thecatapi.com/v1/images/search?limit=100`;
 const src_heart = `img/favorite.svg`;
 const api_key =
   "live_6QkaEZSm5hKSRpvMVyBSRFebrHNCZE3RqKm8liTu6aONO2wTaeWW88uYkTylWHSr";
-let LikedImgSrc = [];
 
 const fetchCats = async () => {
   try {
     const response = await fetch(url, { headers: { "x-api-key": api_key } });
     const data = await response.json();
-    let imagesData = await data;
+    let imagesData = sessionStorage.getItem("url") ? JSON.parse(sessionStorage.getItem("url")) : await data;
+    sessionStorage.setItem("url", JSON.stringify(imagesData));
     return imagesData;
   } catch (error) {
     console.log(error.message);
