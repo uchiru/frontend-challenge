@@ -10,14 +10,9 @@ export const CatsPage = () => {
   const { currentPage, setCurrentPage } = useCurrentPage();
 
   useEffect(() => {
-    if (currentPage !== 'favoriteCatsPage') {
-      dispatch(getCatsPage());
-      console.log(currentPage);
-    }
+    if (currentPage !== 'favoriteCatsPage') dispatch(getCatsPage());
     dispatch(setCurrentPage('/'));
   }, [getCatsPage]);
-
-
 
   if (catsPage) return (
     <main>
