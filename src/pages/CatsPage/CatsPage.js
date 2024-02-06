@@ -6,17 +6,18 @@ import { Cat } from '../../components/Cat';
 
 export const CatsPage = () => {
   const dispatch = useDispatch();
-  const { catsPage, getCatsPage } = useCatsPage(); 
+  const { catsPage, getCatsPage } = useCatsPage();
   const { currentPage, setCurrentPage } = useCurrentPage();
 
-  useEffect(() => {   
-    dispatch(getCatsPage());
+  useEffect(() => {
+    if (currentPage !== 'favoriteCatsPage') {
+      dispatch(getCatsPage());
+      console.log(currentPage);
+    }
     dispatch(setCurrentPage('/'));
   }, [getCatsPage]);
 
-  useEffect(() => {      
-    console.log('test');
-  }, [currentPage]);
+
 
   if (catsPage) return (
     <main>

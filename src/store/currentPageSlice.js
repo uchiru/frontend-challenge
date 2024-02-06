@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {  
-  currentPage: 'start',
+const initialState = {
+  currentPage: '',
 };
-
-console.log('tew')
 
 export const currentPageSlice = createSlice({
   name: 'currentPage',
@@ -16,5 +14,5 @@ export const currentPageSlice = createSlice({
   },
 });
 
-export const { reducer:  currentPageReducer } =  currentPageSlice;
+export const { reducer: currentPageReducer } = currentPageSlice;
 export const { setCurrentPage } = currentPageSlice.actions;
