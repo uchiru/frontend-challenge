@@ -13,7 +13,6 @@ const onGetCatsPage = async (_, thunkAPI) => {
   };
 };
 
-
 const getCatsPage = createAsyncThunk(
   'catsPage/getCatsPage',
   onGetCatsPage,
@@ -21,20 +20,14 @@ const getCatsPage = createAsyncThunk(
   
 const initialState = {
   isCatsPageLoading: false,
-  catsPage: localStorage.getItem('catsPage') ? JSON.parse(localStorage.getItem('catsPage')) : [],
-  // catsPage: [],
+  catsPage: localStorage.getItem('catsPage') ? JSON.parse(localStorage.getItem('catsPage')) : [], 
   catsPageErrorMessage: '',
-  // lang: localStorage.getItem('lang') ?? 'en',
 };
 
 const catsPageSlice = createSlice({
   name: 'catsPage',
   initialState,
-  reducers: {
-    // setLang: (state, { payload }) => {
-    //   state.lang = payload;
-    // },
-  },
+  reducers: { },
   extraReducers: builder => {
     builder
       .addCase(getCatsPage.pending, (state) => {
@@ -57,4 +50,3 @@ const catsPageSlice = createSlice({
 
 export { getCatsPage };
 export const { reducer: catsPageReducer } = catsPageSlice;
-// export const { setLang } = langsSlice.actions;

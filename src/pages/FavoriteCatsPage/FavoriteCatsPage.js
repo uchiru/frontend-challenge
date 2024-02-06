@@ -1,8 +1,6 @@
 import classes from './FavoriteCats.module.scss';
-import { NavLink, useLocation } from 'react-router-dom';
-import { useFavoriteCats } from '../../hooks/useFavoriteCats';
+import { useFavoriteCats } from '../../hooks';
 import { Cat } from './components';
-import { useEffect } from 'react';
 
 export const FavoriteCatsPage = () => {
   const { favoriteCats, setFavoriteCats } = useFavoriteCats();
@@ -22,5 +20,5 @@ export const FavoriteCatsPage = () => {
         </ul>
       </div>
     </main>
-  )
+  );
 };
