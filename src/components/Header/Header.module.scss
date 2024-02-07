@@ -1,0 +1,130 @@
+@import '../../scss/settings/vars';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  // height: var(--header-height);
+  height: 65px;
+  padding: 0 60px;
+  // background: var(--bg-color);
+  background: rgb(33, 150, 243);
+
+  z-index: 1;
+  // padding-left: 60px;
+  // padding-right: 60px;
+  color: #fff;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    // max-width: var(--container-max-width);
+    margin: 0 auto;
+
+  }
+}
+
+.button {
+  // margin-left: 20px;
+
+  padding-left: 0;
+  width: 30px;
+  height: 30px;
+  color: currentColor;
+  z-index: 1;
+
+  @media (min-width: $breakpoint_md) {
+    // margin-left: 30px;
+  }
+
+  @media (min-width: $breakpoint_lg) {
+    width: 120px;
+    height: 65px;
+  }
+
+  &:hover {
+    background: rgb(30, 136, 229); // для ховера;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+
+.menu {
+
+
+  left: 0;
+  right: 0;
+  height: 100%; // растяг-ся на viewport из-за pos: abs
+  display: flex;
+
+  color: var(--color);
+  background: var(--bg-color);
+  transition: top 0.5s, visibility 0.5s;
+
+
+  @media (min-width: $breakpoint_lg) {
+    flex-direction: row;
+    margin-left: auto;
+    top: 0;
+    position: relative;
+    z-index: 1;
+    visibility: visible;
+  }
+
+  &.active {
+    top: var(--height-header-xs);
+    visibility: visible;
+  }
+
+  &.dark {
+    opacity: 1; // 
+  }
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  color: currentColor;
+
+  &:hover {
+    background: rgb(30, 136, 229); // для ховера;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  @media (min-width: $breakpoint_lg) {
+    border: none;
+    font-size: 18px;
+    margin-left: 40px;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+
+  @media (min-width: $breakpoint_lg) {
+    font-size: 20px;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 25px 15px;
+    display: flex;
+
+
+    @media (min-width: $breakpoint_lg) {
+      padding: 0;
+    }
+  }
+}
+
+a:global.active {
+  border-bottom: 2px solid #aaa;
+}

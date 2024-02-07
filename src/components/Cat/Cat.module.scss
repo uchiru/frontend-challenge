@@ -1,0 +1,28 @@
+@import '../../scss/settings/vars';
+
+.cat {
+  position: relative;
+}
+
+.image {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 10/6;
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    transition: transform 1s ease;
+  }
+}
+
+.like {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  bottom: 15px;
+  /* Перемещаем вниз до нижнего края .image */
+  right: 10px;
+}
