@@ -57,7 +57,7 @@ const CatsList = async () => {
 
 const ListenForLikes = async () => {
   const likes = document.querySelectorAll(".heart");
-  likes.forEach(async (like) => {
+  likes.forEach((like) => {
     like.addEventListener("click", (event) => {
       event.target.classList.toggle("like-no");
       event.target.classList.toggle("like-yes");
@@ -78,11 +78,6 @@ const ListenForLikes = async () => {
         localStorage.setItem("test", JSON.stringify(LikedImgSrc));
         console.log("removing");
         console.log(LikedImgSrc);
-        //localStorage.removeItem("test", LikedImgSrc[LikedImgSrc.length - 1]);
-        // console.log(LikedImgSrc[LikedImgSrc.length - 1]);
-        // window.href = "./favourites.html";
-        // var like = document.querySelector('.heart');
-        // getFaveData(event.target);
       }
     });
   });
@@ -96,22 +91,3 @@ const MainPage = async () => {
 
 MainPage();
 
-// function renderData(data) {
-//   data.forEach(item => {
-//     const element=document.createElement('div');
-//     element.src = item;
-//     container.appendChild(element)
-//   })
-// }
-
-// function loadData(){
-//   const end = start + limit;
-//   const newData=data.slice(start, end);
-//   renderData(newData);
-//   start = end;
-//   if (start>=data.length){
-//     loadMore.style.display = 'none';
-//   }
-// }
-
-// loadMore.addEventListener('click', loadData)

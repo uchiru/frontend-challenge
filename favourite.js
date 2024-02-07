@@ -1,7 +1,8 @@
 //const src_heart = `img/favorite_fill.svg`;
+let LikedImgSrc;
 
 let FavouritesAdding = async () => {
-  const LikedImgSrc = await JSON.parse(localStorage.getItem("test"));
+  LikedImgSrc = await JSON.parse(localStorage.getItem("test"));
   console.log(LikedImgSrc);
   LikedImgSrc.forEach((el) => {
     let heart = document.createElement("div");
@@ -17,17 +18,29 @@ let FavouritesAdding = async () => {
     gridCell.appendChild(heart);
     //gridCell.appendChild(heart);
     document.getElementById("image-wrapper").appendChild(gridCell);
-    // console.log(LikedImgSrc);
   });
-  // LikedImgSrc.push(dataList);
-  // localStorage.setItem('test', JSON.stringify(LikedImgSrc));
-  // localStorage.clear();
 };
 
-let FavouritesDeleting = async () => {};
+let FavouritesDeleting = () => {
+  const likes = document.querySelectorAll(".like");
+  likes.forEach((like) => {
+    like.addEventListener("click", (event) => {
+      event.target.classList.toggle("like-no");
+      LikedImgSrc = LikedImgSrc.filter(
+        (image) => image !== like.previousSibling.src
+      );
+      localStorage.setItem("test", JSON.stringify(LikedImgSrc));
+      console.log(LikedImgSrc);
+      like.previousSibling.parentNode.remove()  
+    });
+  });
+};
 
 const FavouritesPage = async () => {
-  FavouritesAdding();
+  const Run = await FavouritesAdding();
+  Run;
+  FavouritesDeleting();
 };
 
 FavouritesPage();
+
