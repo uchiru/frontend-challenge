@@ -1,4 +1,5 @@
-//const src_heart = `img/favorite_fill.svg`;
+const src_heart = `img/favorite_fill.svg`;
+//import { drawItems } from "./script";
 let LikedImgSrc;
 
 let FavouritesAdding = async () => {
@@ -16,7 +17,6 @@ let FavouritesAdding = async () => {
     gridCell.classList.add("col-lg");
     gridCell.appendChild(image);
     gridCell.appendChild(heart);
-    //gridCell.appendChild(heart);
     document.getElementById("image-wrapper").appendChild(gridCell);
   });
 };
@@ -31,7 +31,7 @@ let FavouritesDeleting = () => {
       );
       localStorage.setItem("test", JSON.stringify(LikedImgSrc));
       console.log(LikedImgSrc);
-      like.previousSibling.parentNode.remove()  
+      like.previousSibling.parentNode.remove();
     });
   });
 };
@@ -43,4 +43,3 @@ const FavouritesPage = async () => {
 };
 
 FavouritesPage();
-

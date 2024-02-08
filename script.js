@@ -2,11 +2,8 @@ const url = `https://api.thecatapi.com/v1/images/search?limit=100`;
 const src_heart = `img/favorite.svg`;
 const api_key =
   "live_6QkaEZSm5hKSRpvMVyBSRFebrHNCZE3RqKm8liTu6aONO2wTaeWW88uYkTylWHSr";
-const container = document.getElementById("grid");
-const loadMore = document.getElementById("load-more");
-let start = 0;
-let limit = 15;
-let data = [];
+let nextPage = document.getElementById("next-page");
+let page = 1;
 
 const fetchCats = async () => {
   try {
@@ -22,38 +19,32 @@ const fetchCats = async () => {
   }
 };
 
+const drawItems = function (images) {
+  images.map(function (item) {
+    let image = document.createElement("img");
+    let heart = document.createElement("div");
+    let gridCell = document.createElement("div");
+    image.src = item.url;
+    heart.src = src_heart;
+    image.classList.add("image");
+    heart.classList.add("heart");
+    heart.classList.add("like-no");
+    gridCell.classList.add("col");
+    gridCell.classList.add("col-lg");
+    gridCell.appendChild(image);
+    gridCell.appendChild(heart);
+    document.getElementById("grid").appendChild(gridCell);
+  });
+};
+
 const CatsList = async () => {
   try {
-    const ImagesList = await fetchCats();
-    ImagesList.map(function (imageList) {
-      let image = document.createElement("img");
-      let heart = document.createElement("div");
-      //use the url from the image object
-      image.src = `${imageList.url}`;
-      heart.src = src_heart;
-      image.classList.add("image");
-      heart.classList.add("heart");
-      heart.classList.add("like-no");
-      image.classList.add("lazy"); //добавляем ленивую загрузку
-
-      let gridCell = document.createElement("div");
-
-      gridCell.classList.add("col");
-      gridCell.classList.add("col-lg");
-      gridCell.appendChild(image);
-      gridCell.appendChild(heart);
-      document.getElementById("grid").appendChild(gridCell);
-    });
-    //data = ImagesList.map((el) => el.url)
+    let ImagesList = await fetchCats();
+    drawItems(ImagesList);
   } catch (error) {
     console.log(error.message);
   }
 };
-
-// const getFaveData = (elem) => {
-//   const parent = elem.parentElement;
-//   const img=parent.querySelector('img').src;
-// }
 
 const ListenForLikes = async () => {
   const likes = document.querySelectorAll(".heart");
@@ -67,14 +58,13 @@ const ListenForLikes = async () => {
       if (event.target.classList.contains("like-yes")) {
         LikedImgSrc.push(like.previousSibling.src);
         localStorage.setItem("test", JSON.stringify(LikedImgSrc));
-        //console.log(LikedImgSrc[0]);
         console.log("сохранено");
         console.log(LikedImgSrc);
         //localStorage.clear();
-        // var like = document.querySelector('.heart');
-        // getFaveData(event.target);
       } else {
-        LikedImgSrc = LikedImgSrc.filter((image) => image !== like.previousSibling.src);
+        LikedImgSrc = LikedImgSrc.filter(
+          (image) => image !== like.previousSibling.src
+        );
         localStorage.setItem("test", JSON.stringify(LikedImgSrc));
         console.log("removing");
         console.log(LikedImgSrc);
@@ -89,5 +79,18 @@ const MainPage = async () => {
   ListenForLikes();
 };
 
+window.addEventListener("scroll", () => {
+  const documentRect = document.documentElement.getBoundingClientRect();
+  console.log("top", documentRect.top);
+  console.log("bottom", documentRect.bottom);
+  console.log(window.innerHeight);
+  if (documentRect.bottom <= window.innerHeight + 150) {
+    console.log("done");
+    nextPage.classList.add("hidden");
+  }
+});
+
 MainPage();
 
+
+export {drawItems};
