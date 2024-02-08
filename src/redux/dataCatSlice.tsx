@@ -5,10 +5,14 @@ export const dataCatSlice = createSlice({
   initialState: {
     data: [],
     favorite: [],
+    start: true,
   },
   reducers: {
     setDataCat: (state, action) => {
       state.data = action.payload;
+    },
+    setStart: (state) => {
+      state.start = false;
     },
     favoriteAdd: (state, action) => {
       const findItem = state.favorite.find((obj) => obj.id === action.payload);
@@ -21,10 +25,14 @@ export const dataCatSlice = createSlice({
     },
     favoriteRemove: (state, action) => {
       const findItem = state.favorite.find((obj) => obj.id == action.payload);
-      state.favorite = state.favorite.filter((obj) => obj.id !== findItem.id)
+      state.favorite = state.favorite.filter((obj) => obj.id !== findItem.id);
     },
+    setAddNewCats: (state, action) => {
+      state.data = [...state.data, action.payload]
+    }
   },
 });
 
-export const { setDataCat, favoriteAdd, favoriteRemove } = dataCatSlice.actions;
+export const { setDataCat, favoriteAdd, favoriteRemove, setStart, setAddNewCats } =
+  dataCatSlice.actions;
 export default dataCatSlice.reducer;
