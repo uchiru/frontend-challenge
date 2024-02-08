@@ -9,6 +9,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 /* ------------НАВГАЦИЯ---------------- */
@@ -47,6 +48,10 @@
 
 
 /* ------------------ГЛАВНЫЙ КОНТЕНТ-------------------- */
+div {
+  border: 2px black;
+}
+
 .maincontent {
   padding-top: 0%;
   padding-left: 4.6%;
@@ -60,9 +65,9 @@
 .col-lg {
   height: 300px;
   overflow: hidden;
-  margin: 20px 0;
+  margin: 20px 10px;
   position: relative;
-  flex-basis: 15%;
+  flex-basis: 17%;
 }
 
 .imgrid {
@@ -74,12 +79,13 @@
 .imgrid_favorite {
   display: flex;
   flex-wrap: wrap;
-
 }
 
 .imgrid_favorite .col-lg {
-  margin-inline: 1%;
+  margin-inline: 2.5%;
 }
+
+
 
 /* Images crop and center to col-lg box up to 1000% centering (if 100% if it's 3x the size it doesn't fully center)Idk man why? projectors and stuff? */
 .image {

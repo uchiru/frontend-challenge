@@ -4,6 +4,7 @@ const api_key =
   "live_6QkaEZSm5hKSRpvMVyBSRFebrHNCZE3RqKm8liTu6aONO2wTaeWW88uYkTylWHSr";
 let nextPage = document.getElementById("next-page");
 let page = 1;
+let LikedImgSrc;
 
 const fetchCats = async () => {
   try {
@@ -20,6 +21,7 @@ const fetchCats = async () => {
 };
 
 const drawItems = function (images) {
+  console.log(images);
   images.map(function (item) {
     let image = document.createElement("img");
     let heart = document.createElement("div");
@@ -28,7 +30,15 @@ const drawItems = function (images) {
     heart.src = src_heart;
     image.classList.add("image");
     heart.classList.add("heart");
-    heart.classList.add("like-no");
+    LikedImgSrc = sessionStorage.getItem("test")
+      ? JSON.parse(sessionStorage.getItem("test"))
+      : [];
+    if (LikedImgSrc.includes(item.url)) {
+      heart.classList.add("like-yes");
+    } else {
+      heart.classList.add("like-no");
+    }
+
     gridCell.classList.add("col");
     gridCell.classList.add("col-lg");
     gridCell.appendChild(image);
@@ -52,20 +62,20 @@ const ListenForLikes = async () => {
     like.addEventListener("click", (event) => {
       event.target.classList.toggle("like-no");
       event.target.classList.toggle("like-yes");
-      let LikedImgSrc = localStorage.getItem("test")
-        ? JSON.parse(localStorage.getItem("test"))
+      let LikedImgSrc = sessionStorage.getItem("test")
+        ? JSON.parse(sessionStorage.getItem("test"))
         : [];
       if (event.target.classList.contains("like-yes")) {
         LikedImgSrc.push(like.previousSibling.src);
-        localStorage.setItem("test", JSON.stringify(LikedImgSrc));
+        sessionStorage.setItem("test", JSON.stringify(LikedImgSrc));
         console.log("сохранено");
         console.log(LikedImgSrc);
-        //localStorage.clear();
+        //sessionSltorage.clear();
       } else {
         LikedImgSrc = LikedImgSrc.filter(
           (image) => image !== like.previousSibling.src
         );
-        localStorage.setItem("test", JSON.stringify(LikedImgSrc));
+        sessionStorage.setItem("test", JSON.stringify(LikedImgSrc));
         console.log("removing");
         console.log(LikedImgSrc);
       }
@@ -77,6 +87,7 @@ const MainPage = async () => {
   const Run = await CatsList();
   Run;
   ListenForLikes();
+  FavouritesDeleting();
 };
 
 window.addEventListener("scroll", () => {
@@ -92,5 +103,4 @@ window.addEventListener("scroll", () => {
 
 MainPage();
 
-
-export {drawItems};
+export { drawItems };
