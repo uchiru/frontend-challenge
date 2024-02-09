@@ -1,11 +1,8 @@
-//import { drawItems } from "./script.js";
 const src_heart = `img/favorite_fill.svg`;
 let LikedImgSrc;
 
 let FavouritesAdding = async () => {
   LikedImgSrc = await JSON.parse(sessionStorage.getItem("test"));
-  console.log(LikedImgSrc);
-  //drawItems(LikedImgSrc);
   LikedImgSrc.forEach((el) => {
     let heart = document.createElement("div");
     let image = document.createElement("img");
@@ -31,7 +28,6 @@ let FavouritesDeleting = () => {
         (image) => image !== like.previousSibling.src
       );
       sessionStorage.setItem("test", JSON.stringify(LikedImgSrc));
-      console.log(LikedImgSrc);
       like.previousSibling.parentNode.remove();
     });
   });

@@ -3,7 +3,7 @@ const src_heart = `img/favorite.svg`;
 const api_key =
   "live_6QkaEZSm5hKSRpvMVyBSRFebrHNCZE3RqKm8liTu6aONO2wTaeWW88uYkTylWHSr";
 let LikedImgSrc;
-const loader = document.getElementById("loader");
+const loading = document.getElementById("loader");
 
 const fetchCats = async () => {
   try {
@@ -20,12 +20,11 @@ const fetchCats = async () => {
 };
 
 const drawItems = function (images) {
-  console.log(images);
   images.map(function (item) {
     let image = document.createElement("img");
     let heart = document.createElement("div");
     let gridCell = document.createElement("div");
-    image.src = item.url;
+    image.src = `${item.url}`;
     heart.src = src_heart;
     image.classList.add("image");
     heart.classList.add("heart");
@@ -37,7 +36,6 @@ const drawItems = function (images) {
     } else {
       heart.classList.add("like-no");
     }
-
     gridCell.classList.add("col");
     gridCell.classList.add("col-lg");
     gridCell.appendChild(image);
@@ -50,6 +48,7 @@ const CatsList = async () => {
   try {
     let ImagesList = await fetchCats();
     drawItems(ImagesList);
+    loading.classList.add("hidden");
   } catch (error) {
     console.log(error.message);
   }
@@ -67,16 +66,11 @@ const ListenForLikes = async () => {
       if (event.target.classList.contains("like-yes")) {
         LikedImgSrc.push(like.previousSibling.src);
         sessionStorage.setItem("test", JSON.stringify(LikedImgSrc));
-        console.log("сохранено");
-        console.log(LikedImgSrc);
-        //sessionSltorage.clear();
       } else {
         LikedImgSrc = LikedImgSrc.filter(
           (image) => image !== like.previousSibling.src
         );
         sessionStorage.setItem("test", JSON.stringify(LikedImgSrc));
-        console.log("removing");
-        console.log(LikedImgSrc);
       }
     });
   });
@@ -87,35 +81,4 @@ const MainPage = async () => {
   Run;
   ListenForLikes();
 };
-
-// window.addEventListener("scroll", () => {
-//   const documentRect = document.documentElement.getBoundingClientRect();
-//   console.log("top", documentRect.top);
-//   console.log("bottom", documentRect.bottom);
-//   console.log(window.innerHeight);
-//   if (documentRect.bottom <= window.innerHeight + 150) {
-//     console.log("done");
-//     loader.classList.add("hidden");
-//   }
-// });
-
-const handleIntersect = (entries) => {
-  if (entries[0].isIntersecting) {
-    console.warn("something is intersecting with the viewport");
-    MainPage();
-  }
-};
-document.addEventListener("DOMContentLoaded", () => {
-  let options = {
-    root: null,
-    rootMargins: "0px",
-    threshold: 0.5,
-  };
-  const observer = new IntersectionObserver(handleIntersect, options);
-  observer.observe(document.querySelector("footer"));
-  MainPage();
-});
-
-//MainPage();
-
-export { drawItems };
+MainPage();
