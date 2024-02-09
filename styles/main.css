@@ -155,6 +155,12 @@ div {
 
 }
 
-#next-page.hidden {
+/* #loader.hidden {
   display: none;
+} */
+
+footer#loader {
+  margin: 10px;
+  text-align: center;
+  font-size: 18px;
 }

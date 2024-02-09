@@ -1,10 +1,9 @@
-const url = `https://api.thecatapi.com/v1/images/search?limit=100`;
+const url = `https://api.thecatapi.com/v1/images/search?limit=50`;
 const src_heart = `img/favorite.svg`;
 const api_key =
   "live_6QkaEZSm5hKSRpvMVyBSRFebrHNCZE3RqKm8liTu6aONO2wTaeWW88uYkTylWHSr";
-let nextPage = document.getElementById("next-page");
-let page = 1;
 let LikedImgSrc;
+const loader = document.getElementById("loader");
 
 const fetchCats = async () => {
   try {
@@ -87,20 +86,36 @@ const MainPage = async () => {
   const Run = await CatsList();
   Run;
   ListenForLikes();
-  FavouritesDeleting();
 };
 
-window.addEventListener("scroll", () => {
-  const documentRect = document.documentElement.getBoundingClientRect();
-  console.log("top", documentRect.top);
-  console.log("bottom", documentRect.bottom);
-  console.log(window.innerHeight);
-  if (documentRect.bottom <= window.innerHeight + 150) {
-    console.log("done");
-    nextPage.classList.add("hidden");
+// window.addEventListener("scroll", () => {
+//   const documentRect = document.documentElement.getBoundingClientRect();
+//   console.log("top", documentRect.top);
+//   console.log("bottom", documentRect.bottom);
+//   console.log(window.innerHeight);
+//   if (documentRect.bottom <= window.innerHeight + 150) {
+//     console.log("done");
+//     loader.classList.add("hidden");
+//   }
+// });
+
+const handleIntersect = (entries) => {
+  if (entries[0].isIntersecting) {
+    console.warn("something is intersecting with the viewport");
+    //MainPage();
   }
+};
+document.addEventListener("DOMContentLoaded", () => {
+  let options = {
+    root: null,
+    rootMargins: "0px",
+    threshold: 0.5,
+  };
+  const observer = new IntersectionObserver(handleIntersect, options);
+  observer.observe(document.querySelector("footer"));
+  MainPage();
 });
 
-MainPage();
+//MainPage();
 
 export { drawItems };
