@@ -1,4 +1,4 @@
-const url = `https://api.thecatapi.com/v1/images/search?limit=50`;
+const url = `https://api.thecatapi.com/v1/images/search?limit=100`;
 const src_heart = `img/favorite.svg`;
 const api_key =
   "live_6QkaEZSm5hKSRpvMVyBSRFebrHNCZE3RqKm8liTu6aONO2wTaeWW88uYkTylWHSr";
@@ -102,7 +102,7 @@ const MainPage = async () => {
 const handleIntersect = (entries) => {
   if (entries[0].isIntersecting) {
     console.warn("something is intersecting with the viewport");
-    //MainPage();
+    MainPage();
   }
 };
 document.addEventListener("DOMContentLoaded", () => {
