@@ -1,0 +1,42 @@
+.header {
+  width: 1440px;
+  height: 64px;   
+  background-color: #2196f3; 
+}
+
+.header__container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 60px;
+  align-items: center;
+}
+
+.header__cats {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  text-align: center;
+  width: 120px;
+  color: white;
+  text-decoration: none;
+  padding: 20px 0;
+}
+
+.header__saved-cats {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  text-align: center;
+  width: 173px;
+  color: white;
+  text-decoration: none;
+  padding: 20px 0;
+}
+
+.header__active {
+  background-color: #1e88e5;
+}
