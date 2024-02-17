@@ -1,0 +1,76 @@
+font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 400;
+    src: url("../fonts/Roboto-Regular.woff") format("woff"), url("../fonts/Roboto-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+body {
+    width: 1366px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #ffffff;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
+.filters {
+    min-height: 64px;
+    background-color: #2196f3;
+    box-shadow: 0 5px 5px #b1b1b1;
+}
+
+.filters__form {
+    display: flex;
+    margin-left: 62px;
+}
+
+.filters__button {
+    min-width: 120px;
+    min-height: 64px;
+    background-color: #2196f3;
+    border: none;
+    opacity: 70%;
+    
+    &:hover {
+        background-color: #1e88e5;
+    }
+}
+
+.filters__button--active {
+    background-color: #1e88e5;
+    opacity: 100%;
+    cursor: default;
+}
