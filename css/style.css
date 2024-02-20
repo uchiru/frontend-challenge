@@ -6,13 +6,6 @@ font-face {
     font-display: swap;
 }
 
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 html {
     height: 100%;
 }
@@ -20,7 +13,6 @@ html {
 img {
     max-width: 100%;
     height: auto;
-    object-fit: contain;
 }
 
 body {
@@ -54,11 +46,11 @@ body {
 
 .filters__form {
     display: flex;
-    margin-left: 62px;
+    margin-left: 40px;
 }
 
 .filters__button {
-    min-width: 120px;
+    min-width: 100px;
     min-height: 64px;
     background-color: #2196f3;
     border: none;
@@ -66,11 +58,75 @@ body {
     
     &:hover {
         background-color: #1e88e5;
+        opacity: 70%;
     }
+
+    &:active {
+        background-color: #2196f3;
+        opacity: 100%; 
+    }
+}
+
+.filters__button span {
+    font-size: 10px;
 }
 
 .filters__button--active {
     background-color: #1e88e5;
     opacity: 100%;
-    cursor: default;
+}
+
+.maincontent {
+    width: 1285px;
+    padding: 30px 30px 30px 40px;
+  }
+  
+.col{
+    width: 225px;
+    height: 225px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+  
+    /* Images crop and center to col-lg box up to 1000% centering (if 100% if it's 3x the size it doesn't fully center)Idk man why? projectors and stuff? */
+.col img {
+    display:block;
+    position: absolute;
+    left: -1000%;
+    right: -1000%;
+    top: -1000%;
+    bottom: -1000%;
+    margin: auto;
+    height: 225px;
+    width: 225px;
+    padding: 0;
+    object-fit: cover;
+}
+.imgrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    height: 469.4px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+.more__button {
+    display: block;
+    min-width: 195px;
+    height: 21px;
+    margin: 0 auto;
+    padding: 0;
+    font-weight: 700;
+    color: #2196f3;
+    background-color: #ffffff;
+    border: none;
+    
+    &:hover {
+        color: #025298;
+    }
 }

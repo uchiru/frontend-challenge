@@ -6,22 +6,37 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <title>Кошачий пинтерест</title>
+  <title>Пинтерест</title>
 </head>
 
 <body>
     <header>
         <section class="filters">
             <h2 class="visually-hidden">Фильтр фотографий</h2>
-            <form class="filters__form" action="index.html" method="get" autocomplete="off">
-                <button type=button class="filters__button  filters__button--active" id="filter-default">Все котики</button>
-                <button type=button class="filters__button" id="filter-like">Любимые котики</button>
-            </form>
+            <div class="filters__form">
+                <button type=button class="filters__button  filters__button--active" id="filter-default">Случайные котики<br><span>(обновить страницу)</span</button>
+                <button type=button class="filters__button" id="filter-default">Случайные котики<br>породы Бенгази</button>  
+                <button type=button class="filters__button" id="filter-default">Случайные котики<br>породы Манкс</button>
+                <button type=button class="filters__button" id="filter-default">Случайные котики<br>породы Гималай</button> 
+                <button type=button class="filters__button" id="filter-like">Любимые<br>котики</button>
+                <button type=button class="filters__button" id="filter-default">Случайные собачки<br><span>(обновить страницу)</span</button>
+                <button type=button class="filters__button" id="filter-default">Случайные собачки<br>породы Афганская</button>
+                <button type=button class="filters__button" id="filter-default">Случайные собачки<br>породы Акита</button> 
+                <button type=button class="filters__button" id="filter-default">Случайные собачки<br>породы Маламут</button> 
+                <button type=button class="filters__button" id="filter-like">Любимые<br>собачки</button>
+            </div>
         </section>
-    </header>
+    </header> 
 
     <main>
-
+        <section class="maincontent">
+            <div id="grid" class="imgrid"></div>
+            <div class="more">
+                <button class="more__button">... показать ещё 10 фоток ...</button>
+            </div>
+        </section>
     </main>
-<script defer src="./js/nav.js"></script>
+
+<script defer type="module" src="./js/main.js"></script>   
+
 </body>
