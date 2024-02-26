@@ -6,13 +6,6 @@ font-face {
     font-display: swap;
 }
 
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 html {
     height: 100%;
 }
@@ -20,7 +13,6 @@ html {
 img {
     max-width: 100%;
     height: auto;
-    object-fit: contain;
 }
 
 body {
@@ -54,11 +46,11 @@ body {
 
 .filters__form {
     display: flex;
-    margin-left: 62px;
+    margin-left: 40px;
 }
 
 .filters__button {
-    min-width: 120px;
+    min-width: 100px;
     min-height: 64px;
     background-color: #2196f3;
     border: none;
@@ -66,15 +58,28 @@ body {
     
     &:hover {
         background-color: #1e88e5;
+        opacity: 70%;
     }
+
+    &:active {
+        background-color: #2196f3;
+        opacity: 100%; 
+    }
+}
+
+.filters__button span {
+    font-size: 10px;
 }
 
 .filters__button--active {
     background-color: #1e88e5;
     opacity: 100%;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     cursor: default;
 =======
+=======
+>>>>>>> viewing
 }
 
 .maincontent {
@@ -88,6 +93,7 @@ body {
     padding: 0;
     overflow: hidden;
     position: relative;
+<<<<<<< HEAD
 
     &:hover {
         cursor: pointer;
@@ -109,6 +115,12 @@ body {
     
 /*Изображения обрезаются и центрируются в поле col-lg с центрированием до 1000% (если 100%, если оно в 3 раза больше, оно не центрируется полностью)*/
 .photo {
+=======
+}
+  
+    /* Images crop and center to col-lg box up to 1000% centering (if 100% if it's 3x the size it doesn't fully center)Idk man why? projectors and stuff? */
+.col img {
+>>>>>>> viewing
     display:block;
     position: absolute;
     left: -1000%;
@@ -121,6 +133,7 @@ body {
     padding: 0;
     object-fit: cover;
 }
+<<<<<<< HEAD
 
 .favorite {
     &:hover {
@@ -128,13 +141,21 @@ body {
     }
 }
 
+=======
+>>>>>>> viewing
 .imgrid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+<<<<<<< HEAD
     justify-content: space-around;
     width: 100%;
     height: 485px;
+=======
+    width: 100%;
+    height: 469.4px;
+    justify-content: space-between;
+>>>>>>> viewing
     margin-bottom: 20px;
     overflow: auto;
     scroll-behavior: smooth;
@@ -154,5 +175,8 @@ body {
     &:hover {
         color: #025298;
     }
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> viewing
 }

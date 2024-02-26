@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const getPhotos = (url, num) => {
   
   //Определяем ключ доступа
@@ -9,6 +10,15 @@ const getPhotos = (url, num) => {
 
   // Запускаем метод fetch и передаём ему путь обращения, объект настроек с дополнительным параметром ключ доступа
   fetch(url,{headers: {"content-type": "application/json", 'x-api-key': api_key}})
+=======
+const getPhotos = (url) => {
+  //Находим кнопку загрузить ещё 10 фото
+  const button = document.querySelector('.more__button');
+  //Определяем ключ доступа
+  const api_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
+  // Запускаем метод fetch и передаём ему путь обращения, объект настроек с дополнительным параметром ключ доступа
+  fetch(url,{headers: {'x-api-key': api_key}})
+>>>>>>> viewing
     // Возвращаем объект promise с будущим ответом сервера и, если он придёт успешно (зарезолвится), вызываем метод then и передаём ему колбэк с объектом ответа response
     .then((response) => {
     // Проверяем свойство объекта ответа сервера .ок и если оно false
@@ -23,6 +33,7 @@ const getPhotos = (url, num) => {
     .then((data) => {
       //Копируем полученные данные в рабочий массив
       let imagesData = data;
+<<<<<<< HEAD
       console.log(imagesData);
       //Для каждого элемента массива ImageData методом map выполним функцию
       imagesData.map((imageData) => {
@@ -49,10 +60,19 @@ const getPhotos = (url, num) => {
           favorite.src = './images/favorite_border.svg';
           favorite.alt = "random_photo";
         };
+=======
+      //Для каждого элемента массива ImageData методом map выполним функцию
+      imagesData.map((imageData) => {
+        //Создадим тег img в переменной
+        let image = document.createElement('img');
+        //Запишем в атрибуд src тега img ссылку на фото из параметра url объекта массива
+        image.src = `${imageData.url}`;
+>>>>>>> viewing
         //Создадим тег div в переменной
         let gridCell = document.createElement('div');
         //Добавим тегу div класс col
         gridCell.classList.add('col');
+<<<<<<< HEAD
         //Добавим в тег div тег img фото
         gridCell.appendChild(image);
         //Добавим в тег div тег img иконки
@@ -117,6 +137,19 @@ const getPhotos = (url, num) => {
   })
     //В случае прихода ошибки с сервера (или перехода в состояние  rejected из-за сверхлимитной задержки ответа сервера) вызываем метод catch и выводим ошибку в консоль
     .catch(error => console.log('error', error)); 
+=======
+        //Вложим в тег div тег img
+        gridCell.appendChild(image);
+        //Добавим в DOM собранный тег div в родительский элемент с id=grid
+        document.getElementById('grid').appendChild(gridCell);
+      });
+    })
+    //В случае прихода ошибки с сервера (или перехода в состояние  rejected из-за сверхлимитной задержки ответа сервера) вызываем метод catch и выводим ошибку в консоль
+    .catch(function(error) {
+      console.log(error);
+    });
+    button.click();
+>>>>>>> viewing
 }
 
 export {getPhotos};
