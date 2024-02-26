@@ -72,5 +72,87 @@ body {
 .filters__button--active {
     background-color: #1e88e5;
     opacity: 100%;
+<<<<<<< Updated upstream
     cursor: default;
+=======
+}
+
+.maincontent {
+    width: 1285px;
+    padding: 30px 30px 30px 40px;
+  }
+  
+.col{
+    width: 225px;
+    height: 225px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(105%);
+        box-shadow: 0 5px 5px #b1b1b1;
+        transition: all ease-in-out 0.25s;
+        .favorite {
+            display: block;
+        }
+    }
+}
+
+.favorite {
+    position: absolute;
+    bottom: 19px;
+    right: 19px;
+    display: none;
+}
+    
+/*Изображения обрезаются и центрируются в поле col-lg с центрированием до 1000% (если 100%, если оно в 3 раза больше, оно не центрируется полностью)*/
+.photo {
+    display:block;
+    position: absolute;
+    left: -1000%;
+    right: -1000%;
+    top: -1000%;
+    bottom: -1000%;
+    margin: auto;
+    height: 225px;
+    width: 225px;
+    padding: 0;
+    object-fit: cover;
+}
+
+.favorite {
+    &:hover {
+        z-index: 1;
+    }
+}
+
+.imgrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    width: 100%;
+    height: 485px;
+    margin-bottom: 20px;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+.more__button {
+    display: block;
+    min-width: 195px;
+    height: 21px;
+    margin: 0 auto;
+    padding: 0;
+    font-weight: 700;
+    color: #2196f3;
+    background-color: #ffffff;
+    border: none;
+    
+    &:hover {
+        color: #025298;
+    }
+>>>>>>> Stashed changes
 }
