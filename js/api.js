@@ -1,7 +1,7 @@
 const getPhotos = (url, num) => {
   
   //Определяем ключ доступа
-  const api_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
+  const api_key = "live_vCr6lJrQwqr6CRh8941GX1XbgylkipCMYZm2QPx8PAnmLBUlamNfFBTU3n0u3pUg";
   //Находим узел списка фоток
   const list = document.querySelector('.imgrid');
   //Создаём живую коллекцию из элементов списка фоток
