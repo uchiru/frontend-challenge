@@ -1,4 +1,4 @@
-//Скрипт смены фильтров выборки фото
+//Модуль смены фильтров выборки фото
 import { getPhotos } from './api.js';
 import { removeAllPhotos } from './clear.js';
 

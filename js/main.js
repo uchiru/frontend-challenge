@@ -1,3 +1,4 @@
+//Модуль входа JS
 import './nav.js';
 import {getPhotos} from './api.js';
 

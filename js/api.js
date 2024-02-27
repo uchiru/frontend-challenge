@@ -1,12 +1,13 @@
+//Модуль общения с сервером и вывода полученных данных
+//Функция формирования запросов к серверу и обработки полученных данных, используя API сервиса
 const getPhotos = (url, num, api_key) => {
-  
   
   //Находим узел списка фоток
   const list = document.querySelector('.imgrid');
   //Создаём живую коллекцию из элементов списка фоток
   let listItems = list.childNodes;
 
-  // Запускаем метод fetch и передаём ему путь обращения, объект настроек с дополнительным параметром ключ доступа
+  // Запускаем метод fetch и передаём ему путь обращения, объект настроек с дополнительным параметром и ключ доступа
   fetch(url,{headers: {"content-type": "application/json", 'x-api-key': api_key}})
     // Возвращаем объект promise с будущим ответом сервера и, если он придёт успешно (зарезолвится), вызываем метод then и передаём ему колбэк с объектом ответа response
     .then((response) => {
@@ -18,36 +19,42 @@ const getPhotos = (url, num, api_key) => {
     // Возвращаем результат выполнения метода json к данным ответа сервера (т.е. преобразуем строку с данными json в объект js - десерализуем/распарсим)
     return response.json();
     })
-    // Возвращаем объект promise с будущим ответом сервера и, если он придёт успешно (зарезолвится), вызываем метод then и передаём ему колбэк с объектом ответа data
+    // Возвращаем объект promise с будущим ответом сервера и, если он придёт успешно (зарезолвится), вызываем метод then и передаём ему объект ответа data
     .then((data) => {
       //Копируем полученные данные в рабочий массив
       let imagesData = data;
-      console.log(imagesData);
       //Для каждого элемента массива ImageData методом map выполним функцию
       imagesData.map((imageData) => {
         //Создадим в переменной тег img для вывода скачанного фото 
         let image = document.createElement('img');
-        image.classList.add('photo');
-        //Запишем в атрибуты тега img идидентификатор фото из параметра id и src ссылку на фото из параметра url объекта массива
-        image.id = `${imageData.id}`;
-        //Если данные о любимых фото
-        if(imageData.image_id) { image.src = `${imageData.image.url}` }
-          //Если данные о случайных фото
-          else { image.src = `${imageData.url}` };
-        //Добавляем атрибут title тегу img
-        image.title = "Добавить/убрать в/из любимые";
         //Создадим в переменной тег img для вывода иконки like
         let favorite = document.createElement('img');
+        //Добавим тегу img для вывода скачанного фото класс
+        image.classList.add('photo');
+        //Запишем в атрибуты тега img идидентификатор фото из параметра id и src ссылку на фото из параметра url объекта фото
+        image.id = `${imageData.id}`;
+        //Если данные о любимых фото
+        if(imageData.image_id) {
+          //Добавим ссылку на любимое фото
+          image.src = `${imageData.image.url}`;
+          //Добавим ссылку на иконку любимого фото
+          favorite.src = './images/favorite.svg';
+          //Добавим идентификатор любимое фото
+          favorite.alt = "favorite_photo";
+        }
+          //Если данные о случайных фото
+          else {
+            //Добавим ссылку на случайное фото
+            image.src = `${imageData.url}`;
+            //Добавим ссылку на иконку случайного фото
+            favorite.src = './images/favorite_border.svg';
+            //Добавим идентификатор случайное фото
+            favorite.alt = "random_photo";
+          };
+        //Добавляем атрибут title тегу img фото
+        image.title = "Добавить/убрать в/из любимые";
         //Добавим тегу иконки класс favorite
         favorite.classList.add('favorite');
-        //Запишем в атрибуд src иконки ссылку на изображение иконки и alt в зависимости от типа любимые или случайные
-        if(imageData.image_id) {
-          favorite.src = './images/favorite.svg';
-          favorite.alt = "favorite_photo";
-        } else {
-          favorite.src = './images/favorite_border.svg';
-          favorite.alt = "random_photo";
-        };
         //Создадим тег div в переменной
         let gridCell = document.createElement('div');
         //Добавим тегу div класс col
@@ -60,12 +67,12 @@ const getPhotos = (url, num, api_key) => {
         document.getElementById('grid').appendChild(gridCell);
       });
    
-    //Колбэк функция удаления/добавления кликнутого фото в любимые
-    //Для каждого элемента массивоподобной коллекции списка фото
+    //Удаляем/добавляем кликнутое фото из выведенных на экран в любимые
+    //Для каждого элемента коллекции фото
     listItems.forEach((photo, index) => {
       //При клике на фото получаем индекс кликнутой фотки
       photo.addEventListener('click', () => {
-        //Если фото в любимых и мы находимся в разделе любимые
+        //Если фото в любимых и мы находимся в разделе любимые, удалем фото из любимых
         if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 4 || num == 9)) {
           //Меняем иконку на убрано из любимых
           listItems[index].querySelector('.favorite').src = './images/favorite_border.svg';
@@ -75,6 +82,7 @@ const getPhotos = (url, num, api_key) => {
           listItems[index].querySelector('.favorite').alt = "random_photo";
           //Удаляем из DOM убираемое из любимых фото
           //list.removeChild(listItems[index]);
+          //Если мы находимся в разделе любимые котики, удаляем из любимых котиков
           if(num == 4) {
             //Отправляем на сервер запрос на удаление из любимых фото котиков
             fetch(`https://api.thecatapi.com/v1/favourites/${favouriteId}`, 
@@ -88,6 +96,7 @@ const getPhotos = (url, num, api_key) => {
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
           }
+          //Если мы находимся в разделе любимые собачки, удаляем из любимых собачек
           if(num == 9) {
             //Отправляем на сервер запрос на удаление из любимых фото собачек
             fetch(`https://api.thedogapi.com/v1/favourites/${favouriteId}`, 
@@ -103,7 +112,7 @@ const getPhotos = (url, num, api_key) => {
           }
 
         } else
-        //Если фото не в любимых и мы не находимся в разделе любимые
+        //Если фото не в любимых и мы не находимся в разделе любимые добавляем фото в любимые
         if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 4 && num !== 9) {
           //Меняем иконку на добавлено в любимые
           listItems[index].querySelector('.favorite').src = './images/favorite.svg';
@@ -115,7 +124,7 @@ const getPhotos = (url, num, api_key) => {
           let rawBody = JSON.stringify({ 
             "image_id": id        
             });
-          //Отправляем на сервер данные о добавленной в любимые фото котиков
+          //Отправляем на сервер запрос о добавлении в любимые фото котика
           if(num == 0 || num == 1 || num == 2 || num ==3) {
             fetch("https://api.thecatapi.com/v1/favourites", 
               {
@@ -128,6 +137,7 @@ const getPhotos = (url, num, api_key) => {
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
           }
+          //Отправляем на сервер запрос о добавлении в любимые фото собачки
           if(num == 5 || num == 6 || num == 7 || num ==8) {
             fetch("https://api.thedogapi.com/v1/favourites", 
               {
