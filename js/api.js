@@ -1,7 +1,6 @@
-const getPhotos = (url, num) => {
+const getPhotos = (url, num, api_key) => {
   
-  //Определяем ключ доступа
-  const api_key = "live_vCr6lJrQwqr6CRh8941GX1XbgylkipCMYZm2QPx8PAnmLBUlamNfFBTU3n0u3pUg";
+  
   //Находим узел списка фоток
   const list = document.querySelector('.imgrid');
   //Создаём живую коллекцию из элементов списка фоток
@@ -61,13 +60,13 @@ const getPhotos = (url, num) => {
         document.getElementById('grid').appendChild(gridCell);
       });
    
-    //Колбэк функция добавления кликнутого фото в любимые
+    //Колбэк функция удаления/добавления кликнутого фото в любимые
     //Для каждого элемента массивоподобной коллекции списка фото
     listItems.forEach((photo, index) => {
       //При клике на фото получаем индекс кликнутой фотки
       photo.addEventListener('click', () => {
         //Если фото в любимых и мы находимся в разделе любимые
-        if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && num == 4) {
+        if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 4 || num == 9)) {
           //Меняем иконку на убрано из любимых
           listItems[index].querySelector('.favorite').src = './images/favorite_border.svg';
           //Сохраняем id кликнутой фотки 
@@ -76,20 +75,36 @@ const getPhotos = (url, num) => {
           listItems[index].querySelector('.favorite').alt = "random_photo";
           //Удаляем из DOM убираемое из любимых фото
           //list.removeChild(listItems[index]);
-          //Отправляем на сервер запрос на удаление из любимых фото
-          fetch(`https://api.thecatapi.com/v1/favourites/${favouriteId}`, 
-            {
-              method: 'DELETE',
-              headers: {"content-type": "application/json", "x-api-key": api_key},
-              redirect: 'follow'
-            }
-          )
-          .then(response => console.log(response.text()))
-          .then(result => console.log(result))
-          .catch(error => console.log('error', error));
+          if(num == 4) {
+            //Отправляем на сервер запрос на удаление из любимых фото котиков
+            fetch(`https://api.thecatapi.com/v1/favourites/${favouriteId}`, 
+              {
+                method: 'DELETE',
+                headers: {"content-type": "application/json", "x-api-key": api_key},
+                redirect: 'follow'
+              }
+            )
+            .then(response => console.log(response.text()))
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+          }
+          if(num == 9) {
+            //Отправляем на сервер запрос на удаление из любимых фото собачек
+            fetch(`https://api.thedogapi.com/v1/favourites/${favouriteId}`, 
+              {
+                method: 'DELETE',
+                headers: {"content-type": "application/json", "x-api-key": api_key},
+                redirect: 'follow'
+              }
+            )
+            .then(response => console.log(response.text()))
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+          }
+
         } else
         //Если фото не в любимых и мы не находимся в разделе любимые
-        if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 4) {
+        if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 4 && num !== 9) {
           //Меняем иконку на добавлено в любимые
           listItems[index].querySelector('.favorite').src = './images/favorite.svg';
           //Меняем атрибут alt на любимое фото
@@ -100,23 +115,35 @@ const getPhotos = (url, num) => {
           let rawBody = JSON.stringify({ 
             "image_id": id        
             });
-          //Отправляем на сервер данные о добавленной в любимые фото
-          fetch("https://api.thecatapi.com/v1/favourites", 
-            {
-              method: 'POST',
-              headers: {"content-type": "application/json", "x-api-key": api_key},
-              body: rawBody
-            }
-          )
-          .then(response => console.log(response.text()))
-          .then(result => console.log(result))
-          .catch(error => console.log('error', error));
+          //Отправляем на сервер данные о добавленной в любимые фото котиков
+          if(num == 0 || num == 1 || num == 2 || num ==3) {
+            fetch("https://api.thecatapi.com/v1/favourites", 
+              {
+                method: 'POST',
+                headers: {"content-type": "application/json", "x-api-key": api_key},
+                body: rawBody
+              }
+            )
+            .then(response => console.log(response.text()))
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+          }
+          if(num == 5 || num == 6 || num == 7 || num ==8) {
+            fetch("https://api.thedogapi.com/v1/favourites", 
+              {
+                method: 'POST',
+                headers: {"content-type": "application/json", "x-api-key": api_key},
+                body: rawBody
+              }
+            )
+            .then(response => console.log(response.text()))
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+          }
         }
       })
     })
   })
-    //В случае прихода ошибки с сервера (или перехода в состояние  rejected из-за сверхлимитной задержки ответа сервера) вызываем метод catch и выводим ошибку в консоль
-    .catch(error => console.log('error', error)); 
 }
 
 export {getPhotos};

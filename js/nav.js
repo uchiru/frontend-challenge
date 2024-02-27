@@ -8,6 +8,8 @@ const navFilters = document.querySelector('.filters__form');
 const filters = navFilters.querySelectorAll('.filters__button');
 //Находим кнопку загрузить ещё 10 фото
 const more = document.querySelector('.more__button');
+//Определяем ключ доступа к серверу для кошек
+const api_cat_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
 //Определяем ссылку на сервер с фото кошек
 const cat_url = 'https://api.thecatapi.com/v1/images/search?limit=20';
 //Определяем ссылку запроса  на сервер с фото кошек породы бенгази
@@ -15,11 +17,14 @@ const cat_beng_url = 'https://api.thecatapi.com/v1/images/search?limit=20&breed_
 const cat_manx_url = 'https://api.thecatapi.com/v1/images/search?limit=20&breed_ids=manx';
 const cat_hima_url = 'https://api.thecatapi.com/v1/images/search?limit=20&breed_ids=hima';
 const cat_fav_url = 'https://api.thecatapi.com/v1/favourites';
+//Определяем ключ доступа к серверу для собак
+const api_dog_key = "live_mkkpPYTw0j96885AhwACtyennan2hLUoAMhdtr6f4buYORCuCt8WNeRq8JLggurg";
 //Определяем ссылку запроса на сервер с фото собак
 const dog_url = 'https://api.thedogapi.com/v1/images/search?limit=20';
 const dog_afg_url = 'https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=2';
 const dog_akita_url = 'https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=6';
 const dog_malamut_url = 'https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=9';
+const dog_fav_url = 'https://api.thedogapi.com/v1/favourites';
 let url = cat_url;
 
 //Функция смены активного элемента фильтра
@@ -38,63 +43,70 @@ const changeActivFilter = (num) => {
     //Меняем ссылку на кошачью
     url = cat_url;
     //Выводим 20 случайных фото с кошками
-    getPhotos(url, num);
+    getPhotos(url, num, api_cat_key);
   };
   //Если нажата кнопка №2
   if (num === 1) {
     //Меняем ссылку на кошачью породы бенгази
     url = cat_beng_url;
     //Выводим 20 случайных фото с кошками бенгази
-    getPhotos(url, num);
+    getPhotos(url, num, api_cat_key);
   };
   //Если нажата кнопка №3
   if (num === 2) {
     //Меняем ссылку на кошачью порды манкс
     url = cat_manx_url;
     //Выводим 20 случайных фото с кошками манкс
-    getPhotos(url, num);
+    getPhotos(url, num, api_cat_key);
   };
   //Если нажата кнопка №4
   if (num === 3) {
     //Меняем ссылку на кошачью породы гималайская
     url = cat_hima_url;
     //Выводим 20 случайных фото с кошками гималайская
-    getPhotos(url, num);
+    getPhotos(url, num, api_cat_key);
   };
   //Если нажата кнопка №5
   if (num === 4) {
     //Меняем ссылку на любимых котиков
     url = cat_fav_url;
-    //Выводим 20 любимых фото
-    getPhotos(url, num);
+    //Выводим 20 любимых фото котиков
+    getPhotos(url, num, api_cat_key);
   };
   //Если нажата кнопка №6
   if (num === 5) {
     //Меняем ссылку на собачью
     url = dog_url;
     //Выводим 20 случайных фото с собаками
-    getPhotos(url, num);
+    getPhotos(url, num, api_dog_key);
   };
   //Если нажата кнопка №7
   if (num === 6) {
     //Меняем ссылку на собачью породы Афганская гончая
     url = dog_afg_url;
     //Выводим 20 случайных фото с собаками
-    getPhotos(url, num);
+    getPhotos(url, num, api_dog_key);
   };
   //Если нажата кнопка №8
   if (num === 7) {
     //Меняем ссылку на собачью породы Афганская гончая
     url = dog_akita_url;
     //Выводим 20 случайных фото с собаками
-    getPhotos(url, num);
+    getPhotos(url, num, api_dog_key );
   };
   //Если нажата кнопка №9
   if (num === 8) {
     //Меняем ссылку на собачью породы Афганская гончая
     url = dog_malamut_url;
     //Выводим 20 случайных фото с собаками
-    getPhotos(url,num);
+    getPhotos(url, num, api_dog_key);
+  };
+  //Если нажата кнопка №10
+  if (num === 9) {
+    //Меняем ссылку на любимых собачек
+    url = dog_fav_url;
+    //Выводим 20 любимых фото собачек
+    getPhotos(url, num, api_dog_key);
   };
 }
 
