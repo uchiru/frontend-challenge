@@ -1,5 +1,6 @@
 //Модуль смены фильтров выборки фото
 import { getPhotos } from './api.js';
+import { breedsRequest } from './breeds.js';
 import { removeAllPhotos } from './clear.js';
 
 //Находим группу фильтров
@@ -19,13 +20,29 @@ const cat_hima_url = 'https://api.thecatapi.com/v1/images/search?limit=20&breed_
 const cat_fav_url = 'https://api.thecatapi.com/v1/favourites';
 //Определяем ключ доступа к серверу для собак
 const api_dog_key = "live_mkkpPYTw0j96885AhwACtyennan2hLUoAMhdtr6f4buYORCuCt8WNeRq8JLggurg";
-//Определяем ссылку запроса на сервер с фото собак
+//Определяем ссылку запроса на сервер с фото собачек
 const dog_url = 'https://api.thedogapi.com/v1/images/search?limit=20';
-const dog_afg_url = 'https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=2';
-const dog_akita_url = 'https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=6';
-const dog_malamut_url = 'https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=9';
+//Определяем ссылку для запроса любимых фото собачек
 const dog_fav_url = 'https://api.thedogapi.com/v1/favourites';
-let url = cat_url;
+//Находим кнопку вывода выбранной породы
+const breedButton = document.querySelector('.filters__button--breed');
+//Находим селектор выбора породы
+const breedSelector = document.querySelector('.breed_selector');
+//Определяем адрес для запроса имеющихся пород собак
+const breedsUrl = 'https://api.thedogapi.com/v1/breeds';
+//Назначаем переменную для формирования ссылок для запросов на сервер
+let url;
+
+//Запускаем функцию запроса и вывода в select доступных пород собачек
+breedsRequest(breedsUrl, api_dog_key, breedSelector);
+
+//При нажатии кнопки вывода фото выбранной породы
+breedButton.onclick = () => {
+  //Определяем Id породы нажатой кнопки
+  let breedIds = breedSelector.options[breedSelector.selectedIndex].value;
+  //Формируем ссылку запроса фото выбраной породы
+  url = `https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=${breedIds}`;
+};
 
 //Функция смены активного элемента фильтра
 const changeActivFilter = (num) => {
@@ -82,32 +99,17 @@ const changeActivFilter = (num) => {
   };
   //Если нажата кнопка №7
   if (num === 6) {
-    //Меняем ссылку на собачью породы Афганская гончая
-    url = dog_afg_url;
-    //Выводим 20 случайных фото с собаками
-    getPhotos(url, num, api_dog_key);
-  };
-  //Если нажата кнопка №8
-  if (num === 7) {
-    //Меняем ссылку на собачью породы Афганская гончая
-    url = dog_akita_url;
-    //Выводим 20 случайных фото с собаками
-    getPhotos(url, num, api_dog_key );
-  };
-  //Если нажата кнопка №9
-  if (num === 8) {
-    //Меняем ссылку на собачью породы Афганская гончая
-    url = dog_malamut_url;
-    //Выводим 20 случайных фото с собаками
-    getPhotos(url, num, api_dog_key);
-  };
-  //Если нажата кнопка №10
-  if (num === 9) {
     //Меняем ссылку на любимых собачек
     url = dog_fav_url;
     //Выводим 20 любимых фото собачек
     getPhotos(url, num, api_dog_key);
   };
+  //Если нажата кнопка №8
+  if (num === 7) {
+    //Выводим 20 случайных фото с собаками выбранной породы
+    getPhotos(url, num, api_dog_key );
+  };
+  
 }
 
 //Колбэк функция переключения активного фильтра на кликнутую группу

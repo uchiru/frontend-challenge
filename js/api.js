@@ -73,7 +73,7 @@ const getPhotos = (url, num, api_key) => {
       //При клике на фото получаем индекс кликнутой фотки
       photo.addEventListener('click', () => {
         //Если фото в любимых и мы находимся в разделе любимые, удалем фото из любимых
-        if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 4 || num == 9)) {
+        if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 4 || num == 6)) {
           //Меняем иконку на убрано из любимых
           listItems[index].querySelector('.favorite').src = './images/favorite_border.svg';
           //Сохраняем id кликнутой фотки 
@@ -97,7 +97,7 @@ const getPhotos = (url, num, api_key) => {
             .catch(error => console.log('error', error));
           }
           //Если мы находимся в разделе любимые собачки, удаляем из любимых собачек
-          if(num == 9) {
+          if(num == 6) {
             //Отправляем на сервер запрос на удаление из любимых фото собачек
             fetch(`https://api.thedogapi.com/v1/favourites/${favouriteId}`, 
               {
@@ -113,7 +113,7 @@ const getPhotos = (url, num, api_key) => {
 
         } else
         //Если фото не в любимых и мы не находимся в разделе любимые добавляем фото в любимые
-        if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 4 && num !== 9) {
+        if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 4 && num !== 6) {
           //Меняем иконку на добавлено в любимые
           listItems[index].querySelector('.favorite').src = './images/favorite.svg';
           //Меняем атрибут alt на любимое фото
@@ -138,7 +138,7 @@ const getPhotos = (url, num, api_key) => {
             .catch(error => console.log('error', error));
           }
           //Отправляем на сервер запрос о добавлении в любимые фото собачки
-          if(num == 5 || num == 6 || num == 7 || num ==8) {
+          if(num == 5 || num == 7) {
             fetch("https://api.thedogapi.com/v1/favourites", 
               {
                 method: 'POST',

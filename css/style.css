@@ -46,12 +46,13 @@ body {
 
 .filters__form {
     display: flex;
-    margin-left: 40px;
+    flex-wrap: nowrap;
+    margin-left: 0px;
 }
 
 .filters__button {
     min-width: 100px;
-    min-height: 64px;
+    max-width: 240px;
     background-color: #2196f3;
     border: none;
     opacity: 70%;
@@ -75,6 +76,30 @@ body {
     background-color: #1e88e5;
     opacity: 100%;
     cursor: default;
+}
+
+.breed__filters {
+    align-self: center;
+}
+
+.breed__filters-title {
+    color: #ffffff;
+    opacity: 70%;
+}
+
+#breed_selector {
+    width: 150px;
+    height: 20px;
+    font-size: 11px;
+    color: #025298;
+    border: 2px solid #025298;
+    border-radius: 4px;
+}
+
+#breed_selector option {
+    
+    min-height: 20px;
+    color: #000000;
 }
 
 .maincontent {

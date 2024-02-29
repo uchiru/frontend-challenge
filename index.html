@@ -13,17 +13,20 @@
     <header>
         <section class="filters">
             <h2 class="visually-hidden">Фильтр фотографий</h2>
+            
             <div class="filters__form">
-                <button type=button class="filters__button  filters__button--active" id="filter-default">Случайные котики<br><span>(обновить страницу)</span</button>
+                <button type=button class="filters__button  filters__button--active" id="filter-default"><br>Случайные котики<br><span>(обновить страницу)</span</button>
                 <button type=button class="filters__button" id="filter-default">Случайные котики<br>породы Бенгази</button>  
                 <button type=button class="filters__button" id="filter-default">Случайные котики<br>породы Манкс</button>
                 <button type=button class="filters__button" id="filter-default">Случайные котики<br>породы Гималай</button> 
                 <button type=button class="filters__button" id="filter-like">Любимые<br>котики</button>
-                <button type=button class="filters__button" id="filter-default">Случайные собачки<br><span>(обновить страницу)</span</button>
-                <button type=button class="filters__button" id="filter-default">Случайные собачки<br>породы Афганская</button>
-                <button type=button class="filters__button" id="filter-default">Случайные собачки<br>породы Акита</button> 
-                <button type=button class="filters__button" id="filter-default">Случайные собачки<br>породы Маламут</button> 
+                <button type=button class="filters__button" id="filter-default"><br>Случайные собачки<br><span>(обновить страницу)</span</button>
                 <button type=button class="filters__button" id="filter-like">Любимые<br>собачки</button>
+                <div class="breed__filters">
+                    <button class="filters__button filters__button--breed" id="filter-default">Собачки породы:</button>
+                    <select class="breed_selector" name="breed_selector" id="breed_selector"></select>
+                </div>
+                
             </div>
         </section>
     </header> 
