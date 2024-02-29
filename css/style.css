@@ -47,12 +47,14 @@ body {
 .filters__form {
     display: flex;
     flex-wrap: nowrap;
+    justify-content: space-around;
     margin-left: 0px;
 }
 
 .filters__button {
     min-width: 100px;
     max-width: 240px;
+    height: 64px;
     background-color: #2196f3;
     border: none;
     opacity: 70%;
@@ -87,7 +89,7 @@ body {
     opacity: 70%;
 }
 
-#breed_selector {
+#breed_selector, #cat_breed_selector {
     width: 150px;
     height: 20px;
     font-size: 11px;

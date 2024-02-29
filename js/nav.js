@@ -24,24 +24,41 @@ const api_dog_key = "live_mkkpPYTw0j96885AhwACtyennan2hLUoAMhdtr6f4buYORCuCt8WNe
 const dog_url = 'https://api.thedogapi.com/v1/images/search?limit=20';
 //Определяем ссылку для запроса любимых фото собачек
 const dog_fav_url = 'https://api.thedogapi.com/v1/favourites';
-//Находим кнопку вывода выбранной породы
+//Находим кнопку вывода выбранной породы собачек
 const breedButton = document.querySelector('.filters__button--breed');
-//Находим селектор выбора породы
+//Находим кнопку вывода выбранной породы котиков
+const catBreedButton = document.querySelector('.filters__button--cat_breed');
+//Находим селектор выбора породы собачек
 const breedSelector = document.querySelector('.breed_selector');
-//Определяем адрес для запроса имеющихся пород собак
+//Находим селектор выбора породы котиков
+const breedCatSelector = document.querySelector('.cat_breed_selector');
+//Определяем адрес для запроса имеющихся пород собачек
 const breedsUrl = 'https://api.thedogapi.com/v1/breeds';
+//Определяем адрес для запроса имеющихся пород котиков
+const breedsCatUrl = 'https://api.thecatapi.com/v1/breeds';
 //Назначаем переменную для формирования ссылок для запросов на сервер
 let url;
+
+//Запускаем функцию запроса и вывода в select доступных пород котиков
+breedsRequest(breedsCatUrl, api_cat_key, breedCatSelector);
 
 //Запускаем функцию запроса и вывода в select доступных пород собачек
 breedsRequest(breedsUrl, api_dog_key, breedSelector);
 
-//При нажатии кнопки вывода фото выбранной породы
+//При нажатии кнопки вывода фото выбранной породы собачек
 breedButton.onclick = () => {
   //Определяем Id породы нажатой кнопки
   let breedIds = breedSelector.options[breedSelector.selectedIndex].value;
   //Формируем ссылку запроса фото выбраной породы
   url = `https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=${breedIds}`;
+};
+
+//При нажатии кнопки вывода фото выбранной породы котиков
+catBreedButton.onclick = () => {
+  //Определяем Id породы нажатой кнопки
+  let catBreedIds = breedCatSelector.options[breedCatSelector.selectedIndex].value;
+  //Формируем ссылку запроса фото выбраной породы
+  url = `https://api.thecatapi.com/v1/images/search?limit=20&breed_ids=${catBreedIds}`;
 };
 
 //Функция смены активного элемента фильтра
@@ -64,48 +81,33 @@ const changeActivFilter = (num) => {
   };
   //Если нажата кнопка №2
   if (num === 1) {
-    //Меняем ссылку на кошачью породы бенгази
-    url = cat_beng_url;
-    //Выводим 20 случайных фото с кошками бенгази
-    getPhotos(url, num, api_cat_key);
-  };
-  //Если нажата кнопка №3
-  if (num === 2) {
-    //Меняем ссылку на кошачью порды манкс
-    url = cat_manx_url;
-    //Выводим 20 случайных фото с кошками манкс
-    getPhotos(url, num, api_cat_key);
-  };
-  //Если нажата кнопка №4
-  if (num === 3) {
-    //Меняем ссылку на кошачью породы гималайская
-    url = cat_hima_url;
-    //Выводим 20 случайных фото с кошками гималайская
-    getPhotos(url, num, api_cat_key);
-  };
-  //Если нажата кнопка №5
-  if (num === 4) {
     //Меняем ссылку на любимых котиков
     url = cat_fav_url;
     //Выводим 20 любимых фото котиков
     getPhotos(url, num, api_cat_key);
   };
-  //Если нажата кнопка №6
-  if (num === 5) {
+  //Если нажата кнопка №3
+  if (num === 2) {
+    //Выводим 20 случайных фото с котиками выбранной породы
+    console.log(url);
+    getPhotos(url, num, api_cat_key );
+  };
+  //Если нажата кнопка №4
+  if (num === 3) {
     //Меняем ссылку на собачью
     url = dog_url;
     //Выводим 20 случайных фото с собаками
     getPhotos(url, num, api_dog_key);
   };
-  //Если нажата кнопка №7
-  if (num === 6) {
+  //Если нажата кнопка №5
+  if (num === 4) {
     //Меняем ссылку на любимых собачек
     url = dog_fav_url;
     //Выводим 20 любимых фото собачек
     getPhotos(url, num, api_dog_key);
   };
-  //Если нажата кнопка №8
-  if (num === 7) {
+  //Если нажата кнопка №6
+  if (num === 5) {
     //Выводим 20 случайных фото с собаками выбранной породы
     getPhotos(url, num, api_dog_key );
   };

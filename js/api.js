@@ -73,7 +73,7 @@ const getPhotos = (url, num, api_key) => {
       //При клике на фото получаем индекс кликнутой фотки
       photo.addEventListener('click', () => {
         //Если фото в любимых и мы находимся в разделе любимые, удалем фото из любимых
-        if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 4 || num == 6)) {
+        if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 1 || num == 4)) {
           //Меняем иконку на убрано из любимых
           listItems[index].querySelector('.favorite').src = './images/favorite_border.svg';
           //Сохраняем id кликнутой фотки 
@@ -83,7 +83,7 @@ const getPhotos = (url, num, api_key) => {
           //Удаляем из DOM убираемое из любимых фото
           //list.removeChild(listItems[index]);
           //Если мы находимся в разделе любимые котики, удаляем из любимых котиков
-          if(num == 4) {
+          if(num == 1) {
             //Отправляем на сервер запрос на удаление из любимых фото котиков
             fetch(`https://api.thecatapi.com/v1/favourites/${favouriteId}`, 
               {
@@ -97,7 +97,7 @@ const getPhotos = (url, num, api_key) => {
             .catch(error => console.log('error', error));
           }
           //Если мы находимся в разделе любимые собачки, удаляем из любимых собачек
-          if(num == 6) {
+          if(num == 4) {
             //Отправляем на сервер запрос на удаление из любимых фото собачек
             fetch(`https://api.thedogapi.com/v1/favourites/${favouriteId}`, 
               {
@@ -113,7 +113,7 @@ const getPhotos = (url, num, api_key) => {
 
         } else
         //Если фото не в любимых и мы не находимся в разделе любимые добавляем фото в любимые
-        if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 4 && num !== 6) {
+        if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 1 && num !== 4) {
           //Меняем иконку на добавлено в любимые
           listItems[index].querySelector('.favorite').src = './images/favorite.svg';
           //Меняем атрибут alt на любимое фото
@@ -125,7 +125,7 @@ const getPhotos = (url, num, api_key) => {
             "image_id": id        
             });
           //Отправляем на сервер запрос о добавлении в любимые фото котика
-          if(num == 0 || num == 1 || num == 2 || num ==3) {
+          if(num == 0 || num == 2) {
             fetch("https://api.thecatapi.com/v1/favourites", 
               {
                 method: 'POST',
@@ -138,7 +138,7 @@ const getPhotos = (url, num, api_key) => {
             .catch(error => console.log('error', error));
           }
           //Отправляем на сервер запрос о добавлении в любимые фото собачки
-          if(num == 5 || num == 7) {
+          if(num == 3 || num == 5) {
             fetch("https://api.thedogapi.com/v1/favourites", 
               {
                 method: 'POST',
