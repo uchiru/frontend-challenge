@@ -23,7 +23,6 @@ const getPhotos = (url, num, api_key) => {
     .then((data) => {
       //Копируем полученные данные в рабочий массив
       let imagesData = data;
-      console.log(imagesData);
       //Для каждого элемента массива ImageData методом map выполним функцию
       imagesData.map((imageData) => {
         //Создадим в переменной тег img для вывода скачанного фото 

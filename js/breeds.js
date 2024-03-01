@@ -19,10 +19,10 @@ const breedsRequest = (breedsUrl, api_key, selector) => {
         for (let i = 0; i < storedBreeds.length; i++) {
             //Записываем объект из массива
             const breed = storedBreeds[i];
-            //Создаём элемент option
-            let option = document.createElement('option');
             //Если объект не имеет фото переходим к следующему объекту массива
             if(!breed.image) continue
+            //Создаём элемент option
+            let option = document.createElement('option');
             //Добавляем в атрибут value элемента option идентификатор породы
             option.value = `${breed.id}`;
             //Добавляем название породы в элемент option
