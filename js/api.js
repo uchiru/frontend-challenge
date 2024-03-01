@@ -23,6 +23,7 @@ const getPhotos = (url, num, api_key) => {
     .then((data) => {
       //Копируем полученные данные в рабочий массив
       let imagesData = data;
+      console.log(imagesData);
       //Для каждого элемента массива ImageData методом map выполним функцию
       imagesData.map((imageData) => {
         //Создадим в переменной тег img для вывода скачанного фото 
@@ -50,9 +51,22 @@ const getPhotos = (url, num, api_key) => {
             favorite.src = './images/favorite_border.svg';
             //Добавим идентификатор случайное фото
             favorite.alt = "random_photo";
+            //Добавляем атрибут title тегу img фото с описанием породы, если она есть в данных
+        //Если в данных есть массив описания породы и в нём есть объект с описанимм
+        if(imageData.breeds[0] && imageData.breeds[0].description) {
+          //Записываем в атрибут title название породы, её описание и темперамент
+          image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].description} Temperament: ${imageData.breeds[0].temperament}.`;
+                //Если в данных есть массив описания породы и в нём есть объект с применением породы
+        } else if(imageData.breeds[0] && imageData.breeds[0].bred_for) {
+                  //Записываем в атрибут title название породы, её применение и темперамент
+                  image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].bred_for}. Temperament: ${imageData.breeds[0].temperament}.`;
+                  ////Если в данных есть массив описания породы и в нём есть объект с группой породы
+                } else if(imageData.breeds[0] && imageData.breeds[0].breed_group) {
+                            //Записываем в атрибут title название породы, её группу и темперамент
+                            image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].breed_group} Temperament: ${imageData.breeds[0].temperament}.`;
+                          } else image.title = "Нет данных о породе";
           };
-        //Добавляем атрибут title тегу img фото
-        image.title = "Добавить/убрать в/из любимые";
+        
         //Добавим тегу иконки класс favorite
         favorite.classList.add('favorite');
         //Создадим тег div в переменной

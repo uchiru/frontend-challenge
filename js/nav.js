@@ -81,8 +81,10 @@ const changeActivFilter = (num) => {
   };
   //Если нажата кнопка №2
   if (num === 1) {
+    console.log(num);
     //Меняем ссылку на любимых котиков
     url = cat_fav_url;
+    console.log(url);
     //Выводим 20 любимых фото котиков
     getPhotos(url, num, api_cat_key);
   };
@@ -101,8 +103,10 @@ const changeActivFilter = (num) => {
   };
   //Если нажата кнопка №5
   if (num === 4) {
+    console.log(num);
     //Меняем ссылку на любимых собачек
     url = dog_fav_url;
+    console.log(url);
     //Выводим 20 любимых фото собачек
     getPhotos(url, num, api_dog_key);
   };
