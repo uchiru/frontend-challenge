@@ -11,18 +11,18 @@ const filters = navFilters.querySelectorAll('.filters__button');
 const more = document.querySelector('.more__button');
 //Определяем ключ доступа к серверу для кошек
 const api_cat_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
-//Определяем ссылку на сервер с фото кошек
+//Определяем ссылку для запроса 20 случайных фото котиков с сервера
 const cat_url = 'https://api.thecatapi.com/v1/images/search?limit=20';
-//Определяем ссылку запроса  на сервер с фото кошек породы бенгази
-const cat_beng_url = 'https://api.thecatapi.com/v1/images/search?limit=20&breed_ids=beng';
-const cat_manx_url = 'https://api.thecatapi.com/v1/images/search?limit=20&breed_ids=manx';
-const cat_hima_url = 'https://api.thecatapi.com/v1/images/search?limit=20&breed_ids=hima';
+const cat_url_10 = 'https://api.thecatapi.com/v1/images/search?limit=10';
+//Определяем ссылку для запроса фото любимых котиков
 const cat_fav_url = 'https://api.thecatapi.com/v1/favourites';
 //Определяем ключ доступа к серверу для собак
 const api_dog_key = "live_mkkpPYTw0j96885AhwACtyennan2hLUoAMhdtr6f4buYORCuCt8WNeRq8JLggurg";
-//Определяем ссылку запроса на сервер с фото собачек
+//Определяем ссылку для запроса 20 случайных фото собачек с сервера
 const dog_url = 'https://api.thedogapi.com/v1/images/search?limit=20';
-//Определяем ссылку для запроса любимых фото собачек
+//Определяем ссылку для запроса 10 случайных фото собачек с сервера
+const dog_url_10 = 'https://api.thedogapi.com/v1/images/search?limit=10';
+//Определяем ссылку для запроса фото любимых собачек
 const dog_fav_url = 'https://api.thedogapi.com/v1/favourites';
 //Находим кнопку вывода выбранной породы собачек
 const breedButton = document.querySelector('.filters__button--breed');
@@ -36,8 +36,7 @@ const breedCatSelector = document.querySelector('.cat_breed_selector');
 const breedsUrl = 'https://api.thedogapi.com/v1/breeds';
 //Определяем адрес для запроса имеющихся пород котиков
 const breedsCatUrl = 'https://api.thecatapi.com/v1/breeds';
-//Назначаем переменную для формирования ссылок для запросов на сервер
-let url;
+let api_key =  api_cat_key;
 
 //Запускаем функцию запроса и вывода в select доступных пород котиков
 breedsRequest(breedsCatUrl, api_cat_key, breedCatSelector);
@@ -76,26 +75,31 @@ const changeActivFilter = (num) => {
   if (num === 0) {
     //Меняем ссылку на кошачью
     url = cat_url;
+    butt = num;
+    api_key = api_cat_key;
     //Выводим 20 случайных фото с кошками
     getPhotos(url, num, api_cat_key);
   };
   //Если нажата кнопка №2
   if (num === 1) {
-    console.log(num);
+    butt = num;
+    api_key = api_cat_key;
     //Меняем ссылку на любимых котиков
     url = cat_fav_url;
-    console.log(url);
     //Выводим 20 любимых фото котиков
     getPhotos(url, num, api_cat_key);
   };
   //Если нажата кнопка №3
   if (num === 2) {
+    butt = num;
+    api_key = api_cat_key;
     //Выводим 20 случайных фото с котиками выбранной породы
-    console.log(url);
     getPhotos(url, num, api_cat_key );
   };
   //Если нажата кнопка №4
   if (num === 3) {
+    butt = num;
+    api_key = api_dog_key;
     //Меняем ссылку на собачью
     url = dog_url;
     //Выводим 20 случайных фото с собаками
@@ -103,15 +107,17 @@ const changeActivFilter = (num) => {
   };
   //Если нажата кнопка №5
   if (num === 4) {
-    console.log(num);
+    butt = num;
+    api_key = api_dog_key;
     //Меняем ссылку на любимых собачек
     url = dog_fav_url;
-    console.log(url);
     //Выводим 20 любимых фото собачек
     getPhotos(url, num, api_dog_key);
   };
   //Если нажата кнопка №6
   if (num === 5) {
+    butt = num;
+    api_key = api_dog_key;
     //Выводим 20 случайных фото с собаками выбранной породы
     getPhotos(url, num, api_dog_key );
   };
@@ -131,7 +137,9 @@ filters.forEach((button, index) => {
 //Отслеживаем нажатие кнопки "показать ещё 10 фоток"
 more.addEventListener('click', () => {
   //При нажатии запускаем функцию загрузки 10 фото
-  getPhotos(url);
+  if(url === dog_url) url = dog_url_10;
+  if(url === cat_url) url = cat_url_10;
+  getPhotos(url, butt, api_key);
   //Прокручиваем окно вывода
   document.getElementById('grid').scrollTop = document.getElementById('grid').scrollHeight;
 })

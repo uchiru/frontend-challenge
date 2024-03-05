@@ -1,12 +1,16 @@
 //Модуль общения с сервером и вывода полученных данных
 //Функция формирования запросов к серверу и обработки полученных данных, используя API сервиса
+import { openModal } from './opens-photo.js';
+
 const getPhotos = (url, num, api_key) => {
   
   //Находим узел списка фоток
   const list = document.querySelector('.imgrid');
   //Создаём живую коллекцию из элементов списка фоток
   let listItems = list.childNodes;
-
+  //Назначаем переменную для передачи типа нажатой иконки
+  let type;
+  
   // Запускаем метод fetch и передаём ему путь обращения, объект настроек с дополнительным параметром и ключ доступа
   fetch(url,{headers: {"content-type": "application/json", 'x-api-key': api_key}})
     // Возвращаем объект promise с будущим ответом сервера и, если он придёт успешно (зарезолвится), вызываем метод then и передаём ему колбэк с объектом ответа response
@@ -14,7 +18,7 @@ const getPhotos = (url, num, api_key) => {
     // Проверяем свойство объекта ответа сервера .ок и если оно false
     if (!response.ok) {
       // Бросаем ошибку запроса (исключение) к серверу, выводим текст ошибки и переходим в секцию catch
-      throw new Error(`Ошибка сервера: ${response.status} - ${response.statusText} попробуйте позже`);
+      throw new Error(`Ошибка сервера: ${response.status} - ${response.statusText}, попробуйте позже`);
     }
     // Возвращаем результат выполнения метода json к данным ответа сервера (т.е. преобразуем строку с данными json в объект js - десерализуем/распарсим)
     return response.json();
@@ -23,6 +27,7 @@ const getPhotos = (url, num, api_key) => {
     .then((data) => {
       //Копируем полученные данные в рабочий массив
       let imagesData = data;
+      console.log(imagesData);
       //Для каждого элемента массива ImageData методом map выполним функцию
       imagesData.map((imageData) => {
         //Создадим в переменной тег img для вывода скачанного фото 
@@ -65,7 +70,6 @@ const getPhotos = (url, num, api_key) => {
                             image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].breed_group} Temperament: ${imageData.breeds[0].temperament}.`;
                           } else image.title = "Нет данных о породе";
           };
-        
         //Добавим тегу иконки класс favorite
         favorite.classList.add('favorite');
         //Создадим тег div в переменной
@@ -79,14 +83,16 @@ const getPhotos = (url, num, api_key) => {
         //Добавим в DOM собранный тег div в родительский элемент с id=grid
         document.getElementById('grid').appendChild(gridCell);
       });
+
+    
    
     //Удаляем/добавляем кликнутое фото из выведенных на экран в любимые
     //Для каждого элемента коллекции фото
     listItems.forEach((photo, index) => {
       //При клике на фото получаем индекс кликнутой фотки
       photo.addEventListener('click', () => {
-        //Если фото в любимых и мы находимся в разделе любимые, удалем фото из любимых
-        if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 1 || num == 4)) {
+        //Если фото в любимых,мы находимся в разделе любимые и нажата иконка "в любимых", удалем фото из любимых
+        if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 1 || num == 4) && type === "favorite_photo") {
           //Меняем иконку на убрано из любимых
           listItems[index].querySelector('.favorite').src = './images/favorite_border.svg';
           //Сохраняем id кликнутой фотки 
@@ -125,8 +131,8 @@ const getPhotos = (url, num, api_key) => {
           }
 
         } else
-        //Если фото не в любимых и мы не находимся в разделе любимые добавляем фото в любимые
-        if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 1 && num !== 4) {
+        //Если фото не в любимых, мы не находимся в разделе любимые и нажата иконка "не в любимых"
+        if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 1 && num !== 4 && type === "random_photo") {
           //Меняем иконку на добавлено в любимые
           listItems[index].querySelector('.favorite').src = './images/favorite.svg';
           //Меняем атрибут alt на любимое фото
@@ -165,8 +171,30 @@ const getPhotos = (url, num, api_key) => {
           }
         }
       })
+
+      
+
     })
   })
+
+  // Функция окрытия модального окна с полноразмерным кликнутым фото
+  const onContainerClick = (evt) => {
+    //По целевому событию клика ищем в кликнутом элементе атрибут с ссылкой на фото и записывам его
+    const miniphoto = evt.target.src;
+    //По целевому событию ищем в кликнутом элементе атрибут с типом кликнутого фото
+    type = evt.target.alt;
+    // Проверяем найден ли атрибут (был ли клик именно по фото)
+    // Если клик был не по фото или по любому сердечку завешаем работу функции и не открываем модальное окно
+    if (miniphoto === undefined || type === "favorite_photo" || type === "random_photo") {return}
+    // Если клик был по фото
+    // Отменяем действие браузера по умолчанию для предотвращения автопрокрутки страницы в начальное положение
+    evt.preventDefault();
+    // Вызываем функцию открытия модального окна с искомым фото и информацией о нём
+    openModal(miniphoto);
+  };
+
+  // Подписываем выведенные фото на открытие модального окна с полноразмерным фото по событию click
+  list.addEventListener('click', onContainerClick);
 }
 
 export {getPhotos};
