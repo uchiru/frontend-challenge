@@ -6,13 +6,17 @@ const getPhotos = (url, num, api_key) => {
   
   //Находим узел списка фоток
   const list = document.querySelector('.imgrid');
+  //Находим кнопку Сохранить фото
   const btn = document.querySelector('.big-picture__download');
+  //Находим полноэкранноое изображение в модальном окне
   const srcImg = document.querySelector('.big-picture__src');
+  //Определяем ссылку для запроса по умолчанию
   let down = "https://api.thecatapi.com/v1/images/";
   //Создаём живую коллекцию из элементов списка фоток
   let listItems = list.childNodes;
   //Назначаем переменную для передачи типа нажатой иконки
   let type;
+  //Назначаем переменную для передачи идентификатора фото
   let photo_id;
     
   // Запускаем метод fetch и передаём ему путь обращения, объект настроек с дополнительным параметром и ключ доступа
@@ -182,6 +186,7 @@ const getPhotos = (url, num, api_key) => {
   const onContainerClick = (evt) => {
     //По целевому событию клика ищем в кликнутом элементе атрибут с ссылкой на фото и записывам его
     const miniphoto = evt.target.src;
+    console.log(miniphoto);
     console.log(miniphoto.includes("cat"));
     console.log(miniphoto.includes("dog"));
     //Если ссылка про котиков формируем запрос на котиков
@@ -207,23 +212,12 @@ const getPhotos = (url, num, api_key) => {
   // Подписываем выведенные фото на открытие модального окна с полноразмерным фото по событию click
   list.addEventListener('click', onContainerClick);
 
-  //Функция запроса на загрузку 1 фото с сервера
-  async function downloadImage(imageSrc, nameOfDownload) {
-    console.log(api_key);
-    console.log(imageSrc);
-    console.log(nameOfDownload);
-    //Записываем ответ сервера на запрос методом fetch
-    const response = await fetch(imageSrc,  {method: 'GET', headers: {"content-type": "application/json", 'x-api-key': api_key}});
-    //Записываем объект blob (файлоподобный объект с неизменяемыми необработанными данными) из ответа сервера
-    const blobImage = await response.blob();
-    console.log(blobImage);
-    //Записываем url адрес объекта
-    const href = URL.createObjectURL(blobImage);
-    console.log(href);
+  //Функция сохранения открытого в модальном окне фото локально
+  const downloadImage = (imageSrc, nameOfDownload) => {
     //Создаём элемент a
     const anchorElement = document.createElement('a');
     //Добавляем элементу a атрибут href с ссылкой на загружаемое фото
-    anchorElement.href = href;
+    anchorElement.href = imageSrc.src;
     //Добавляем элементу a атрибут download с именем фото для сохранения
     anchorElement.download = nameOfDownload;
     //Добавляем сформированный элемент a в конец DOM
@@ -232,20 +226,10 @@ const getPhotos = (url, num, api_key) => {
     anchorElement.click();
     //Удаляем ссылку a из DOM
     document.body.removeChild(anchorElement);
-    //Отменяем URL-адрес после загрузки изображения
-    window.URL.revokeObjectURL(href);
   }
 
-  //Подписываемся на запрос скачивания открытого в модальном окне фото по событию click на кнопку Сохранить
-  btn.addEventListener('click', () => {downloadImage(`${down}${photo_id}`, srcImg.src.split('/').pop())
-    .then(() => {
-
-      console.log('Фото загружено');
-    })
-    .catch(err => {
-      console.log('Ошибка загрузки фото: ', err);
-    });
-  });
+  //Подписываемся на запрос локального сохраниния открытого в модальном окне фото по событию click на кнопку Сохранить
+  btn.addEventListener('click', () => {downloadImage(srcImg, srcImg.src.split('/').pop())});
 }
 
 export {getPhotos};
