@@ -2,7 +2,7 @@
 //Функция формирования запросов к серверу и обработки полученных данных, используя API сервиса
 import { openModal } from './opens-photo.js';
 
-const getPhotos = (url, num, api_key) => {
+const getPhotos = (url_req, num, api_key) => {
   
   //Находим узел списка фоток
   const list = document.querySelector('.imgrid');
@@ -10,17 +10,13 @@ const getPhotos = (url, num, api_key) => {
   const btn = document.querySelector('.big-picture__download');
   //Находим полноэкранноое изображение в модальном окне
   const srcImg = document.querySelector('.big-picture__src');
-  //Определяем ссылку для запроса по умолчанию
-  let down = "https://api.thecatapi.com/v1/images/";
   //Создаём живую коллекцию из элементов списка фоток
   let listItems = list.childNodes;
   //Назначаем переменную для передачи типа нажатой иконки
   let type;
-  //Назначаем переменную для передачи идентификатора фото
-  let photo_id;
-    
+      
   // Запускаем метод fetch и передаём ему путь обращения, объект настроек с дополнительным параметром и ключ доступа
-  fetch(url,{headers: {"content-type": "application/json", 'x-api-key': api_key}})
+  fetch(url_req,{headers: {"content-type": "application/json", 'x-api-key': api_key}})
     // Возвращаем объект promise с будущим ответом сервера и, если он придёт успешно (зарезолвится), вызываем метод then и передаём ему колбэк с объектом ответа response
     .then((response) => {
     // Проверяем свойство объекта ответа сервера .ок и если оно false

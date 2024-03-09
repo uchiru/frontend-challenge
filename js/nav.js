@@ -49,7 +49,7 @@ breedButton.onclick = () => {
   //Определяем Id породы нажатой кнопки
   let breedIds = breedSelector.options[breedSelector.selectedIndex].value;
   //Формируем ссылку запроса фото выбраной породы
-  url = `https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=${breedIds}`;
+  url_req = `https://api.thedogapi.com/v1/images/search?limit=20&breed_ids=${breedIds}`;
 };
 
 //При нажатии кнопки вывода фото выбранной породы котиков
@@ -57,7 +57,7 @@ catBreedButton.onclick = () => {
   //Определяем Id породы нажатой кнопки
   let catBreedIds = breedCatSelector.options[breedCatSelector.selectedIndex].value;
   //Формируем ссылку запроса фото выбраной породы
-  url = `https://api.thecatapi.com/v1/images/search?limit=20&breed_ids=${catBreedIds}`;
+  url_req = `https://api.thecatapi.com/v1/images/search?limit=20&breed_ids=${catBreedIds}`;
 };
 
 //Функция смены активного элемента фильтра
@@ -74,52 +74,52 @@ const changeActivFilter = (num) => {
   //Если нажата кнопка №1
   if (num === 0) {
     //Меняем ссылку на кошачью
-    url = cat_url;
+    url_req = cat_url;
     butt = num;
     api_key = api_cat_key;
     //Выводим 20 случайных фото с кошками
-    getPhotos(url, num, api_cat_key);
+    getPhotos(url_req, num, api_cat_key);
   };
   //Если нажата кнопка №2
   if (num === 1) {
     butt = num;
     api_key = api_cat_key;
     //Меняем ссылку на любимых котиков
-    url = cat_fav_url;
+    url_req = cat_fav_url;
     //Выводим 20 любимых фото котиков
-    getPhotos(url, num, api_cat_key);
+    getPhotos(url_req, num, api_cat_key);
   };
   //Если нажата кнопка №3
   if (num === 2) {
     butt = num;
     api_key = api_cat_key;
     //Выводим 20 случайных фото с котиками выбранной породы
-    getPhotos(url, num, api_cat_key );
+    getPhotos(url_req, num, api_cat_key );
   };
   //Если нажата кнопка №4
   if (num === 3) {
     butt = num;
     api_key = api_dog_key;
     //Меняем ссылку на собачью
-    url = dog_url;
+    url_req = dog_url;
     //Выводим 20 случайных фото с собаками
-    getPhotos(url, num, api_dog_key);
+    getPhotos(url_req, num, api_dog_key);
   };
   //Если нажата кнопка №5
   if (num === 4) {
     butt = num;
     api_key = api_dog_key;
     //Меняем ссылку на любимых собачек
-    url = dog_fav_url;
+    url_req = dog_fav_url;
     //Выводим 20 любимых фото собачек
-    getPhotos(url, num, api_dog_key);
+    getPhotos(url_req, num, api_dog_key);
   };
   //Если нажата кнопка №6
   if (num === 5) {
     butt = num;
     api_key = api_dog_key;
     //Выводим 20 случайных фото с собаками выбранной породы
-    getPhotos(url, num, api_dog_key );
+    getPhotos(url_req, num, api_dog_key );
   };
   
 }
@@ -137,9 +137,9 @@ filters.forEach((button, index) => {
 //Отслеживаем нажатие кнопки "показать ещё 10 фоток"
 more.addEventListener('click', () => {
   //При нажатии запускаем функцию загрузки 10 фото
-  if(url === dog_url) url = dog_url_10;
-  if(url === cat_url) url = cat_url_10;
-  getPhotos(url, butt, api_key);
+  if(url_req === dog_url) url_req = dog_url_10;
+  if(url_req === cat_url) url_req = cat_url_10;
+  getPhotos(url_req, butt, api_key);
   //Прокручиваем окно вывода
   document.getElementById('grid').scrollTop = document.getElementById('grid').scrollHeight;
 })
