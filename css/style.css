@@ -230,8 +230,7 @@ body {
     object-fit: cover;
   }
 
-  .big-picture__cancel {
-    width: 75px;
+  .big-picture__cancel, .big-picture__download {
     background-color: #2196f3;
     opacity: 70%;
   }

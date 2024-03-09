@@ -6,11 +6,15 @@ const getPhotos = (url, num, api_key) => {
   
   //Находим узел списка фоток
   const list = document.querySelector('.imgrid');
+  const btn = document.querySelector('.big-picture__download');
+  const srcImg = document.querySelector('.big-picture__src');
+  let down = "https://api.thecatapi.com/v1/images/";
   //Создаём живую коллекцию из элементов списка фоток
   let listItems = list.childNodes;
   //Назначаем переменную для передачи типа нажатой иконки
   let type;
-  
+  let photo_id;
+    
   // Запускаем метод fetch и передаём ему путь обращения, объект настроек с дополнительным параметром и ключ доступа
   fetch(url,{headers: {"content-type": "application/json", 'x-api-key': api_key}})
     // Возвращаем объект promise с будущим ответом сервера и, если он придёт успешно (зарезолвится), вызываем метод then и передаём ему колбэк с объектом ответа response
@@ -171,9 +175,6 @@ const getPhotos = (url, num, api_key) => {
           }
         }
       })
-
-      
-
     })
   })
 
@@ -181,20 +182,70 @@ const getPhotos = (url, num, api_key) => {
   const onContainerClick = (evt) => {
     //По целевому событию клика ищем в кликнутом элементе атрибут с ссылкой на фото и записывам его
     const miniphoto = evt.target.src;
+    console.log(miniphoto.includes("cat"));
+    console.log(miniphoto.includes("dog"));
+    //Если ссылка про котиков формируем запрос на котиков
+    if(miniphoto.includes("cat")) down = "https://api.thecatapi.com/v1/images/";
+    //Если ссылка про собачек формируем запрос на собачек
+    if(miniphoto.includes("dog")) down = "https://api.thedogapi.com/v1/images/";
     //По целевому событию ищем в кликнутом элементе атрибут с типом кликнутого фото
     type = evt.target.alt;
-    // Проверяем найден ли атрибут (был ли клик именно по фото)
+    //По целевому событию ищем в кликнутом элементе атрибут с id кликнутого фото
+    photo_id = evt.target.id;
+    // Проверяем найден ли атрибут и был ли клик именно по фото
     // Если клик был не по фото или по любому сердечку завешаем работу функции и не открываем модальное окно
     if (miniphoto === undefined || type === "favorite_photo" || type === "random_photo") {return}
+    //Удаляем обраотчик события
+    //list.removeEventListener('click', onContainerClick);
     // Если клик был по фото
     // Отменяем действие браузера по умолчанию для предотвращения автопрокрутки страницы в начальное положение
     evt.preventDefault();
-    // Вызываем функцию открытия модального окна с искомым фото и информацией о нём
+    // Вызываем функцию открытия модального окна с искомым фото
     openModal(miniphoto);
   };
 
   // Подписываем выведенные фото на открытие модального окна с полноразмерным фото по событию click
   list.addEventListener('click', onContainerClick);
+
+  //Функция запроса на загрузку 1 фото с сервера
+  async function downloadImage(imageSrc, nameOfDownload) {
+    console.log(api_key);
+    console.log(imageSrc);
+    console.log(nameOfDownload);
+    //Записываем ответ сервера на запрос методом fetch
+    const response = await fetch(imageSrc,  {method: 'GET', headers: {"content-type": "application/json", 'x-api-key': api_key}});
+    //Записываем объект blob (файлоподобный объект с неизменяемыми необработанными данными) из ответа сервера
+    const blobImage = await response.blob();
+    console.log(blobImage);
+    //Записываем url адрес объекта
+    const href = URL.createObjectURL(blobImage);
+    console.log(href);
+    //Создаём элемент a
+    const anchorElement = document.createElement('a');
+    //Добавляем элементу a атрибут href с ссылкой на загружаемое фото
+    anchorElement.href = href;
+    //Добавляем элементу a атрибут download с именем фото для сохранения
+    anchorElement.download = nameOfDownload;
+    //Добавляем сформированный элемент a в конец DOM
+    document.body.appendChild(anchorElement);
+    //Кликаем ссылку a для запуска сохранения фото
+    anchorElement.click();
+    //Удаляем ссылку a из DOM
+    document.body.removeChild(anchorElement);
+    //Отменяем URL-адрес после загрузки изображения
+    window.URL.revokeObjectURL(href);
+  }
+
+  //Подписываемся на запрос скачивания открытого в модальном окне фото по событию click на кнопку Сохранить
+  btn.addEventListener('click', () => {downloadImage(`${down}${photo_id}`, srcImg.src.split('/').pop())
+    .then(() => {
+
+      console.log('Фото загружено');
+    })
+    .catch(err => {
+      console.log('Ошибка загрузки фото: ', err);
+    });
+  });
 }
 
 export {getPhotos};
