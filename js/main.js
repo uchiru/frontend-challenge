@@ -9,7 +9,5 @@ window.url_req = "https://api.thecatapi.com/v1/images/search?limit=20";
 window.butt = 0;
 //Определяем ключ доступа к серверу по умолчанию
 const api_cat_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
-console.log(butt);
-
 //Выводим 20 случайных фото кошек
 getPhotos(url_req, butt, api_cat_key);
