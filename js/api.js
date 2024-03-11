@@ -1,20 +1,20 @@
 //Модуль общения с сервером и вывода полученных данных
-//Функция формирования запросов к серверу и обработки полученных данных, используя API сервиса
+
 import { openModal } from './opens-photo.js';
 
+//Находим узел списка фоток
+const list = document.querySelector('.imgrid');
+//Находим кнопку Сохранить фото
+const btn = document.querySelector('.big-picture__download');
+//Находим полноэкранноое изображение в модальном окне
+const srcImg = document.querySelector('.big-picture__src');
+//Создаём живую коллекцию из элементов списка фоток
+let listItems = list.childNodes;
+//Назначаем переменную для передачи типа нажатой иконки
+let type;
+
+//Функция формирования запросов к серверу и обработки полученных данных, используя API сервиса
 const getPhotos = (url_req, num, api_key) => {
-  
-  //Находим узел списка фоток
-  const list = document.querySelector('.imgrid');
-  //Находим кнопку Сохранить фото
-  const btn = document.querySelector('.big-picture__download');
-  //Находим полноэкранноое изображение в модальном окне
-  const srcImg = document.querySelector('.big-picture__src');
-  //Создаём живую коллекцию из элементов списка фоток
-  let listItems = list.childNodes;
-  //Назначаем переменную для передачи типа нажатой иконки
-  let type;
-      
   // Запускаем метод fetch и передаём ему путь обращения, объект настроек с дополнительным параметром и ключ доступа
   fetch(url_req,{headers: {"content-type": "application/json", 'x-api-key': api_key}})
     // Возвращаем объект promise с будущим ответом сервера и, если он придёт успешно (зарезолвится), вызываем метод then и передаём ему колбэк с объектом ответа response
@@ -31,7 +31,6 @@ const getPhotos = (url_req, num, api_key) => {
     .then((data) => {
       //Копируем полученные данные в рабочий массив
       let imagesData = data;
-      console.log(imagesData);
       //Для каждого элемента массива ImageData методом map выполним функцию
       imagesData.map((imageData) => {
         //Создадим в переменной тег img для вывода скачанного фото 
@@ -177,55 +176,46 @@ const getPhotos = (url_req, num, api_key) => {
       })
     })
   })
-
-  // Функция окрытия модального окна с полноразмерным кликнутым фото
-  const onContainerClick = (evt) => {
-    //По целевому событию клика ищем в кликнутом элементе атрибут с ссылкой на фото и записывам его
-    const miniphoto = evt.target.src;
-    console.log(miniphoto);
-    console.log(miniphoto.includes("cat"));
-    console.log(miniphoto.includes("dog"));
-    //Если ссылка про котиков формируем запрос на котиков
-    if(miniphoto.includes("cat")) down = "https://api.thecatapi.com/v1/images/";
-    //Если ссылка про собачек формируем запрос на собачек
-    if(miniphoto.includes("dog")) down = "https://api.thedogapi.com/v1/images/";
-    //По целевому событию ищем в кликнутом элементе атрибут с типом кликнутого фото
-    type = evt.target.alt;
-    //По целевому событию ищем в кликнутом элементе атрибут с id кликнутого фото
-    photo_id = evt.target.id;
-    // Проверяем найден ли атрибут и был ли клик именно по фото
-    // Если клик был не по фото или по любому сердечку завешаем работу функции и не открываем модальное окно
-    if (miniphoto === undefined || type === "favorite_photo" || type === "random_photo") {return}
-    //Удаляем обраотчик события
-    //list.removeEventListener('click', onContainerClick);
-    // Если клик был по фото
-    // Отменяем действие браузера по умолчанию для предотвращения автопрокрутки страницы в начальное положение
-    evt.preventDefault();
-    // Вызываем функцию открытия модального окна с искомым фото
-    openModal(miniphoto);
-  };
-
-  // Подписываем выведенные фото на открытие модального окна с полноразмерным фото по событию click
-  list.addEventListener('click', onContainerClick);
-
-  //Функция сохранения открытого в модальном окне фото локально
-  const downloadImage = (imageSrc, nameOfDownload) => {
-    //Создаём элемент a
-    const anchorElement = document.createElement('a');
-    //Добавляем элементу a атрибут href с ссылкой на загружаемое фото
-    anchorElement.href = imageSrc.src;
-    //Добавляем элементу a атрибут download с именем фото для сохранения
-    anchorElement.download = nameOfDownload;
-    //Добавляем сформированный элемент a в конец DOM
-    document.body.appendChild(anchorElement);
-    //Кликаем ссылку a для запуска сохранения фото
-    anchorElement.click();
-    //Удаляем ссылку a из DOM
-    document.body.removeChild(anchorElement);
-  }
-
-  //Подписываемся на запрос локального сохраниния открытого в модальном окне фото по событию click на кнопку Сохранить
-  btn.addEventListener('click', () => {downloadImage(srcImg, srcImg.src.split('/').pop())});
 }
+
+//Функция сохранения открытого в модальном окне фото локально
+const downloadImage = (imageSrc, nameOfDownload) => {
+  //Создаём элемент a
+  const anchorElement = document.createElement('a');
+  //Добавляем элементу a атрибут href с ссылкой на загружаемое фото
+  anchorElement.href = imageSrc.src;
+  //Добавляем элементу a атрибут download с именем фото для сохранения
+  anchorElement.download = nameOfDownload;
+  //Добавляем сформированный элемент a в конец DOM
+  document.body.appendChild(anchorElement);
+  //Кликаем ссылку a для запуска сохранения фото
+  anchorElement.click();
+  //Удаляем ссылку a из DOM
+  document.body.removeChild(anchorElement);
+}
+
+//Подписываемся на запрос локального сохраниния открытого в модальном окне фото по событию click на кнопку Сохранить
+btn.addEventListener('click', () => {downloadImage(srcImg, srcImg.src.split('/').pop())});
+
+// Функция окрытия модального окна с полноразмерным кликнутым фото
+const onContainerClick = (evt) => {
+  //По целевому событию клика ищем в кликнутом элементе атрибут с ссылкой на фото и записывам его
+  const miniphoto = evt.target.src;
+  //По целевому событию ищем в кликнутом элементе атрибут с типом кликнутого фото
+  type = evt.target.alt;
+  // Проверяем найден ли атрибут и был ли клик именно по фото
+  // Если клик был не по фото или по любому сердечку завешаем работу функции и не открываем модальное окно
+  if (miniphoto === undefined || type === "favorite_photo" || type === "random_photo") {return}
+  //Удаляем обраотчик события
+  //list.removeEventListener('click', onContainerClick);
+  // Если клик был по фото
+  // Отменяем действие браузера по умолчанию для предотвращения автопрокрутки страницы в начальное положение
+  evt.preventDefault();
+  // Вызываем функцию открытия модального окна с искомым фото
+  openModal(miniphoto);
+};
+
+// Подписываем выведенные фото на открытие модального окна с полноразмерным фото по событию click
+list.addEventListener('click', onContainerClick);
 
 export {getPhotos};
