@@ -44,7 +44,7 @@ body {
     box-shadow: 0 5px 5px #b1b1b1;
 }
 
-.filters__form {
+.filters__nav {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -89,19 +89,13 @@ body {
     opacity: 70%;
 }
 
-#breed_selector, #cat_breed_selector {
+.dog_breed_selector, .cat_breed_selector {
     width: 200px;
     height: 20px;
     font-size: 11px;
     color: #025298;
     border: 2px solid #025298;
     border-radius: 4px;
-}
-
-#breed_selector option {
-    
-    min-height: 20px;
-    color: #000000;
 }
 
 .maincontent {

@@ -4,7 +4,7 @@ import { breedsRequest } from './breeds.js';
 import { removeAllPhotos } from './clear.js';
 
 //Находим группу фильтров
-const navFilters = document.querySelector('.filters__form');
+const navFilters = document.querySelector('.filters__nav');
 //Создаём массивоподобную коллекцию классов фильтров
 const filters = navFilters.querySelectorAll('.filters__button');
 //Находим кнопку загрузить ещё 10 фото
@@ -30,11 +30,11 @@ const breedButton = document.querySelector('.filters__button--breed');
 //Находим кнопку вывода выбранной породы котиков
 const catBreedButton = document.querySelector('.filters__button--cat_breed');
 //Находим селектор выбора породы собачек
-const breedSelector = document.querySelector('.breed_selector');
+const breedDogSelector = document.querySelector('.dog_breed_selector');
 //Находим селектор выбора породы котиков
 const breedCatSelector = document.querySelector('.cat_breed_selector');
 //Определяем адрес для запроса имеющихся пород собачек
-const breedsUrl = 'https://api.thedogapi.com/v1/breeds';
+const breedsDogUrl = 'https://api.thedogapi.com/v1/breeds';
 //Определяем адрес для запроса имеющихся пород котиков
 const breedsCatUrl = 'https://api.thecatapi.com/v1/breeds';
 //Определяем ключ api по умолчанию
@@ -44,12 +44,12 @@ let api_key =  api_cat_key;
 breedsRequest(breedsCatUrl, api_cat_key, breedCatSelector);
 
 //Запускаем функцию запроса и вывода в select доступных пород собачек
-breedsRequest(breedsUrl, api_dog_key, breedSelector);
+breedsRequest(breedsDogUrl, api_dog_key, breedDogSelector);
 
 //При нажатии кнопки вывода фото выбранной породы собачек
 breedButton.onclick = () => {
   //Определяем Id породы нажатой кнопки
-  let breedIds = breedSelector.options[breedSelector.selectedIndex].value;
+  let breedIds = breedDogSelector.options[breedDogSelector.selectedIndex].value;
   //Формируем ссылку запроса до 100 случайных фото выбраной породы
   url_req = `https://api.thedogapi.com/v1/images/search?limit=100&breed_ids=${breedIds}`;
 };
@@ -143,5 +143,5 @@ more.addEventListener('click', () => {
   if(url_req === cat_url) url_req = cat_url_10;
   getPhotos(url_req, butt, api_key);
   //Прокручиваем окно вывода
-  document.getElementById('grid').scrollTop = document.getElementById('grid').scrollHeight;
+  document.querySelector('.imgrid').scrollTop = document.querySelector('.imgrid').scrollHeight;
 })

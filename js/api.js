@@ -34,120 +34,127 @@ const getPhotos = (url_req, num, api_key) => {
   .then((data) => {
     //Копируем полученные данные в рабочий массив
     let imagesData = data;
-    //Если в массиве меньше 10 фото, то скрываем кнопку показать ещё 10 фоток
-    if(imagesData.length < 10) more.classList.add('hidden');
-    //Если в массиве 20 фото или меньше и находимся не в разделах случайные фото, то скрываем кнопку показать ещё 10 фоток
-    if(imagesData.length <= 20 && (butt != 0 && butt != 3)) more.classList.add('hidden');
-    //Если находимся в разделах любимые, то скрываем кнопку показать ещё 10 фоток
-    if(butt != 0 || butt != 3) more.classList.add('hidden');
-    //Если находимся в разделах случайные, то показываем кнопку показать ещё 10 фоток
-    if(butt == 0 || butt == 3) more.classList.remove('hidden');
-    //Запускаем функцию вывода в интерфейс фото по полученным данным
+    //Запускаем функцию логики показа кнопки "показать ещё 10 фоток"
+    moreButton(more, imagesData);
+    //Запускаем функцию вывода в DOM группы фото по полученным данным
     photoRender(imagesData);
     //Запускаем функцию добавления/удаления фото в любимые/из любимых
     likeMove(num, api_key);
   })
 }
 
-//Функция вывода полученного массива данных о фото в DOM
-  const photoRender = (arrayData) => {
-  //Для каждого элемента массива arrayData методом map выполним функцию
-  arrayData.map((imageData) => {
-    //Создадим в переменной тег img для вывода скачанного фото 
-    let image = document.createElement('img');
-    //Создадим в переменной тег img для вывода иконки like
-    let favorite = document.createElement('img');
-    //Добавим тегу img для вывода скачанного фото класс
-    image.classList.add('photo');
-    //Запишем в атрибуты тега img идидентификатор фото из параметра id и src ссылку на фото из параметра url объекта фото
-    image.id = `${imageData.id}`;
-    //Если данные о любимых фото
-    if(imageData.image_id) {
-      //Добавим ссылку на любимое фото
-      image.src = `${imageData.image.url}`;
-      //Добавим ссылку на иконку любимого фото
-      favorite.src = './images/favorite.svg';
-      //Добавим идентификатор любимое фото
-      favorite.alt = "favorite_photo";
-    }
-      //Если данные о случайных фото
-      else {
-        //Добавим ссылку на случайное фото
-        image.src = `${imageData.url}`;
-        //Добавим ссылку на иконку случайного фото
-        favorite.src = './images/favorite_border.svg';
-        //Добавим идентификатор случайное фото
-        favorite.alt = "random_photo";
-        //Добавляем атрибут title тегу img фото с описанием породы, если она есть в данных
-    //Если в данных есть массив описания породы и в нём есть объект с описанимм
-    if(imageData.breeds[0] && imageData.breeds[0].description) {
-      //Записываем в атрибут title название породы, её описание и темперамент
-      image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].description} Temperament: ${imageData.breeds[0].temperament}.`;
-            //Если в данных есть массив описания породы и в нём есть объект с применением породы
-    } else if(imageData.breeds[0] && imageData.breeds[0].bred_for) {
-              //Записываем в атрибут title название породы, её применение и темперамент
-              image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].bred_for}. Temperament: ${imageData.breeds[0].temperament}.`;
-              //Если в данных есть массив описания породы и в нём есть объект с группой породы
-            } else if(imageData.breeds[0] && imageData.breeds[0].breed_group) {
-                        //Записываем в атрибут title название породы, её группу и темперамент
-                        image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].breed_group} Temperament: ${imageData.breeds[0].temperament}.`;
-                      } else image.title = "Нет данных о породе";
-      };
-    //Добавим тегу иконки класс favorite
-    favorite.classList.add('favorite');
-    //Создадим тег div в переменной
-    let gridCell = document.createElement('div');
-    //Добавим тегу div класс col
-    gridCell.classList.add('col');
-    //Добавим в тег div тег img фото
-    gridCell.appendChild(image);
-    //Добавим в тег div тег img иконки
-    gridCell.appendChild(favorite);
-    //Добавим в DOM собранный тег div в родительский элемент с id=grid
-    document.getElementById('grid').appendChild(gridCell);
-  });
+//Функция логики показа кнопки "показать ещё 10 фоток"
+const moreButton = (more, imagesData) => {
+  //Если в массиве меньше 10 фото, то скрываем кнопку "показать ещё 10 фоток"
+  if(imagesData.length < 10) more.classList.add('hidden');
+  //Если в массиве 20 фото или меньше и находимся не в разделах случайные фото, то скрываем кнопку "показать ещё 10 фоток"
+  if(imagesData.length <= 20 && (butt != 0 && butt != 3)) more.classList.add('hidden');
+  //Если находимся в разделах любимые, то скрываем кнопку "показать ещё 10 фоток"
+  if(butt != 0 || butt != 3) more.classList.add('hidden');
+  //Если находимся в разделах случайные, то показываем кнопку "показать ещё 10 фоток"
+  if(butt == 0 || butt == 3) more.classList.remove('hidden');
 }
 
+//Функция вывода в DOM группы фото по данным полученного массива данных о фото 
+  const photoRender = (arrayData) => {
+  //Для каждого элемента массива arrayData методом map выполним функцию формирования элемента с фото
+  arrayData.map((imageData) => {photoData(imageData)})};
 
-//Функция удаляения/добавления кликнутого фото из выведенных на экран в любимые
-const likeMove = (num, api_key) => {
-  //Для каждого элемента коллекции фото
-  listItems.forEach((photo, index) => {
-    //При клике на фото получаем индекс кликнутой фотки
-    photo.addEventListener('click', () => {
-      //Если фото в любимых,мы находимся в разделе любимые и нажата иконка "в любимых", удалем фото из любимых
-      if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 1 || num == 4) && type === "favorite_photo") {
-        //Меняем иконку на убрано из любимых
-        listItems[index].querySelector('.favorite').src = './images/favorite_border.svg';
-        //Сохраняем id кликнутой фотки 
-        const favouriteId = listItems[index].querySelector('.photo').id;
-        //Меняем атрибут alt на случайное фото
-        listItems[index].querySelector('.favorite').alt = "random_photo";
-        //Удаляем из DOM убираемое из любимых фото
-        //list.removeChild(listItems[index]);
-        //Если мы находимся в разделе любимые котики, удаляем из любимых котиков
-        if(num == 1) likeRequest('DELETE', `https://api.thecatapi.com/v1/favourites/${favouriteId}`, api_key);
-        //Если мы находимся в разделе любимые собачки, удаляем из любимых собачек
-        if(num == 4) likeRequest('DELETE', `https://api.thedogapi.com/v1/favourites/${favouriteId}`, api_key);
-      } else
-      //Если фото не в любимых, мы не находимся в разделе любимые и нажата иконка "не в любимых"
-      if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 1 && num !== 4 && type === "random_photo") {
-        //Меняем иконку на добавлено в любимые
-        listItems[index].querySelector('.favorite').src = './images/favorite.svg';
-        //Меняем атрибут alt на любимое фото
-        listItems[index].querySelector('.favorite').alt = "favorite_photo";
-        //Сохраняем id кликнутой фотки 
-        let id = listItems[index].querySelector('.photo').id;
-        //Формируем тело запроса
-        let rawBody = JSON.stringify({ 
-          "image_id": id        
-          });
-        //Отправляем на сервер запрос о добавлении в любимые фото котика
-        if(num == 0 || num == 2) likeRequest('POST', "https://api.thecatapi.com/v1/favourites", api_key, rawBody);
-        //Отправляем на сервер запрос о добавлении в любимые фото собачки
-        if(num == 3 || num == 5) likeRequest('POST', "https://api.thedogapi.com/v1/favourites", api_key, rawBody);
-      }
-    })
+//Функция формирования элемента с фото
+const photoData = (imageData) => {
+  //Создадим в переменной тег img для вывода скачанного фото 
+  let image = document.createElement('img');
+  //Создадим в переменной тег img для вывода иконки like
+  let favorite = document.createElement('img');
+  //Добавим тегу img для вывода скачанного фото класс
+  image.classList.add('photo');
+  //Запишем в атрибуты тега img идидентификатор фото из параметра id и src ссылку на фото из параметра url объекта фото
+  image.id = `${imageData.id}`;
+  //Если данные о любимых фото
+  if(imageData.image_id) {
+    //Добавим ссылку на любимое фото
+    image.src = `${imageData.image.url}`;
+    //Добавим ссылку на иконку любимого фото
+    favorite.src = './images/favorite.svg';
+    //Добавим идентификатор любимое фото
+    favorite.alt = "favorite_photo";
+  }
+    //Если данные о случайных фото
+    else {
+      //Добавим ссылку на случайное фото
+      image.src = `${imageData.url}`;
+      //Добавим ссылку на иконку случайного фото
+      favorite.src = './images/favorite_border.svg';
+      //Добавим идентификатор случайное фото
+      favorite.alt = "random_photo";
+      //Добавляем атрибут title тегу img фото с описанием породы, если она есть в данных
+  //Если в данных есть массив описания породы и в нём есть объект с описанимм
+  if(imageData.breeds[0] && imageData.breeds[0].description) {
+    //Записываем в атрибут title название породы, её описание и темперамент
+    image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].description} Temperament: ${imageData.breeds[0].temperament}.`;
+          //Если в данных есть массив описания породы и в нём есть объект с применением породы
+  } else if(imageData.breeds[0] && imageData.breeds[0].bred_for) {
+            //Записываем в атрибут title название породы, её применение и темперамент
+            image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].bred_for}. Temperament: ${imageData.breeds[0].temperament}.`;
+            //Если в данных есть массив описания породы и в нём есть объект с группой породы
+          } else if(imageData.breeds[0] && imageData.breeds[0].breed_group) {
+                      //Записываем в атрибут title название породы, её группу и темперамент
+                      image.title = `${imageData.breeds[0].name}:  ${imageData.breeds[0].breed_group} Temperament: ${imageData.breeds[0].temperament}.`;
+                    } else image.title = "Нет данных о породе";
+    };
+  //Добавим тегу иконки класс favorite
+  favorite.classList.add('favorite');
+  //Создадим тег div в переменной
+  let gridCell = document.createElement('div');
+  //Добавим тегу div класс col
+  gridCell.classList.add('col');
+  //Добавим в тег div тег img фото
+  gridCell.appendChild(image);
+  //Добавим в тег div тег img иконки
+  gridCell.appendChild(favorite);
+  //Добавим в DOM собранный тег div в родительский элемент
+  document.querySelector('.imgrid').appendChild(gridCell);
+}
+
+//Функция удаляения/добавления кликнутого фото из выведенных на экран из/в любимые
+const likeMove = (num, api_key) => {listItems.forEach((photo, index) => {likeMoveOperations(photo, index, num, api_key)})};
+
+//Функция операцию при удалении/добвления из/в любимые
+const likeMoveOperations = (photo, index, num, api_key) => {
+  //При клике на фото получаем индекс кликнутой фотки
+  photo.addEventListener('click', () => {
+    //Если фото в любимых,мы находимся в разделе любимые и нажата иконка "в любимых", удалем фото из любимых
+    if(listItems[index].querySelector('.favorite').alt == "favorite_photo" && (num == 1 || num == 4) && type === "favorite_photo") {
+      //Меняем иконку на убрано из любимых
+      listItems[index].querySelector('.favorite').src = './images/favorite_border.svg';
+      //Сохраняем id кликнутой фотки 
+      const favouriteId = listItems[index].querySelector('.photo').id;
+      //Меняем атрибут alt на случайное фото
+      listItems[index].querySelector('.favorite').alt = "random_photo";
+      //Удаляем из DOM убираемое из любимых фото
+      //list.removeChild(listItems[index]);
+      //Если мы находимся в разделе любимые котики, удаляем из любимых котиков
+      if(num == 1) likeRequest('DELETE', `https://api.thecatapi.com/v1/favourites/${favouriteId}`, api_key);
+      //Если мы находимся в разделе любимые собачки, удаляем из любимых собачек
+      if(num == 4) likeRequest('DELETE', `https://api.thedogapi.com/v1/favourites/${favouriteId}`, api_key);
+    } else
+    //Если фото не в любимых, мы не находимся в разделе любимые и нажата иконка "не в любимых"
+    if(listItems[index].querySelector('.favorite').alt == "random_photo" && num !== 1 && num !== 4 && type === "random_photo") {
+      //Меняем иконку на добавлено в любимые
+      listItems[index].querySelector('.favorite').src = './images/favorite.svg';
+      //Меняем атрибут alt на любимое фото
+      listItems[index].querySelector('.favorite').alt = "favorite_photo";
+      //Сохраняем id кликнутой фотки 
+      let id = listItems[index].querySelector('.photo').id;
+      //Формируем тело запроса
+      let rawBody = JSON.stringify({ 
+        "image_id": id        
+        });
+      //Отправляем на сервер запрос о добавлении в любимые фото котика
+      if(num == 0 || num == 2) likeRequest('POST', "https://api.thecatapi.com/v1/favourites", api_key, rawBody);
+      //Отправляем на сервер запрос о добавлении в любимые фото собачки
+      if(num == 3 || num == 5) likeRequest('POST', "https://api.thedogapi.com/v1/favourites", api_key, rawBody);
+    }
   })
 }
 

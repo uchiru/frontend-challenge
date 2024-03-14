@@ -11,30 +11,30 @@
 
 <body>
     <header>
+        <!--Секция навигации по фильтрам-->
         <section class="filters">
-            <h2 class="visually-hidden">Фильтр фотографий</h2>
-            
-            <div class="filters__form">
-                <button type=button class="filters__button  filters__button--active" id="filter-default">Случайные котики<br><span>(обновить страницу)</span</button>
-                <button type=button class="filters__button" id="filter-like">Любимые<br>котики</button>
+            <h2 class="visually-hidden">Фильтры фотографий</h2>
+            <nav class="filters__nav">
+                <button type=button class="filters__button  filters__button--active">Случайные котики<br><span>(обновить фото)</span</button>
+                <button type=button class="filters__button">Любимые<br>котики</button>
                 <div class="breed__filters">
-                    <button class="filters__button filters__button--cat_breed" id="filter-default">Котики породы:</button>
-                    <select class="cat_breed_selector" name="cat_breed_selector" id="cat_breed_selector"></select>
+                    <button class="filters__button filters__button--cat_breed">Котики породы:</button>
+                    <select class="cat_breed_selector"></select>
                 </div>
-                <button type=button class="filters__button" id="filter-default">Случайные собачки<br><span>(обновить страницу)</span</button>
-                <button type=button class="filters__button" id="filter-like">Любимые<br>собачки</button>
+                <button type=button class="filters__button">Случайные собачки<br><span>(обновить фото)</span</button>
+                <button type=button class="filters__button">Любимые<br>собачки</button>
                 <div class="breed__filters">
-                    <button class="filters__button filters__button--breed" id="filter-default">Собачки породы:</button>
-                    <select class="breed_selector" name="breed_selector" id="breed_selector"></select>
+                    <button class="filters__button filters__button--breed">Собачки породы:</button>
+                    <select class="dog_breed_selector"></select>
                 </div>
-            </div>
+            </nav>
         </section>
     </header> 
 
     <main>
         <!--Секция вывода массива загруженных минифото-->
         <section class="maincontent">
-            <div id="grid" class="imgrid"></div>
+            <div class="imgrid"></div>
             <div class="more">
                 <!--Кнопка показа следующих 10 фото-->
                 <button class="more__button">... показать ещё 10 фоток ...</button>
