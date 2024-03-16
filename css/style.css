@@ -161,7 +161,7 @@ body {
     gap: 20px;
     justify-content: space-around;
     width: 95%;
-    height: 490px;
+    height: 100%;
     margin-bottom: 20px;
     overflow: auto;
     scroll-behavior: smooth;
