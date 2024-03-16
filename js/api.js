@@ -34,7 +34,7 @@ const getPhotos = (url_req, num, api_key) => {
   .then((data) => {
     //Копируем полученные данные в рабочий массив
     let imagesData = data;
-    
+    console.log(imagesData);
     //Запускаем функцию вывода в DOM группы фото по полученным данным
     photoRender(imagesData);
     //Запускаем функцию логики показа кнопки "показать ещё 10 фоток"

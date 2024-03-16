@@ -2,7 +2,7 @@
 import './nav.js';
 import {getPhotos} from './api.js';
 
-window.innerHeight = window.innerHeight;
+window.innerHeight = window.innerHeight - 10;
 console.log(innerHeight);
 //Назначаем глобальную переменную url_req и назначаем ссылку запроса по умолчанию
 window.url_req = "https://api.thecatapi.com/v1/images/search?limit=21";
