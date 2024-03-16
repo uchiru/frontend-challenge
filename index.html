@@ -9,12 +9,14 @@
   <title>Пинтерест</title>
 </head>
 
-<body>
+<body class="page">
+  <div class="page__container">
     <header>
         <!--Секция навигации по фильтрам-->
         <section class="filters">
             <h2 class="visually-hidden">Фильтры фотографий</h2>
             <nav class="filters__nav">
+                <!--Кнопки выбора фильтров-->
                 <button type=button class="filters__button  filters__button--active">Случайные котики<br><span>(обновить фото)</span</button>
                 <button type=button class="filters__button">Любимые<br>котики</button>
                 <div class="breed__filters">
@@ -45,8 +47,8 @@
             <div class="big-picture__preview">
               <!-- Кнопка для выхода из полноэкранного просмотра изображения-->
               <button type="reset" class="big-picture__cancel  cancel" id="picture-cancel">Закрыть</button>
-              <!-- Кнопка для сохранения открытого полноэкранного изображения-->
-              <button class="big-picture__download">Сохранить</button>
+              <!-- Кнопка для открытия в браузере для сохранения открытого полноэкранного изображения-->
+              <button class="big-picture__download">Открыть в браузере/Сохранить</button>
               <!-- Просмотр полнокранного изображения -->
               <div class="big-picture__img">
                 <img class="big-picture__src" src="">
@@ -54,7 +56,6 @@
             </div>
           </section>
     </main>
-
-<script defer type="module" src="./js/main.js"></script>   
-
+  </div>  
+  <script defer type="module" src="./js/main.js"></script>   
 </body>

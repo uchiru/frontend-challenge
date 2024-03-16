@@ -34,10 +34,11 @@ const getPhotos = (url_req, num, api_key) => {
   .then((data) => {
     //Копируем полученные данные в рабочий массив
     let imagesData = data;
-    //Запускаем функцию логики показа кнопки "показать ещё 10 фоток"
-    moreButton(more, imagesData);
+    
     //Запускаем функцию вывода в DOM группы фото по полученным данным
     photoRender(imagesData);
+    //Запускаем функцию логики показа кнопки "показать ещё 10 фоток"
+    moreButton(more, imagesData);
     //Запускаем функцию добавления/удаления фото в любимые/из любимых
     likeMove(num, api_key);
   })
@@ -158,7 +159,7 @@ const likeMoveOperations = (photo, index, num, api_key) => {
   })
 }
 
-//Функция запроса на обработку любимых фото
+//Функция запроса любимых фото
 const likeRequest = (metodReq, likeUrl, apiKey, rawBody) =>  {
   fetch(likeUrl, 
   {
@@ -169,23 +170,23 @@ const likeRequest = (metodReq, likeUrl, apiKey, rawBody) =>  {
 )}
 
 //Функция сохранения открытого в модальном окне фото локально
-const downloadImage = (imageSrc, nameOfDownload) => {
+const downloadImage = (imageSrc) => {
   //Создаём элемент a
   const anchorElement = document.createElement('a');
   //Добавляем элементу a атрибут href с ссылкой на загружаемое фото
   anchorElement.href = imageSrc.src;
   //Добавляем элементу a атрибут download с именем фото для сохранения
-  anchorElement.download = nameOfDownload;
+  anchorElement.download;
   //Добавляем сформированный элемент a в конец DOM
-  document.body.appendChild(anchorElement);
+  //document.body.appendChild(anchorElement);
   //Кликаем ссылку a для запуска сохранения фото
   anchorElement.click();
   //Удаляем ссылку a из DOM
-  document.body.removeChild(anchorElement);
+  //document.body.removeChild(anchorElement);
 }
 
 //Подписываемся на запрос локального сохраниния открытого в модальном окне фото по событию click на кнопку Сохранить
-btn.addEventListener('click', () => {downloadImage(srcImg, srcImg.src.split('/').pop())});
+btn.addEventListener('click', () => {downloadImage(srcImg)});
 
 // Функция окрытия модального окна с полноразмерным кликнутым фото
 const onContainerClick = (evt) => {
@@ -196,8 +197,6 @@ const onContainerClick = (evt) => {
   // Проверяем найден ли атрибут и был ли клик именно по фото
   // Если клик был не по фото или по любому сердечку завешаем работу функции и не открываем модальное окно
   if (miniphoto === undefined || type === "favorite_photo" || type === "random_photo") {return}
-  //Удаляем обраотчик события
-  //list.removeEventListener('click', onContainerClick);
   // Если клик был по фото
   // Отменяем действие браузера по умолчанию для предотвращения автопрокрутки страницы в начальное положение
   evt.preventDefault();

@@ -16,7 +16,7 @@ img {
 }
 
 body {
-    width: 1366px;
+    width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -37,6 +37,11 @@ body {
     clip: rect(0 0 0 0);
     overflow: hidden;
   }
+
+.page__container {
+    width: 1366px;
+    margin: 0 auto;
+}
 
 .filters {
     min-height: 64px;

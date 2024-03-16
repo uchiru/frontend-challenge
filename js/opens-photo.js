@@ -6,6 +6,8 @@ const modalOpenElement = document.querySelector('.big-picture');
 const bodyElement = document.querySelector('body');
 // Находим элемент отображения кнопки для выхода из полноэкранного просмотра изображения
 const cancelButtonElement = modalOpenElement.querySelector('.big-picture__cancel');
+// Находим элемент фото в модальном окне
+const imgOpenSrc = modalOpenElement.querySelector('.big-picture__src');
 
 
 // Функция операций при закрытии модального окна
@@ -17,6 +19,8 @@ const closeModal = () => {
   bodyElement.classList.remove('modal-open');
   // Удалям обработчик события нажатия кнопки Escape
   document.removeEventListener('keydown', onDocumentKeydown);
+  //Удаляем ссылку на фото в окне
+  imgOpenSrc.src = "";
 };
 
 // Функция закрытия модального окна при нажатии кнопки Escape
