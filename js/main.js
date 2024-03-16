@@ -5,7 +5,7 @@ import {getPhotos} from './api.js';
 window.innerHeight = window.innerHeight;
 console.log(innerHeight);
 //Назначаем глобальную переменную url_req и назначаем ссылку запроса по умолчанию
-window.url_req = "https://api.thecatapi.com/v1/images/search?limit=20";
+window.url_req = "https://api.thecatapi.com/v1/images/search?limit=21";
 //Назначаем глобальную переменную butt и назначаем кнопку меню по умолчанию
 window.butt = 0;
 //Определяем ключ доступа к серверу по умолчанию
