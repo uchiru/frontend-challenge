@@ -4,7 +4,7 @@ import { openModal } from './opens-photo.js';
 
 //Находим узел списка фоток
 const list = document.querySelector('.imgrid');
-//Находим кнопку загрузить ещё 10 фото
+//Находим кнопку загрузить ещё n фото
 const more = document.querySelector('.more__button');
 //Находим кнопку Сохранить фото
 const btn = document.querySelector('.big-picture__download');

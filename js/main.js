@@ -7,7 +7,7 @@ const screen = document.querySelector('.imgrid');
 window.innerHeight = window.innerHeight;
 window.innerWidth = window.innerWidth
 console.log(innerHeight, innerWidth);
-window.quantityPhoto = Math.round(innerWidth/270 * innerHeight/270 * 1.6);
+window.quantityPhoto = Math.ceil(innerWidth/270 * innerHeight/270 * 1.6);
 console.log(quantityPhoto);
 screen.style.height = `${Math.round(innerHeight/1.38)}px`;
 const h = screen.style.height;
