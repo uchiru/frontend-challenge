@@ -9,12 +9,8 @@ const navFilters = document.querySelector('.filters__nav');
 const filters = navFilters.querySelectorAll('.filters__button');
 //Находим кнопку загрузить ещё n фото
 const more = document.querySelector('.more__button');
-//Определяем высоту окна вывода приложения
-const innerHeight = window.innerHeight;
-//Определяем ширину окна вывода приложения
-const innerWidth = window.innerWidth;
-//Определяем количество запрашиваемых для вывода фото
-const quantityPhoto = Math.ceil(innerWidth/270 * innerHeight/270 * 1.6);
+//Определяем количество запрашиваемых для вывода фото исходя из размеров окна вывода приложения
+const quantityPhoto = Math.ceil(window.innerWidth/270 * window.innerHeight/270 * 1.6);
 //Определяем ключ доступа к серверу для кошек
 const api_cat_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
 //Определяем ссылку для запроса quantityPhoto случайных фото котиков с сервера
@@ -87,7 +83,7 @@ const changeActivFilter = (num) => {
     api_key = api_cat_key;
     //Выводим quantityPhoto случайных фото с котиками
     getPhotos(cat_url, butt, api_cat_key);
-  };
+  }
   //Если нажата кнопка №1
   if (num === 1) {
     butt = num;
@@ -96,14 +92,14 @@ const changeActivFilter = (num) => {
     url_req = cat_fav_url;
     //Выводим все любимые фото котиков
     getPhotos(cat_fav_url, butt, api_cat_key);
-  };
+  }
   //Если нажата кнопка №2
   if (num === 2) {
     butt = num;
     api_key = api_cat_key;
     //Выводим до 100 фото с котиками выбранной породы
     getPhotos(url_req, butt, api_cat_key );
-  };
+  }
   //Если нажата кнопка №3
   if (num === 3) {
     butt = num;
@@ -112,7 +108,7 @@ const changeActivFilter = (num) => {
     url_req = dog_url;
     //Выводим quantityPhoto случайных фото с собачками
     getPhotos(dog_url, butt, api_dog_key);
-  };
+  }
   //Если нажата кнопка №4
   if (num === 4) {
     butt = num;
@@ -121,14 +117,14 @@ const changeActivFilter = (num) => {
     url_req = dog_fav_url;
     //Выводим все любимые фото собачек
     getPhotos(dog_fav_url, butt, api_dog_key);
-  };
+  }
   //Если нажата кнопка №5
   if (num === 5) {
     butt = num;
     api_key = api_dog_key;
     //Выводим до 100 фото с собачками выбранной породы
     getPhotos(url_req, butt, api_dog_key );
-  };
+  }
   
 }
 
