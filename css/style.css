@@ -169,11 +169,11 @@ body {
 
 .more__button {
     display: block;
-    min-width: 195px;
+    min-width: 200px;
     height: 21px;
     margin: 0 auto;
     padding: 0;
-    padding-right: 70px;
+    padding-right: 80px;
     font-weight: 700;
     color: #2196f3;
     background-color: #ffffff;
