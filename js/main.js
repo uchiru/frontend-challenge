@@ -9,10 +9,10 @@ window.innerWidth = window.innerWidth
 console.log(innerHeight, innerWidth);
 window.quantityPhoto = Math.round(innerWidth/270 * innerHeight/250 * 2);
 console.log(quantityPhoto);
-screen.style.height = `${innerHeight/1.061}px`;
+screen.style.height = `${Math.round(innerHeight/1.37)}px`;
 const h = screen.style.height;
 console.log(h);
-//Назначаем глобальную переменную url_req и назначаем ссылку запроса по умолчанию
+//Назначаем глобальную переменную url_req и назначаем первичную ссылку запроса
 window.url_req = `https://api.thecatapi.com/v1/images/search?limit=${quantityPhoto}`;
 //Назначаем глобальную переменную butt и назначаем кнопку меню по умолчанию
 window.butt = 0;
