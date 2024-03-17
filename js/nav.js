@@ -19,16 +19,16 @@ const quantityPhoto = Math.ceil(innerWidth/270 * innerHeight/270 * 1.6);
 const api_cat_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
 //Определяем ссылку для запроса quantityPhoto случайных фото котиков с сервера
 const cat_url = `https://api.thecatapi.com/v1/images/search?limit=${quantityPhoto}`;
-//Определяем ссылку для запроса 10 случайных фото котиков с сервера
-const cat_url_10 = 'https://api.thecatapi.com/v1/images/search?limit=10';
+//Определяем ссылку для запроса quantityPhoto/2 случайных фото котиков с сервера
+const cat_url_10 = `https://api.thecatapi.com/v1/images/search?limit=${quantityPhoto/2}`;
 //Определяем ссылку для запроса фото любимых котиков
 const cat_fav_url = 'https://api.thecatapi.com/v1/favourites';
 //Определяем ключ доступа к серверу для собак
 const api_dog_key = "live_mkkpPYTw0j96885AhwACtyennan2hLUoAMhdtr6f4buYORCuCt8WNeRq8JLggurg";
 //Определяем ссылку для запроса quantityPhoto случайных фото собачек с сервера
 const dog_url = `https://api.thedogapi.com/v1/images/search?limit=${quantityPhoto}`;
-//Определяем ссылку для запроса 10 случайных фото собачек с сервера
-const dog_url_10 = 'https://api.thedogapi.com/v1/images/search?limit=10';
+//Определяем ссылку для запроса quantityPhoto/2 случайных фото собачек с сервера
+const dog_url_10 = `https://api.thedogapi.com/v1/images/search?limit=${quantityPhoto/2}`;
 //Определяем ссылку для запроса фото любимых собачек
 const dog_fav_url = 'https://api.thedogapi.com/v1/favourites';
 //Находим кнопку вывода выбранной породы собачек
@@ -85,7 +85,7 @@ const changeActivFilter = (num) => {
     url_req = cat_url;
     butt = num;
     api_key = api_cat_key;
-    //Выводим 20 случайных фото с котиками
+    //Выводим quantityPhoto случайных фото с котиками
     getPhotos(cat_url, butt, api_cat_key);
   };
   //Если нажата кнопка №1
@@ -94,14 +94,14 @@ const changeActivFilter = (num) => {
     api_key = api_cat_key;
     //Меняем ссылку на любимых котиков
     url_req = cat_fav_url;
-    //Выводим 20 любимых фото котиков
+    //Выводим все любимые фото котиков
     getPhotos(cat_fav_url, butt, api_cat_key);
   };
   //Если нажата кнопка №2
   if (num === 2) {
     butt = num;
     api_key = api_cat_key;
-    //Выводим 20 случайных фото с котиками выбранной породы
+    //Выводим до 100 фото с котиками выбранной породы
     getPhotos(url_req, butt, api_cat_key );
   };
   //Если нажата кнопка №3
@@ -110,7 +110,7 @@ const changeActivFilter = (num) => {
     api_key = api_dog_key;
     //Меняем ссылку на собачек
     url_req = dog_url;
-    //Выводим 20 случайных фото с собачками
+    //Выводим quantityPhoto случайных фото с собачками
     getPhotos(dog_url, butt, api_dog_key);
   };
   //Если нажата кнопка №4
@@ -119,14 +119,14 @@ const changeActivFilter = (num) => {
     api_key = api_dog_key;
     //Меняем ссылку на любимых собачек
     url_req = dog_fav_url;
-    //Выводим 20 любимых фото собачек
+    //Выводим все любимые фото собачек
     getPhotos(dog_fav_url, butt, api_dog_key);
   };
   //Если нажата кнопка №5
   if (num === 5) {
     butt = num;
     api_key = api_dog_key;
-    //Выводим 20 случайных фото с собачками выбранной породы
+    //Выводим до 100 фото с собачками выбранной породы
     getPhotos(url_req, butt, api_dog_key );
   };
   
