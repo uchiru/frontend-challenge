@@ -2,10 +2,18 @@
 import './nav.js';
 import {getPhotos} from './api.js';
 
-window.innerHeight = window.innerHeight - 10;
-console.log(innerHeight);
+const screen = document.querySelector('.imgrid');
+
+window.innerHeight = window.innerHeight;
+window.innerWidth = window.innerWidth
+console.log(innerHeight, innerWidth);
+window.quantityPhoto = Math.round(innerWidth/270 * innerHeight/250 * 2);
+console.log(quantityPhoto);
+screen.style.height = `${innerHeight/1.061}px`;
+const h = screen.style.height;
+console.log(h);
 //Назначаем глобальную переменную url_req и назначаем ссылку запроса по умолчанию
-window.url_req = "https://api.thecatapi.com/v1/images/search?limit=21";
+window.url_req = `https://api.thecatapi.com/v1/images/search?limit=${quantityPhoto}`;
 //Назначаем глобальную переменную butt и назначаем кнопку меню по умолчанию
 window.butt = 0;
 //Определяем ключ доступа к серверу по умолчанию

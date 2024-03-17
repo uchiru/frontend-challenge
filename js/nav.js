@@ -12,7 +12,7 @@ const more = document.querySelector('.more__button');
 //Определяем ключ доступа к серверу для кошек
 const api_cat_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
 //Определяем ссылку для запроса 20 случайных фото котиков с сервера
-const cat_url = 'https://api.thecatapi.com/v1/images/search?limit=21';
+const cat_url = 'https://api.thecatapi.com/v1/images/search?limit=20';
 //Определяем ссылку для запроса 10 случайных фото котиков с сервера
 const cat_url_10 = 'https://api.thecatapi.com/v1/images/search?limit=10';
 //Определяем ссылку для запроса фото любимых котиков
@@ -20,7 +20,7 @@ const cat_fav_url = 'https://api.thecatapi.com/v1/favourites';
 //Определяем ключ доступа к серверу для собак
 const api_dog_key = "live_mkkpPYTw0j96885AhwACtyennan2hLUoAMhdtr6f4buYORCuCt8WNeRq8JLggurg";
 //Определяем ссылку для запроса 20 случайных фото собачек с сервера
-const dog_url = 'https://api.thedogapi.com/v1/images/search?limit=21';
+const dog_url = 'https://api.thedogapi.com/v1/images/search?limit=20';
 //Определяем ссылку для запроса 10 случайных фото собачек с сервера
 const dog_url_10 = 'https://api.thedogapi.com/v1/images/search?limit=10';
 //Определяем ссылку для запроса фото любимых собачек
