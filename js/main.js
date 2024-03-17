@@ -7,9 +7,9 @@ const screen = document.querySelector('.imgrid');
 window.innerHeight = window.innerHeight;
 window.innerWidth = window.innerWidth
 console.log(innerHeight, innerWidth);
-window.quantityPhoto = Math.round(innerWidth/270 * innerHeight/250 * 2);
+window.quantityPhoto = Math.round(innerWidth/270 * innerHeight/270 * 1.6);
 console.log(quantityPhoto);
-screen.style.height = `${Math.round(innerHeight/1.37)}px`;
+screen.style.height = `${Math.round(innerHeight/1.38)}px`;
 const h = screen.style.height;
 console.log(h);
 //Назначаем глобальную переменную url_req и назначаем первичную ссылку запроса
