@@ -12,7 +12,7 @@ const innerWidth = window.innerWidth;
 const api_cat_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
 
 //Определяем высоту элемента вывода галереи фото
-screen.style.height = `${Math.round(innerHeight/1.37)}px`;
+screen.style.height = `${Math.round(innerHeight/1.36)}px`;
 //Определяем количество запрашиваемых для вывода фото
 const quantityPhoto = Math.ceil(innerWidth/270 * innerHeight/270 * 1.6);
 console.log(quantityPhoto);
