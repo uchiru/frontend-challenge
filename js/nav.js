@@ -7,20 +7,26 @@ import { removeAllPhotos } from './clear.js';
 const navFilters = document.querySelector('.filters__nav');
 //Создаём массивоподобную коллекцию классов фильтров
 const filters = navFilters.querySelectorAll('.filters__button');
-//Находим кнопку загрузить ещё 10 фото
+//Находим кнопку загрузить ещё n фото
 const more = document.querySelector('.more__button');
+//Определяем высоту окна вывода приложения
+const innerHeight = window.innerHeight;
+//Определяем ширину окна вывода приложения
+const innerWidth = window.innerWidth;
+//Определяем количество запрашиваемых для вывода фото
+const quantityPhoto = Math.ceil(innerWidth/270 * innerHeight/270 * 1.6);
 //Определяем ключ доступа к серверу для кошек
 const api_cat_key = "live_kXTx0E9DJ26u2DwO7B01hqaoICxQkHH4RPv3CQVbN9VImBylpJGLJc5oVjIWv97d";
-//Определяем ссылку для запроса 20 случайных фото котиков с сервера
-const cat_url = 'https://api.thecatapi.com/v1/images/search?limit=20';
+//Определяем ссылку для запроса quantityPhoto случайных фото котиков с сервера
+const cat_url = `https://api.thecatapi.com/v1/images/search?limit=${quantityPhoto}`;
 //Определяем ссылку для запроса 10 случайных фото котиков с сервера
 const cat_url_10 = 'https://api.thecatapi.com/v1/images/search?limit=10';
 //Определяем ссылку для запроса фото любимых котиков
 const cat_fav_url = 'https://api.thecatapi.com/v1/favourites';
 //Определяем ключ доступа к серверу для собак
 const api_dog_key = "live_mkkpPYTw0j96885AhwACtyennan2hLUoAMhdtr6f4buYORCuCt8WNeRq8JLggurg";
-//Определяем ссылку для запроса 20 случайных фото собачек с сервера
-const dog_url = 'https://api.thedogapi.com/v1/images/search?limit=20';
+//Определяем ссылку для запроса quantityPhoto случайных фото собачек с сервера
+const dog_url = `https://api.thedogapi.com/v1/images/search?limit=${quantityPhoto}`;
 //Определяем ссылку для запроса 10 случайных фото собачек с сервера
 const dog_url_10 = 'https://api.thedogapi.com/v1/images/search?limit=10';
 //Определяем ссылку для запроса фото любимых собачек
