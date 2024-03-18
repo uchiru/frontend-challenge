@@ -68,7 +68,7 @@ const photoData = (imageData) => {
   let favorite = document.createElement('img');
   //Добавим тегу img для вывода скачанного фото класс
   image.classList.add('photo');
-  //Запишем в атрибуты тега img идидентификатор фото из параметра id и src ссылку на фото из параметра url объекта фото
+  //Запишем в атрибуты тега img идидентификатор фото из параметра id объекта фото
   image.id = `${imageData.id}`;
   //Если данные о любимых фото
   if(imageData.image_id) {
@@ -78,6 +78,8 @@ const photoData = (imageData) => {
     favorite.src = './images/favorite.svg';
     //Добавим идентификатор любимое фото
     favorite.alt = "favorite_photo";
+    //Добавим описание иконки
+    favorite.title = "Убрать из любимых";
   }
     //Если данные о случайных фото
     else {
@@ -87,7 +89,9 @@ const photoData = (imageData) => {
       favorite.src = './images/favorite_border.svg';
       //Добавим идентификатор случайное фото
       favorite.alt = "random_photo";
-      //Добавляем атрибут title тегу img фото с описанием породы, если она есть в данных
+      //Добавим описание иконки
+      favorite.title = "Добавить в любимые"; 
+  //Добавляем атрибут title тегу img фото с описанием породы, если она есть в данных
   //Если в данных есть массив описания породы и в нём есть объект с описанимм
   if(imageData.breeds[0] && imageData.breeds[0].description) {
     //Записываем в атрибут title название породы, её описание и темперамент
