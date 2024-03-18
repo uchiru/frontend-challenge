@@ -118,7 +118,7 @@ body {
     &:hover {
         cursor: pointer;
         transform: scale(103%);
-        box-shadow: 0 5px 5px #b1b1b1;
+        box-shadow: 0 0 9px #666666;
         transition: all ease-in-out 0.25s;
         .favorite {
             display: block;
