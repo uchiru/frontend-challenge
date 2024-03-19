@@ -51,6 +51,10 @@ body {
     flex-wrap: nowrap;
     justify-content: space-around;
     margin-left: 0px;
+
+    @media (max-width: 800px) {
+        display: block;
+    }
 }
 
 .filters__button {
@@ -84,6 +88,10 @@ body {
 
 .breed__filters {
     align-self: center;
+
+    @media (max-width: 800px) {
+        width: 230px;
+    }
 }
 
 .breed__filters-title {
