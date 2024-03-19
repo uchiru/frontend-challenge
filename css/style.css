@@ -51,6 +51,10 @@ body {
     min-height: 64px;
     background-color: #2196f3;
     box-shadow: 0 5px 5px #b1b1b1;
+
+    @media (max-width: 752px) {
+        min-height: none;
+    }
 }
 
 .filters__nav {
@@ -63,6 +67,10 @@ body {
         display: block;
         width: 302px;
         margin: 0 auto;
+    }
+
+    @media (max-width: 302px) {
+        width: 250px;
     }
 }
 
@@ -82,6 +90,10 @@ body {
     &:active {
         background-color: #2196f3;
         opacity: 100%; 
+    }
+
+    @media (max-width: 478px) {
+        min-height: 35px;
     }
 }
 
