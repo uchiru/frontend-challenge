@@ -206,8 +206,8 @@ const onContainerClick = (evt) => {
   // Вызываем функцию открытия модального окна с искомым фото
   openModal(miniphoto);
 };
-
+console.log(window.innerWidth);
 // Подписываем выведенные фото на открытие модального окна с полноразмерным фото по событию click при условии достаточного размера экрана
- list.addEventListener('click', onContainerClick);
+if (window.innerWidth > 799) list.addEventListener('click', onContainerClick);
 
 export {getPhotos};
