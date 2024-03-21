@@ -43,15 +43,15 @@ const getPhotos = (url_req, num, api_key) => {
   })
 }
 
-//Функция логики показа кнопки "показать ещё 10 фоток"
+//Функция логики показа кнопки "показать ещё фотки"
 const moreButton = (more, imagesData) => {
-  //Если в массиве меньше 10 фото, то скрываем кнопку "показать ещё 10 фоток"
+  //Если в массиве меньше 10 фото, то скрываем кнопку "показать ещё фотки"
   if(imagesData.length < 10) more.classList.add('hidden');
-  //Если в массиве 20 фото или меньше и находимся не в разделах случайные фото, то скрываем кнопку "показать ещё 10 фоток"
+  //Если в массиве 20 фото или меньше и находимся не в разделах случайные фото, то скрываем кнопку "показать ещё фотки"
   if(imagesData.length <= 20 && (butt != 0 && butt != 3)) more.classList.add('hidden');
-  //Если находимся в разделах любимые, то скрываем кнопку "показать ещё 10 фоток"
+  //Если находимся в разделах любимые, то скрываем кнопку "показать ещё фотки"
   if(butt != 0 || butt != 3) more.classList.add('hidden');
-  //Если находимся в разделах случайные, то показываем кнопку "показать ещё 10 фоток"
+  //Если находимся в разделах случайные, то показываем кнопку "показать ещё фотки"
   if(butt == 0 || butt == 3) more.classList.remove('hidden');
 }
 
@@ -199,7 +199,7 @@ const onContainerClick = (evt) => {
   type = evt.target.alt;
   // Проверяем найден ли атрибут и был ли клик именно по фото
   // Если клик был не по фото или по любому сердечку завешаем работу функции и не открываем модальное окно
-  if (miniphoto === undefined || type === "favorite_photo" || type === "random_photo") {return}
+  if (miniphoto === undefined || type === "favorite_photo" || type === "random_photo" || window.innerWidth < 800) {return}
   // Если клик был по фото
   // Отменяем действие браузера по умолчанию для предотвращения автопрокрутки страницы в начальное положение
   evt.preventDefault();
@@ -208,6 +208,6 @@ const onContainerClick = (evt) => {
 };
 console.log(window.innerWidth);
 // Подписываем выведенные фото на открытие модального окна с полноразмерным фото по событию click при условии достаточного размера экрана
-if (window.innerWidth > 799) list.addEventListener('click', onContainerClick);
+list.addEventListener('click', onContainerClick);
 
 export {getPhotos};
