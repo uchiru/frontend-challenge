@@ -43,16 +43,17 @@ const getPhotos = (url_req, num, api_key) => {
   })
 }
 
-//Функция логики показа кнопки "показать ещё фотки"
+//Функция логики показа кнопки "показать ещё фото"
 const moreButton = (more, imagesData) => {
-  //Если в массиве меньше 10 фото, то скрываем кнопку "показать ещё фотки"
-  if(imagesData.length < 10) more.classList.add('hidden');
-  //Если в массиве 20 фото или меньше и находимся не в разделах случайные фото, то скрываем кнопку "показать ещё фотки"
-  if(imagesData.length <= 20 && (butt != 0 && butt != 3)) more.classList.add('hidden');
-  //Если находимся в разделах любимые, то скрываем кнопку "показать ещё фотки"
-  if(butt != 0 || butt != 3) more.classList.add('hidden');
-  //Если находимся в разделах случайные, то показываем кнопку "показать ещё фотки"
-  if(butt == 0 || butt == 3) more.classList.remove('hidden');
+  console.log(butt);
+  //Если в массиве меньше 10 фото, то скрываем кнопку "показать ещё фото"
+  if(imagesData.length < 10) more.classList.add('visually-hidden');
+  //Если в массиве 20 фото или меньше и находимся не в разделах случайные фото, то скрываем кнопку "показать ещё фото"
+  if(imagesData.length <= 20 && (butt != 0 && butt != 3)) more.classList.add('visually-hidden');
+  //Если не находимся в разделах случайные, то скрываем кнопку "показать ещё фото"
+  if(butt != 0 || butt != 3) more.classList.add('visually-hidden');
+  //Если находимся в разделах случайные, то показываем кнопку "показать ещё фото"
+  if(butt == 0 || butt == 3) more.classList.remove('visually-hidden');
 }
 
 //Функция вывода в DOM группы фото по данным полученного массива данных о фото 
@@ -180,12 +181,8 @@ const downloadImage = (imageSrc) => {
   anchorElement.href = imageSrc.src;
   //Добавляем элементу a атрибут download с именем фото для сохранения
   anchorElement.download;
-  //Добавляем сформированный элемент a в конец DOM
-  //document.body.appendChild(anchorElement);
   //Кликаем ссылку a для запуска сохранения фото
   anchorElement.click();
-  //Удаляем ссылку a из DOM
-  //document.body.removeChild(anchorElement);
 }
 
 //Подписываемся на запрос локального сохраниния открытого в модальном окне фото по событию click на кнопку Сохранить
@@ -198,7 +195,7 @@ const onContainerClick = (evt) => {
   //По целевому событию ищем в кликнутом элементе атрибут с типом кликнутого фото
   type = evt.target.alt;
   // Проверяем найден ли атрибут и был ли клик именно по фото
-  // Если клик был не по фото или по любому сердечку завешаем работу функции и не открываем модальное окно
+  // Если клик был не по фото или по любому сердечку или размер экрана слишком мал завершаем работу функции и не открываем модальное окно
   if (miniphoto === undefined || type === "favorite_photo" || type === "random_photo" || window.innerWidth < 800) {return}
   // Если клик был по фото
   // Отменяем действие браузера по умолчанию для предотвращения автопрокрутки страницы в начальное положение
@@ -206,7 +203,7 @@ const onContainerClick = (evt) => {
   // Вызываем функцию открытия модального окна с искомым фото
   openModal(miniphoto);
 };
-console.log(window.innerWidth);
+
 // Подписываем выведенные фото на открытие модального окна с полноразмерным фото по событию click при условии достаточного размера экрана
 list.addEventListener('click', onContainerClick);
 
